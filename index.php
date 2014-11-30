@@ -6,7 +6,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('WWW_ROOT', __DIR__ . DS);
 
 $routes = array(
-	'index' => array(
+    'index' => array(
         'controller' => 'Users',
         'action' => 'index'
     ),
@@ -14,30 +14,34 @@ $routes = array(
         'controller' => 'Users',
         'action' => 'profile'
     ),
-     'login' => array(
-        'controller' => 'Users',
-        'action' => 'login'
-    ),
-    'register' => array(
+        'register' => array(
         'controller' => 'Users',
         'action' => 'register'
     ),
-    'logout' => array(
+        'login' => array(
+        'controller' => 'Users',
+        'action' => 'login'
+    ),
+        'logout' => array(
         'controller' => 'Users',
         'action' => 'logout'
-    )
-    'whiteboard' => array(
-        'controller' => 'Pages',
-        'action' => 'whiteboard'
     ),
-    'newproject' => array(
+        'newproject' => array(
         'controller' => 'Pages',
         'action' => 'newproject'
     ),
-    'scrum' => array(
+        'scrum' => array(
         'controller' => 'Pages',
         'action' => 'scrum'
-    )
+    ),
+        'whiteboard' => array(
+        'controller' => 'Pages',
+        'action' => 'whiteboard'
+    ),
+        'createproject' => array(
+        'controller' => 'Pages',
+        'action' => 'createproject'
+    )    
 );
 
 if(empty($_GET['page'])){

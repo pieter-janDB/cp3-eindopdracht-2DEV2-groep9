@@ -1,26 +1,65 @@
 <!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-  <title>JobRock 2012</title>
-  <link href="css/screen.css" rel="stylesheet" type="text/css" />
-<body>
-<div class="container">
-	<header>
-		<h1>Jobrock</h1>
-		<h2>18/19/20 Oktober</h2>
-	</header>
-  <div class="menu">
-    <ul>
-      <li><a href="index.php?page=tickets">Order Tickets</a></li>
-      <li><a href="index.php?page=posts">Posts</a></li>
-    </ul>
-  </div>
-  <div class="main">
-    <?php echo $content; ?>
-  </div>
-</div>
-<script type="text/javascript" src="js/vendor/fallback/fallback.min.js"></script>
-<script type="text/javascript" src="js/init.js"></script>
+<html>
+    <head>
+        <meta name="description" content="Whiteboard and scrum" />
+        <meta name="keywords" content="whiteboard, scrum, projects, cp3, eindwerk, devine" />
+        <meta name="author" content="Pieter-Jan De Bruyne, Emma Verhelst" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>Whiteboard-scrum</title>
+        <link href="css/screen.css" rel="stylesheet">
 
-</body>
+    </head>
+    <body>
+        
+            
+       
+        <div class="container">
+
+            <nav>
+                <header>
+
+                    <h1>
+                <?php if($_GET['page'] == "profile"){
+                    echo "<a href=\"index.php\">";
+                    echo "whiteboard";
+                    echo "</a>";
+                }else if($_GET['page'] == "newproject"){
+                     echo "<a href=\"index.php?page=profile\">";
+                    echo "Back to profile";
+                    echo "</a>";
+                    
+                }else{
+                    echo "other";
+                }
+                ?>
+                    </h1>
+                </header>
+                <ul>
+                    <li class="useremail"> voorbeeld@hotmail.com </li>
+                    <li class="logoutknop"> log out </li>
+                </ul>
+            </nav>
+
+            <?php
+            if(!empty($_SESSION['user']['id'])){
+                echo "<p>";
+                echo $_SESSION['user']['email'];
+                echo "</p>";
+                echo "<a href=index.php?page=logout>";
+                echo "LOGOUT";
+                echo "</a>";
+            }
+        ?>
+
+
+            <?php if(!empty($_SESSION['info'])): ?><div class="alert-success"><?php echo $_SESSION['info'];?></div><?php endif; ?>
+            <?php if(!empty($_SESSION['error'])): ?><div class="alert-danger"><?php echo $_SESSION['error'];?></div><?php endif; ?>
+
+            <?php echo $content; ?>
+
+
+        </div>
+         <script src="js/script.dist.js" type="text/javascript"></script>
+    </body>
 </html>

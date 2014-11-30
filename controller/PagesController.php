@@ -1,39 +1,49 @@
 <?php
 
-require_once(WWW_ROOT . 'controller' . DIRECTORY_SEPARATOR . 'Controller.php');
+require_once WWW_ROOT . 'controller' . DS . 'Controller.php';
+
+
 
 
 class PagesController extends Controller {
 
-  
 
-	function __construct(){
+	
 
-  }
+	function __construct() {
 
-  public function index(){
 
-    
+	}
 
-  }
 
-  public function newProject(){
+	public function index(){
 
-    
 
-  }
+	}
+	public function newproject(){
+		
+	}
+	public function scrum(){
+		
+	}
+	public function whiteboard(){
+		
+	}
+	public function createproject(){
+		
+	}
 
-  public function whiteBoard(){
+	
 
-    
-
-  }
-  public function scrum(){
-
-    
-
-  }
-
-  
+	
+	
 
 }
+
+
+
+	
+
+
+
+

@@ -29,6 +29,7 @@ class UserDAO extends DAO {
 
 	public function insert($data){
 		$errors = $this->getValidationErrors($data);
+		
 		if (empty($errors)) {
 			$sql = "INSERT INTO `users` (`username`, `password`)
 				VALUES (:username, :password)";
@@ -43,6 +44,17 @@ class UserDAO extends DAO {
 			
 		}
 		return false;
+	}
+
+	public function selectByName($voornaam, $achternaam){
+
+		$sql = "SELECT * FROM `users` WHERE `firstname` = :voornaam AND `lastname` = :achternaam";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':voornaam', $voornaam);
+		$stmt->bindValue(':achternaam', $achternaam);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 	
 

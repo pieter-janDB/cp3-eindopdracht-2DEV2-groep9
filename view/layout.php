@@ -41,16 +41,7 @@
                 </ul>
             </nav>
 
-            <?php
-            if(!empty($_SESSION['user']['id'])){
-                echo "<p>";
-                echo $_SESSION['user']['email'];
-                echo "</p>";
-                echo "<a href=index.php?page=logout>";
-                echo "LOGOUT";
-                echo "</a>";
-            }
-        ?>
+           
 
 
             <?php if(!empty($_SESSION['info'])): ?><div class="alert-success"><?php echo $_SESSION['info'];?></div><?php endif; ?>

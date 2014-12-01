@@ -2,6 +2,7 @@
 
 require_once WWW_ROOT . 'controller' . DS . 'Controller.php';
 require_once WWW_ROOT . 'dao' . DS . 'UserDAO.php';
+require_once WWW_ROOT . 'dao' . DS . 'ProjectDAO.php';
 require_once WWW_ROOT . 'phpass' .  DS . 'Phpass.php';
 
 
@@ -10,16 +11,26 @@ require_once WWW_ROOT . 'phpass' .  DS . 'Phpass.php';
 class UsersController extends Controller {
 
 	private $userDAO;
+	private $projectDAO;
 	
 	
 
 	function __construct() {
 		$this->userDAO = new UserDAO();
+		$this->projectDAO = new ProjectDAO();
+
 
 	}
 
 	public function profile(){
+
 		
+
+		$user = $this->userDAO->selectById($_SESSION['user']['id']);
+		$this->set('user', $user);
+
+		$projects = $this->projectDAO->selectAllByUserId($_SESSION['user']['id']);
+		$this->set('projects', $projects);
 	}
 
 	public function register(){

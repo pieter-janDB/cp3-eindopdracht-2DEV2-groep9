@@ -1,5 +1,5 @@
 (function(){ 
-	var test= 1;
+	var memberAantal= 1;
 
 
 	function init(){ 
@@ -13,12 +13,13 @@
 	function addMember(e){
 
 
-		test++;
+		memberAantal++;
 		var memberLabel = document.querySelector('.memberLabel');
 		var newInput = document.createElement('input');
 		newInput.type = "text";
-		var classname = "member" + test;
+		var classname = "member" + memberAantal;
 		newInput.id = classname;
+		newInput.name = "member" + memberAantal;
 		newInput.classList.add(classname, 'newMember');
 		newInput.placeholder="Voornaam Achternaam";
 

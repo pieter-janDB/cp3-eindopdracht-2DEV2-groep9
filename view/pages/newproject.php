@@ -1,8 +1,34 @@
 <section class="newProjectPage">
 
+	  <nav>
+                <header>
+
+                    <h1>
+                <?php if($_GET['page'] == "profile"){
+                    echo "<a href=\"index.php\">";
+                    echo "whiteboard";
+                    echo "</a>";
+                }else if($_GET['page'] == "newproject"){
+                     echo "<a href=\"index.php?page=profile\">";
+                    echo "Back to profile";
+                    echo "</a>";
+                    
+                }else{
+                    echo "other";
+                }
+                ?>
+                    </h1>
+                </header>
+                <ul>
+                    <li class="useremail"> voorbeeld@hotmail.com </li>
+                    <li class="logoutknop"> log out </li>
+                </ul>
+            </nav>
 	<header>
 		<h1> Emma Verhelst </h1>
 	</header>
+
+
 
 	<div class="greenbar">
 		<p>new project</p>

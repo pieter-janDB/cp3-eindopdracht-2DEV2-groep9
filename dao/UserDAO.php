@@ -1,5 +1,7 @@
 <?php
 require_once WWW_ROOT .'dao' . DS .'DAO.php';
+
+
 class UserDAO extends DAO {
 
 	public function selectAll(){
@@ -10,18 +12,18 @@ class UserDAO extends DAO {
 	}
 	 
 
-	public function selectByUsername($username){
-		$sql = "SELECT * FROM `users` WHERE `username` = :username";
-		$stmt = $this->pdo->prepare($sql);
-		$stmt->bindValue(':username', $username);
-		$stmt->execute();
-		return $stmt->fetch(PDO::FETCH_ASSOC);
-	}
-
 	public function selectById($id){
 		$sql = "SELECT * FROM `users` WHERE `id` = :id";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindValue(':id', $id);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	public function selectByEmail($email){
+		$sql = "SELECT * FROM `users` WHERE `email` = :email";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':email', $email);
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
@@ -31,12 +33,13 @@ class UserDAO extends DAO {
 		$errors = $this->getValidationErrors($data);
 		
 		if (empty($errors)) {
-			$sql = "INSERT INTO `users` (`username`, `password`)
-				VALUES (:username, :password)";
+			$sql = "INSERT INTO `users` (`firstname`, `lastname`, `email`, `password` )
+				VALUES (:firstname, :lastname, :email, :password)";
 			$stmt = $this->pdo->prepare($sql);
-			$stmt->bindValue(':username', $data['username']);
+			$stmt->bindValue(':firstname', $data['firstname']);
+			$stmt->bindValue(':lastname', $data['lastname']);
+			$stmt->bindValue(':email', $data['email']);
 			$stmt->bindValue(':password', $data['password']);
-
 			if($stmt->execute()) {
 				$lastInsertId=$this->pdo->lastInsertId();
 				return $this->selectById($lastInsertId);
@@ -44,7 +47,9 @@ class UserDAO extends DAO {
 			
 		}
 		return false;
+
 	}
+
 
 	public function selectByName($voornaam, $achternaam){
 
@@ -58,14 +63,21 @@ class UserDAO extends DAO {
 	}
 	
 
+
 	
 	public function getValidationErrors($data) {
 		$errors = array();
-		if(empty($data['username'])){
-			$errors['username'] = 'insert username please.';
+		if(empty($data['firstname'])){
+			$errors['firstname'] = 'please fill in your firstname';
+		}
+		if(empty($data['lastname'])){
+			$errors['lastname'] = 'please fill in your firstname';
+		}
+		if(empty($data['email'])){
+			$errors['email'] = 'please fill in your email';
 		}
 		if(empty($data['password'])){
-			$errors['password'] = 'vul een paswoord in';
+			$errors['password'] = 'please fill in your password';
 		}
 
 				

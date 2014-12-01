@@ -28,10 +28,13 @@ class PagesController extends Controller {
 
 	}
 	public function newproject(){
-				
-				//VERWIJDER NA USERIMPLEMENTATIE
-				$_SESSION['user'] = $this->userDAO->SelectById(1);
+		if(empty($_SESSION['user']['id'])){
+			$_SESSION['error'] = 'you need to login to visit this page.';
+			$this->redirect('index.php');
+		}
 
+		$user = $this->userDAO->selectById($_SESSION['user']['id']);
+		$this->set('user', $user);
 
 		if(!empty($_POST)){
 			
@@ -133,9 +136,17 @@ class PagesController extends Controller {
 
 
 	public function scrum(){
+		if(empty($_SESSION['user']['id'])){
+			$_SESSION['error'] = 'you need to login to visit this page.';
+			$this->redirect('index.php');
+		}
 		
 	}
 	public function whiteboard(){
+		if(empty($_SESSION['user']['id'])){
+			$_SESSION['error'] = 'you need to login to visit this page.';
+			$this->redirect('index.php');
+		}
 		
 	}
 

@@ -245,9 +245,10 @@ nav{
 		}
 	}
 	.useremail{
+		font-size: 1.6em;
 		text-align: right;
 		color: #fff;
-		padding: 40px 60px 15px 0px;
+		padding: 40px 60px 0px 0px;
 		
 	}
 	.logoutknop{
@@ -255,7 +256,7 @@ nav{
 		color: $green;
 		text-decoration: underline;
 		text-transform: uppercase;
-		padding: 50px 60px 15px 0px;
+		padding: 10px 60px 15px 0px;
 		a{
 			color: $green;
 		}

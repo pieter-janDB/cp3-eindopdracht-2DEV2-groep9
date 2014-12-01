@@ -1,31 +1,6 @@
 <section class="newProjectPage">
-
-	  <nav>
-                <header>
-
-                    <h1>
-                <?php if($_GET['page'] == "profile"){
-                    echo "<a href=\"index.php\">";
-                    echo "whiteboard";
-                    echo "</a>";
-                }else if($_GET['page'] == "newproject"){
-                     echo "<a href=\"index.php?page=profile\">";
-                    echo "Back to profile";
-                    echo "</a>";
-                    
-                }else{
-                    echo "other";
-                }
-                ?>
-                    </h1>
-                </header>
-                <ul>
-                    <li class="useremail"> voorbeeld@hotmail.com </li>
-                    <li class="logoutknop"> log out </li>
-                </ul>
-            </nav>
 	<header>
-		<h1> Emma Verhelst </h1>
+		<h1> <?php echo $user['firstname']; echo " "; echo $user['lastname'];?></h1>
 	</header>
 
 
@@ -48,7 +23,7 @@
 
 			</div>
 			<div class="formRegel">
-				<label class="memberLabel"for="member1">members:</label>
+				<label class="memberLabel"for="member1">members (beside you):</label>
 				<input id="member1" name="member1" class="member" type="text" placeholder="Voornaam Achternaam"></input>
 				
 			
@@ -71,13 +46,5 @@
 		 
 			</form>
 
-				<?php 
-		
-			
-			var_dump($test);
-			var_dump($fail);
-			var_dump($id);
-
-			?>
 
 </section>

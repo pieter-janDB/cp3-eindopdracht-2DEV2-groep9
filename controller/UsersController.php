@@ -24,7 +24,10 @@ class UsersController extends Controller {
 
 	public function profile(){
 
-		
+		if(empty($_SESSION['user']['id'])){
+			$_SESSION['error'] = 'you need to login to visit this page.';
+			$this->redirect('index.php');
+		}
 
 		$user = $this->userDAO->selectById($_SESSION['user']['id']);
 		$this->set('user', $user);
@@ -35,7 +38,7 @@ class UsersController extends Controller {
 	}
 	
 	public function index() {
-		$this->set('users',$this->userDAO->SelectAll());
+		
 
 	}
 
@@ -82,6 +85,7 @@ class UsersController extends Controller {
 
                 $insertedUser = $this->userDAO->insert($newUser);
                 if(!empty($insertedUser)) {
+                	$_SESSION['user'] = $insertedUser;
                     $_SESSION['info'] = 'Registration successful';
                     $this->redirect('index.php?page=profile');
                     	$_SESSION['user'] = $insertedUser;
@@ -118,6 +122,12 @@ class UsersController extends Controller {
 	}
 }
 }
+
+
+
+
+
+
 
 	public function logout(){
 		unset($_SESSION['user']);

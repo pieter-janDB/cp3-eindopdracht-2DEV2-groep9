@@ -1,6 +1,6 @@
 <section class="homepage">
 
-	<h2><a href="index.php?page=index">Whiteboard</a></h2>
+	<h2><a href="index.php">Whiteboard</a></h2>
     <h3>Online whiteboard and scrum</h3>
 
 	<div id="register">

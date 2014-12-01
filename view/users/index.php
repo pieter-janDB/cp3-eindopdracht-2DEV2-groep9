@@ -5,7 +5,7 @@
 
     <div id="login">
     	<p>Login</p>
-    	<form action="index.php?page=index" method="post" >
+    	<form action="index.php?page=login" method="post" >
     		<div class="loginForm">
     			<ul>
 				<li><label for="email">E-mail:</label></li>

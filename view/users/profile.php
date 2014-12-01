@@ -1,8 +1,52 @@
 <section class="profilepage">
+ <div class="container">
+  <nav>
+                <header>
 
+                    <h1>
+                <?php if($_GET['page'] == "profile"){
+                    echo "<a href=\"index.php\">";
+                    echo "whiteboard";
+                    echo "</a>";
+                }else if($_GET['page'] == "newproject"){
+                     echo "<a href=\"index.php?page=profile\">";
+                    echo "Back to profile";
+                    echo "</a>";
+                    
+                }else{
+                    echo "other";
+                }
+                ?>
+                    </h1>
+                </header>
+                <ul>
+                    <li class="useremail">Logged in as<?php echo $_SESSION['user']['email'];?></li>
+                    <li class="logoutknop"><a href="index.php?page=logout"> log out</a></li>
+                </ul>
+    </nav>
+        <?php
+            if(!empty($_SESSION['user']['id'])){
+                echo "<p>";
+                echo $_SESSION['user']['email'];
+                echo "</p>";
+                echo "<a href=index.php?page=logout>";
+                echo "LOGOUT";
+                echo "</a>";
+            }
+        ?>
+
+
+            <?php if(!empty($_SESSION['info'])): ?><div class="alert-success"><?php echo $_SESSION['info'];?></div><?php endif; ?>
+            <?php if(!empty($_SESSION['error'])): ?><div class="alert-danger"><?php echo $_SESSION['error'];?></div><?php endif; ?>
+
+            <?php echo $content; ?>
+
+
+        </div>	
 	<header>
 		<h1> Emma Verhelst </h1>
 	</header>
+
 
 	<div class="greenbar">
 		<p>My projects</p>

@@ -7,6 +7,7 @@
 			addMemberButton = document.querySelector('.addMember');
 			addMemberButton.addEventListener('click', addMember);
 		}
+
 		
 	} 
 
@@ -26,6 +27,7 @@
 		memberLabel.parentNode.insertBefore(newInput, document.querySelector('.test'));
 
 	}
+
 
 	init(); 
 

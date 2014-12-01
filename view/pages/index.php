@@ -1,6 +1,6 @@
 <section>
 
-    <p> homePage </p>
+   <h1>homepage</h1>
 
 
 

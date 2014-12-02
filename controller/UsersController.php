@@ -24,8 +24,10 @@ class UsersController extends Controller {
 
 	public function profile(){
 
+		
+
 		if(empty($_SESSION['user']['id'])){
-			$_SESSION['error'] = 'you need to login to visit this page.';
+			$_SESSION['error'] = 'Fill in your e-mail and password.';
 			$this->redirect('index.php');
 		}
 
@@ -98,44 +100,45 @@ class UsersController extends Controller {
         $this->set('errors',$errors);
 }
 }
-
 	public function login(){
 		$errors = array();
-		if(empty($_POST['email'])) {
-			$errors['email'] = 'Please enter your email';
-		}
-		if(empty($_POST['password'])) {
-			$errors['password'] = 'Please enter your password';
-		}
-		if(empty($errors)) {
-			$existing = $this->userDAO->selectByEmail($_POST['email']);
-			if(!empty($existing)) {
-				$hasher = new \Phpass\Hash;
-				if ($hasher->checkPassword($_POST['password'], $existing['password'])) {
-					$_SESSION['user'] = $existing;
-					$this->redirect('index.php?page=profile');
+		if(!empty($_POST)) {
+			if(empty($_POST['email'])) {
+				$errors['email'] = 'Please enter your email';
+			}
+			if(empty($_POST['password'])) {
+				$errors['password'] = 'Please enter your password';
+			}
+			if(empty($errors)) {
+				$existing = $this->userDAO->selectByEmail($_POST['email']);
+				if(!empty($existing)) {
+					$hasher = new \Phpass\Hash;
+					if ($hasher->checkPassword($_POST['password'], $existing['password'])) {
+						$_SESSION['info'] = 'Login successful';
+						$_SESSION['user'] = $existing;
+					} else {
+						$_SESSION['error'] = 'Unknown username / password';
+					}
 				} else {
-					$_SESSION['error'] = 'Unknown email / password';
+					$_SESSION['error'] = 'Unknown username / password';
 				}
-	
-		$this->set('errors', $errors);
+			} else {
+				$_SESSION['error'] = 'Unknown username / password';
+			}
+		}
+		$this->redirect('index.php?page=profile');
 	}
-}
-}
-
-
-
 
 
 
 
 	public function logout(){
 		unset($_SESSION['user']);
+		$_SESSION['info'] = 'Logged Out';
 		$this->redirect('index.php');
 	}
 
 }
-
 
 	
 

@@ -7,9 +7,7 @@
 			addMemberButton = document.querySelector('.addMember');
 			addMemberButton.addEventListener('click', addMember);
 		}
-
-		
-	} 
+	}
 
 	function addMember(e){ 
 

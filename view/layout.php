@@ -17,7 +17,7 @@
        
         <div class="container">
 
-            <?php if($_SESSION['user']['id']): ?>
+            <?php if(!empty($_SESSION['user'])): ?>
             <nav>
                 <header>
 
@@ -59,5 +59,6 @@
 
         </div>
          <script src="js/script.dist.js" type="text/javascript"></script>
+         <script src="js/script.js" type="text/javascript"></script>
     </body>
 </html>

@@ -1,12 +1,14 @@
 (function(){ 
 	var memberAantal= 1;
 
-
+	
 	function init(){ 
 		if(document.querySelector('.newProjectPage')){
 			addMemberButton = document.querySelector('.addMember');
 			addMemberButton.addEventListener('click', addMember);
 		}
+
+		
 	}
 
 	function addMember(e){ 
@@ -26,7 +28,6 @@
 		memberLabel.parentNode.insertBefore(newInput, document.querySelector('.test'));
 
 	}
-
 
 	init(); 
 

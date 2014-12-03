@@ -527,5 +527,26 @@ h1{
 			
 				padding: 6px;
 			}
+			#menu{
+				background-color: #75bb54;
+				width: 150px;
+				height: 80px;
+				margin-top: -5px;
+				z-index: -1px;
+
+				li{
+					font-family: $mainFont;
+					color: #fff;
+					text-transform: uppercase;
+					padding-top: 10px;
+					padding-left: 10px;
+					font-size: 1.5em;
+				}
+			}
 	}
 }
+
+
+
+
+

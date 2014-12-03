@@ -15,7 +15,6 @@
         <div class="members">
             <p>Members:</p>
         </div>
-    </div>
 
    
 

@@ -11,6 +11,9 @@
     	</ul>
     </div>
 
+    <div id="members">
+    	<p>Memebers:</p>
+    </div>
 
 
 

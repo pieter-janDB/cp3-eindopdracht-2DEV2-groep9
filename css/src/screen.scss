@@ -227,12 +227,20 @@ body{
 }
 
 /*navigatiebalk */
+.navContainer{
+	background-color: #000;
+	height: 110px;
+	width:100%;
+	display: block;
+}
 
 nav{
+
 	font-family: $mainFont;
 	background-color: #000;
 	height: 110px;
 	width: 900px;
+	margin: 0 auto;
 
 	h1{
 	float: left;

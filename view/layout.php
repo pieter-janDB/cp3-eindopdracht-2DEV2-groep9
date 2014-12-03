@@ -14,37 +14,40 @@
 
 
             
-       
-        <div class="container">
+
+        
 
             <?php if(!empty($_SESSION['user'])): ?>
-            <nav>
-                <header>
+            <div class="navContainer">
+                <nav>
+                    <header>
 
-                    <h1>
-                <?php if($_GET['page'] == "profile"){
-                    echo "<a href=\"index.php\">";
-                    echo "whiteboard";
-                    echo "</a>";
-                }else if($_GET['page'] == "newproject"){
-                    echo "<a href=\"index.php?page=profile\">";
-                    echo "Back to profile";
-                    echo "</a>";
-                    
-                }else if($_GET['page'] == "whiteboard"){
-                    echo "projectnaam";
-                }
-                ?>
-                    </h1>
-                </header>
-                <ul>
-                    <li class="useremail"> <?php echo $_SESSION['user']['email']; ?> </li>
-                    <li class="logoutknop"><a href="index.php?page=logout"> log out </a></li>
-                    <li class="bckToProfile"><a href="index.php?page=profile"> My Profile </a></li>
-                </ul>
-            </nav>
-
+                        <h1>
+                    <?php if($_GET['page'] == "profile"){
+                        echo "<a href=\"index.php\">";
+                        echo "whiteboard";
+                        echo "</a>";
+                    }else if($_GET['page'] == "newproject"){
+                        echo "<a href=\"index.php?page=profile\">";
+                        echo "Back to profile";
+                        echo "</a>";
+                        
+                    }else if($_GET['page'] == "whiteboard"){
+                        echo "projectnaam";
+                    }
+                    ?>
+                        </h1>
+                    </header>
+                    <ul>
+                        <li class="useremail"> <?php echo $_SESSION['user']['email']; ?> </li>
+                        <li class="logoutknop"><a href="index.php?page=logout"> log out </a></li>
+                        <li class="bckToProfile"><a href="index.php?page=profile"> My Profile </a></li>
+                    </ul>
+                </nav>
+            </div>
         <?php endif; ?>
+           
+      
         
 
           
@@ -58,7 +61,7 @@
             <?php echo $content; ?>
 
 
-        </div>
+     
          <script src="js/script.dist.js" type="text/javascript"></script>
          <script src="js/script.js" type="text/javascript"></script>
     </body>

@@ -1,4 +1,4 @@
-<section class="homepage">
+<section class="homepage container">
 
     <h2><a href="index.php?page=index">Whiteboard</a></h2>
     <h3>Online whiteboard and scrum</h3>

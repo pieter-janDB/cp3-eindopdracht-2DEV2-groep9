@@ -1,4 +1,4 @@
-<section class="whiteboard">
+<section class="whiteboard container">
 
     <div id="sidebar">
     	<ul>

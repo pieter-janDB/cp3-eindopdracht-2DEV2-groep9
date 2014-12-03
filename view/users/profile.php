@@ -1,4 +1,4 @@
-<section class="profilepage">	
+<section class="profilepage container">	
 	<header>
 		<h1> <?php echo $user['firstname']; echo " "; echo $user['lastname'];?></h1>
 	</header>

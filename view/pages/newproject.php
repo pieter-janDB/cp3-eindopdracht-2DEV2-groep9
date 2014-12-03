@@ -1,4 +1,4 @@
-<section class="newProjectPage">
+<section class="newProjectPage container">
 	<header>
 		<h1> <?php echo $user['firstname']; echo " "; echo $user['lastname'];?></h1>
 	</header>
@@ -36,7 +36,7 @@
 			</div>
 					<div class="formRegel">
 				<label name="deadline" for="deadline">deadline:</label>
-				<input class="datum <?php if(!empty($errors['deadline'])) echo "red"; ?>"type="date" name="deadline" >
+				<input placeholder="dd/mm/yyy" class="datum <?php if(!empty($errors['deadline'])) echo "red"; ?>"type="date" name="deadline" >
 				<?php if(!empty($errors['deadline'])) echo "<p class=\"validationerror\">" . $errors['deadline'] . " </p>"; ?>
 			</div>
 		  

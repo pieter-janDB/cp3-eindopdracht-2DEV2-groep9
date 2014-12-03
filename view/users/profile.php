@@ -19,7 +19,7 @@
 			<div class="leftProject"><p>scrum</p></div>
 			</a>
 			<a href="index.php?page=whiteboard&amp;id=1">
-			<div class="rightProject"><p>White Board</p></div>
+			<div class="rightProject"><p>Whiteboard</p></div>
 			</a>
 		</div>
 

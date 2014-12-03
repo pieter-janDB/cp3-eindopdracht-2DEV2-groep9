@@ -27,12 +27,12 @@
                     echo "whiteboard";
                     echo "</a>";
                 }else if($_GET['page'] == "newproject"){
-                     echo "<a href=\"index.php?page=profile\">";
+                    echo "<a href=\"index.php?page=profile\">";
                     echo "Back to profile";
                     echo "</a>";
                     
-                }else{
-                    echo "other";
+                }else if($_GET['page'] == "whiteboard"){
+                    echo "projectnaam";
                 }
                 ?>
                     </h1>
@@ -40,6 +40,7 @@
                 <ul>
                     <li class="useremail"> <?php echo $_SESSION['user']['email']; ?> </li>
                     <li class="logoutknop"><a href="index.php?page=logout"> log out </a></li>
+                    <li class="bckToProfile"><a href="index.php?page=profile"> My Profile </a></li>
                 </ul>
             </nav>
 

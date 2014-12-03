@@ -9,7 +9,8 @@ body{
 
 
 .alert-success, .alert-danger{
-	font-size: 1.6em;
+  font-family: $mainFont;
+  font-size: 1.6em;
   border: 1px solid;
   margin: 10px 0px;
   padding:15px 10px 15px 50px;
@@ -261,6 +262,18 @@ nav{
 			color: $green;
 		}
 	}
+	.bckToProfile{
+		text-align: right;
+		color: $green;
+		text-decoration: underline;
+		text-transform: uppercase;
+		margin-top: -25px;
+		margin-right: 120px;
+		a{
+		color: $green;
+		}
+		
+	}
 }
 
 
@@ -472,4 +485,19 @@ h1{
 .failList{
 	color: #fff;
 	font-size: 2.4em;
+}
+
+/* whiteboard */
+
+.whiteboard{
+	width: 100%;
+	#sidebar{
+		background-color: #000000;
+		width: 80px;
+		height: 485px;
+		border-radius: 8px;
+	li{
+		padding: 8px;
+	}
+	}
 }

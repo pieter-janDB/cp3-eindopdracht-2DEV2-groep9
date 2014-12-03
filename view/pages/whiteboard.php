@@ -1,6 +1,6 @@
 <section class="whiteboard container">
 
-    <div id="sidebar">
+    <div class="sidebar">
     	<ul>
     		<li><img src="images/text.png"></li>
     		<li><img src="images/post-it.png"></li>
@@ -11,7 +11,7 @@
     	</ul>
     </div>
 
-    <div id="members">
+    <div class="members">
     	<p>Memebers:</p>
     </div>
 

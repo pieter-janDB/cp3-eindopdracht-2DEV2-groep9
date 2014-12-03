@@ -499,8 +499,11 @@ h1{
 
 .whiteboard{
 	width: 100%;
-	#sidebar{
-		background-color: #000000;
+	.sidebar{
+		float: left;
+		margin-top: 10px;
+		margin-left: 10px;
+		background-color: #000;
 		width: 80px;
 		height: 485px;
 		border-radius: 8px;
@@ -508,7 +511,10 @@ h1{
 		padding: 8px;
 	}
 	}
-	#members{
+	.members{
+		float: right;
+		margin-right: 50px;
+		margin-top: 20px;
 		background-color: $green;
 		width: 150px;
 		height: 30px;

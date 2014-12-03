@@ -1,19 +1,23 @@
 <section class="whiteboard container">
 
-    <div id="sidebar">
+    <div class="sidebar">
     	<ul>
     		<li><img src="images/text.png"></li>
-    		<li><img src="images/post-it.png"></li>
+    		<li><img class="createPostit"src="images/post-it.png"></li>
     		<li><img src="images/video.png"></li>
     		<li><img src="images/afbeelding.png"></li>
     		<li><img src="images/grid.png"></li>
     		<li><img src="images/delete.png"></li>
     	</ul>
     </div>
+    <div class="whiteboard">
 
-    <div id="members">
-    	<p>Memebers:</p>
+        <div class="members">
+            <p>Members:</p>
+        </div>
     </div>
+
+   
 
 
 

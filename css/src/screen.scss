@@ -497,25 +497,26 @@ h1{
 
 /* whiteboard */
 
-.whiteboard{
-	width: 100%;
+.whiteboardpage{
+	
 	.sidebar{
+		position: absolute;
+		top: 120px;
+		left: 10px;
 		background-color: #000;
 		float: left;
-		margin-top: 10px;
-		margin-left: 10px;
 		background-color: #000;
 		width: 80px;
-		height: 485px;
 		border-radius: 8px;
 	li{
 		padding: 8px;
 	}
 	}
 	.members{
-		float: right;
-		margin-right: 50px;
-		margin-top: 20px;
+
+		position: absolute;
+		top: 120px;
+		right: 50px;
 		background-color: $green;
 		width: 150px;
 		height: 30px;
@@ -529,4 +530,57 @@ h1{
 				padding: 6px;
 			}
 	}
+}
+
+		/*postit*/
+
+.postit{
+	display: inline-block;
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	max-width: 300px;
+	background-color: #fff;
+	border: 2px solid black;
+
+	.postitInputDiv{
+		background-color: #000;
+		width: 300px;
+
+
+		input{
+			width: 250px;
+			margin: 10px 25px;
+			height: 30px;
+		}
+
+	}
+	.postitTextInput{
+		width: 96%;
+		height: 100px;
+
+	}
+
+	.postitTitle{
+		background-color: green;
+		color: #fff;
+		text-align: center;
+		font-size: 3.0em;
+		font-family: $mainFont;
+		padding: 5px;
+
+
+
+	}
+	.postitText, .postitTextInput{
+		padding: 5px;
+		font-size: 2.0em;
+
+	}
+	.postitSubmitButton{
+		width: 100px;
+		height: 50px;
+	}
+
+
 }

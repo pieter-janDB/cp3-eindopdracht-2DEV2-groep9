@@ -35,13 +35,56 @@
 	}
 
 	function addPostit(e){
+
 		var postit = document.createElement('div');
+		postit.classList.add('postit');
+
+		var postitForm = document.createElement('form');
+
+
+		var postitTitleDiv = document.createElement('div');
+		postitTitleDiv.classList.add('postitInputDiv');
+
+		var postitTitleInput = document.createElement('input');
+		postitTitleInput.type="text";
+		postitTitleInput.placeholder="Title";
+
+		var postitBodyInput = document.createElement('textarea');
+		postitBodyInput.classList.add('postitTextInput');
+
+		var postitSubmitButton = document.createElement('input');
+		postitSubmitButton.type="submit";
+
+		postitSubmitButton.classList.add('postitSubmitButton');
+
+
+		postitBodyInput.placeholder="Content";
+		
+
+		
+		
+		
+		postitTitleDiv.appendChild(postitTitleInput);
+		postitForm.appendChild(postitTitleDiv);
+		postitForm.appendChild(postitBodyInput);
+		postitForm.appendChild(postitSubmitButton);
+		
+
+		
+		postit.appendChild(postitForm);
+		whiteboard.appendChild(postit);
+
+	}
+	function addPremadePostit(e){
+		
+		var postit = document.createElement('div');
+		postit.classList.add('postit');
 		var postitTitle = document.createElement('h2');
 		postitTitle.classList.add('postitTitle');
 		var postitBody = document.createElement('p');
 		postitBody.classList.add('postitText');
 		var titleText = document.createTextNode('Titel');
-		var bodyText = document.createTextNode('Dit is de content van de postit');
+		var bodyText = document.createTextNode('Dit is de content van de postit Dit is de content van de postit Dit is de content van de postit Dit is de content van de postit');
 		
 		
 		postitTitle.appendChild(titleText);

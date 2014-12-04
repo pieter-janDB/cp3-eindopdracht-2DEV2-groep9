@@ -3,13 +3,14 @@
 	var whiteboard = document.querySelector('.whiteboard');
 
 
-
+	
 	function init(){ 
 
 		if(document.querySelector('.newProjectPage')){
 			addMemberButton = document.querySelector('.addMember');
 			addMemberButton.addEventListener('click', addMember);
 		}
+
 
 		createPostitButton = document.querySelector('.createPostit');
 		createPostitButton.addEventListener('click', addPostit);
@@ -96,7 +97,6 @@
 		whiteboard.appendChild(postit);
 
 	}
-
 
 	init(); 
 

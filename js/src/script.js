@@ -39,15 +39,6 @@
 		passwordInput.addEventListener('blur', blurHandler);
 		confPasswordInput.addEventListener('blur', blurHandler);
 
-		//login validatie
-		var loginForm = document.getElementById('loginFrm');
-		
-		var emailInput = document.querySelector('input[name=email]');
-		var passwordInput = document.querySelector('input[name=password]');
-
-		emailInput.addEventListener('blur', blurHandler);
-		passwordInput.addEventListener('blur', blurHandler);
-
 
 	}
 

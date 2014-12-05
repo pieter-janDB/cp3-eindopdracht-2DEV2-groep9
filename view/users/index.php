@@ -5,19 +5,23 @@
 </script>
     <div id="login">
     	<p>Login</p>
-    	<form name="loginForm"action="index.php?page=login" method="post" >
+    	<form id="loginFrm"name="loginForm"action="index.php?page=login" method="post" >
     		<div class="loginForm">
     		  <ul>
                     <li><label for="email">Email:</label></li>
-                    <li><input type="email" id="email" name="email" placeholder="voorbeeld@gmail.com" value="<?php if(!empty($_POST['email'])) echo $_POST['email'];?>"></li>
-                    <?php if(!empty($errors['email'])) echo '<span>' . $errors['email'] . '</span>'; ?>
+                    <li><input type="email" id="email" name="email" placeholder="voorbeeld@gmail.com" value=""></li>
+                    <span class='error show' >
+                    <p class="<?php if(empty($errors['email'])) echo ' hidden';?>" data-for="email">Please fill in your e-mail</p>
+                    </span>
                 </ul>
 			</div>
 				<div class="loginForm">
     		      <ul>
                     <li><label for="password">Password:</label></li>
-                    <li><input type="password" id="password" name="password"value="<?php if(!empty($_POST['password'])) echo $_POST['password'];?>"></li>
-                    <?php if(!empty($errors['password'])) echo '<span>' . $errors['password'] . '</span>'; ?>
+                    <li><input type="password" id="password" name="password"value=""></li>
+                 <span class='error show' >
+                <p class="<?php if(empty($errors['password'])) echo ' hidden';?>" data-for="password">Please fill in your password</p>
+                </span>
                 </ul>
 			</div>
 
@@ -25,6 +29,6 @@
 
     	</form>
     </div>
-    <p class="register">New here? <a href="index.php?page=register">Register!</a></p>
+    <p class="registerButton">New here? <a href="index.php?page=register">Register!</a></p>
 
 </section>

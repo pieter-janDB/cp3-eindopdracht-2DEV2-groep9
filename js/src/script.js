@@ -1,6 +1,7 @@
 (function(){ 
 	var memberAantal= 1;
 	var whiteboard = document.querySelector('.whiteboard');
+    var action= 1;
 
 
 	
@@ -14,6 +15,39 @@
 
 		createPostitButton = document.querySelector('.createPostit');
 		createPostitButton.addEventListener('click', addPostit);
+
+		// dropdown members
+		createMembersDropdown = document.querySelector('.members');
+		createMembersDropdown.addEventListener('click', showDropdown);
+
+		// change bg
+		createMembersDropdown = document.querySelector('.grid');
+		createMembersDropdown.addEventListener('click', changeBG);
+
+		// register validatie
+		var registerForm = document.getElementById('regForm');
+
+		var firstnameInput = document.querySelector('input[name=firstname]');
+		var lastnameInput = document.querySelector('input[name=lastname]');
+		var emailInput = document.querySelector('input[name=email]');
+		var passwordInput = document.querySelector('input[name=password]');
+		var confPasswordInput = document.querySelector('input[name=confirm_password]');
+
+		firstnameInput.addEventListener('blur', blurHandler);
+		lastnameInput.addEventListener('blur', blurHandler);
+		emailInput.addEventListener('blur', blurHandler);
+		passwordInput.addEventListener('blur', blurHandler);
+		confPasswordInput.addEventListener('blur', blurHandler);
+
+		//login validatie
+		var loginForm = document.getElementById('loginFrm');
+		
+		var emailInput = document.querySelector('input[name=email]');
+		var passwordInput = document.querySelector('input[name=password]');
+
+		emailInput.addEventListener('blur', blurHandler);
+		passwordInput.addEventListener('blur', blurHandler);
+
 
 	}
 
@@ -96,6 +130,85 @@
 
 		whiteboard.appendChild(postit);
 
+	}
+
+    // members dropdown
+
+    function showDropdown(e){
+        if(action == 1){
+           showMenu(); 
+           action = 2;
+        }else{
+           hideMenu();
+           action = 1;
+        }
+
+     }
+     function showMenu(e){
+       document.querySelector('.menu').style.display="block";
+     }
+     function hideMenu(e){
+       document.querySelector('.menu').style.display="none";
+     }
+
+       var action= 1;
+     // grid
+
+     function changeBG(){
+        if(action == 1){
+           grid(); 
+           document.getElementById("changeByClick").src = "images/solid-icon.png";
+           action = 2;
+        }else{
+           solid();
+           action = 1;
+        }
+
+     }
+     function solid(){
+        document.body.style.backgroundImage="url(images/solid.jpg)";
+        document.getElementById("changeByClick").src = "images/grid.png";
+
+    }
+
+     function grid(){
+        document.body.style.backgroundImage="url(images/gridBG.jpg)";
+    }
+
+	function validationNotEmpty(input){
+
+		var errorMessage = document.querySelector('[data-for=' + input.getAttribute('name') + ']');
+		if(input.value.length > 0){
+			//valid
+			errorMessage.classList.add('hidden');
+			return true;
+		}else{
+			//not valid
+			console.log('test');
+			errorMessage.classList.remove('hidden');
+			return false;
+		}	
+	}
+	function blurHandler(event){
+	validationNotEmpty(this);
+
+}
+
+
+	function submitHandler(event){
+		var allValid = true;
+
+		allValid &= validationNotEmpty(firstnameInput);
+		allValid &= validationNotEmpty(lastnameInput);
+		allValid &= validationNotEmpty(emailInput);
+		allValid &= validationNotEmpty(passwordInput);
+		allValid &= validationNotEmpty(confPasswordInput);
+
+		if(!allValid){
+			event.preventDefault();
+		}
+
+		//console.log('contact form submit');
 	}
 
 	init(); 

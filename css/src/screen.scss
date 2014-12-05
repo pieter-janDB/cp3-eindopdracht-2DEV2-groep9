@@ -86,6 +86,11 @@ body{
 			font-size:1.8em;
 			text-transform: uppercase;
 			letter-spacing: 10px;
+
+		}
+		.hidden{
+			display: none;
+			font-size: 1em;
 		}
 		#email{
 			width:320px;
@@ -121,7 +126,7 @@ body{
 			color: #000;
 		}
 	}
-	.register{
+	.registerButton{
 	font-family: $mainFont;
 	font-size:1.8em;
 	font-weight: bold;
@@ -142,7 +147,7 @@ body{
 		margin: 0 auto;
 		margin-top: 80px;
 		border-radius: 5px;
-			p{
+			.title{
 			font-family: $mainFont;
 			font-size: 3em;
 			text-transform: uppercase;
@@ -161,6 +166,11 @@ body{
 			font-size:1em;
 			text-transform: uppercase;
 			letter-spacing: 8px;
+		
+			}
+		.hidden{
+			display: none;
+			font-size: 1em;
 		}
 		#firstname{
 			width:240px;
@@ -526,15 +536,15 @@ h1{
 				font-family: $mainFont;
 				text-transform: uppercase;
 				font-size: 1.8em;
-			
 				padding: 6px;
 			}
-			#menu{
+			.menu{
 				background-color: #75bb54;
 				width: 150px;
 				height: 80px;
 				margin-top: -5px;
 				z-index: -1px;
+				display:none;
 
 				li{
 					font-family: $mainFont;

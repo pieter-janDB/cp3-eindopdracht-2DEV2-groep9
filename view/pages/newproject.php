@@ -48,3 +48,4 @@
 
 
 </section>
+ <script src="js/newProject.js" type="text/javascript"></script>

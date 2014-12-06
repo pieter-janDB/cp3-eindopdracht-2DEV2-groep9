@@ -54,3 +54,4 @@
 	</div>
 
 </section>
+ <script src="js/register.js" type="text/javascript"></script>

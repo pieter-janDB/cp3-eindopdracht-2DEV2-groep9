@@ -62,6 +62,6 @@
 
 
      
-         <script src="js/script.dist.js" type="text/javascript"></script>
+        
     </body>
 </html>

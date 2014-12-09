@@ -16,20 +16,28 @@
 
         		<li><img src="images/afbeelding.png"></li>
         		<li><img class="grid" id="changeByClick" src="images/grid.png"></li>
-        		<li><img src="images/delete.png"></li>
+        		<li><img class="clearBoard"src="images/delete.png"></li>
         	</ul>
         </div>
 
         <div class="members">
             <p>Members:</p>
             <ul class="menu">
-                <li>lala</li>
-                <li>llaa</li>
+
+                <?php 
+                   
+                    forEach($members as $member) {
+                        echo "<li>";
+                        echo $member['firstname'];
+                        echo " ";
+                        echo $member['lastname'];
+                        echo "</li>";
+                    }
+
+                ?>
             <ul/>
         </div>
 
-
-        
     </div>
 
 </section>

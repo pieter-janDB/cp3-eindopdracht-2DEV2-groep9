@@ -19,6 +19,8 @@ module.exports = (function(){
 		//elk object in een array invoeren en bijhouden zoals bij todoApp oef.
 
 		this.whiteboard = document.querySelector('.whiteboard');
+		this.elementDiv = document.createElement('div');
+
 		this.postits = new Array();
 		this.uploadedImages = new Array();
 
@@ -42,7 +44,10 @@ module.exports = (function(){
 		this.changeBackgroundButton = document.querySelector('.grid');
 		this.changeBackgroundButton.addEventListener('click', this.changeBG.bind(this));
 		
+		//clear board
 
+		this.clearBoardButton = document.querySelector('.clearBoard');
+		this.clearBoardButton.addEventListener('click', this.clearBoard.bind(this));
 
 
 
@@ -153,6 +158,25 @@ module.exports = (function(){
 
      };
 
+     //clear board
+
+     Whiteboard.prototype.clearBoard = function(){
+     	
+     	var x;
+	    if (confirm("Are you sure you want to clear the whole project?") == true) {
+	       
+	    	//DELETE ALL ENTRIES IN WHITEBOARDITEMS WHERE PROJECT_ID = project id 
+
+	    	// maak veld leeg
+
+	    } else {
+
+	        return;
+	    }
+
+
+
+     }
 
 	return Whiteboard;
 })();

@@ -115,6 +115,8 @@ module.exports = (function(){
 	function ImageUploadHandler(file){
 		event.preventDefault();
 
+		
+
 		//upload in database & in images/uploaded zetten.
 
 		this.createImageHandler(file.name);

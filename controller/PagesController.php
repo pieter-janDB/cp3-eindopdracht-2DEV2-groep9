@@ -147,6 +147,9 @@ class PagesController extends Controller {
 			$_SESSION['error'] = 'you need to login to visit this page.';
 			$this->redirect('index.php');
 		}
+
+		$projects = $this->projectDAO->selectById($_GET['id']);
+		$this->set('projects', $projects);
 		
 		$members = $this->projectmemberDAO->selectAllMembers($_GET['id']);
 		$this->set('members', $members);

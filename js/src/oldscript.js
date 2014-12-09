@@ -158,7 +158,7 @@
 	}
 
 	function blurHandler(event){
-	validationNotEmpty(this);
+		validationNotEmpty(this);
 	}
 
 

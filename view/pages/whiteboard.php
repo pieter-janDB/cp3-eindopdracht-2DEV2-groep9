@@ -2,13 +2,20 @@
 
     <div class="whiteboard">
 
+        <!-- voor elk element in database een element maken op whiteboard.-->
+
         <div class="sidebar">
         	<ul>
         		<li><img src="images/text.png"></li>
         		<li><img class="createPostit"src="images/post-it.png"></li>
-        		<li><img src="images/video.png"></li>
+        		<li><img class="createVideo"src="images/video.png"></li>
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <input type="file" class="uploadImage" name="uploadImage"></input>  
+                    <input id="target" class="imageSubmit" type="submit" value="upload" />
+                </form>
+
         		<li><img src="images/afbeelding.png"></li>
-        		<li><a><img class="grid"id="changeByClick"src="images/grid.png"></a></li>
+        		<li><img class="grid" id="changeByClick" src="images/grid.png"></li>
         		<li><img src="images/delete.png"></li>
         	</ul>
         </div>
@@ -27,4 +34,5 @@
 
 </section>
 <script src="js/bean.min.js"></script>
- <script src="js/script.dist.js" type="text/javascript"></script>
+<script src="js/script.dist.js" type="text/javascript"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>

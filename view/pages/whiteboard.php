@@ -16,7 +16,7 @@
         <div class="members">
             <p>Members:</p>
             <ul class="menu">
-                <li>lala</li>
+                <li></li>
                 <li>llaa</li>
             <ul/>
         </div>

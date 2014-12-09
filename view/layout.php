@@ -12,11 +12,6 @@
     </head>
     <body>
 
- 
-            
-
-        
-
             <?php if(!empty($_SESSION['user'])): ?>
             <div class="navContainer">
                 <nav>

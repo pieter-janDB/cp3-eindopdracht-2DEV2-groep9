@@ -29,7 +29,6 @@
                         
                     }else if($_GET['page'] == "whiteboard"){
                         echo $projects['name'];
-                        
                     }
                     ?>
                         </h1>

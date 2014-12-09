@@ -149,7 +149,7 @@ class PagesController extends Controller {
 		}
 
 		$projects = $this->projectDAO->selectById($_GET['id']);
-		$this->set('projects', $projects);
+		$this->set('projects', $projects); 
 		
 		$members = $this->projectmemberDAO->selectAllMembers($_GET['id']);
 		$this->set('members', $members);

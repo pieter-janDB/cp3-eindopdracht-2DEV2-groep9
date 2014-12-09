@@ -6,15 +6,16 @@ module.exports = (function(){
 
 		this.el = this.createForm();
 
-		whiteboard.appendChild(this.el);
+		if(whiteboard.appendChild(this.el)){
+			//opslaan in db via ajax
+
+
+		}
 
 		this.postitTitle = this.el.querySelector('.postitTitleInput');
 		this.postitText = this.el.querySelector('.postitTextInput');
 		this.inputButton = this.el.querySelector('.postitSubmitButton');
 		this.inputButton.addEventListener('click', this.addPostit.bind(this));
-
-		
-		
 
 
 	}
@@ -22,16 +23,23 @@ module.exports = (function(){
 	PostitForm.prototype.addPostit = function(e){
 		e.preventDefault();
 
-		bean.fire(this, "create-postit", [this.postitTitle.value, this.postitText.value]);
-		this.deleteForm();
+		var Title = document.querySelector('.postitTitleInput').value;
+		var BodyText = document.querySelector('.postitTextInput').value;
+		if ((/^\s*$/.test(Title)) && (/^\s*$/.test(BodyText))) {
+				this.deleteForm();
+		}else{
+			this.deleteForm();
+			bean.fire(this, "create-postit", [this.postitTitle.value, this.postitText.value]);
+		}
+		
 
-	}
+	};
 
 
 	PostitForm.prototype.deleteForm = function(){
 		this.postitFormDiv.parentElement.removeChild(this.postitFormDiv);
 
-	}
+	};
 
 	PostitForm.prototype.createForm = function(event) {
 

@@ -148,6 +148,8 @@ class PagesController extends Controller {
 			$this->redirect('index.php');
 		}
 		
+		$members = $this->projectmemberDAO->selectAllMembers($_GET['id']);
+		$this->set('members', $members);
 	}
 
 	

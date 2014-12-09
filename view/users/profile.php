@@ -10,7 +10,9 @@
 
 	<div class="projecten">
 		<?php 
+		
 		forEach($projects as $project):
+
 
 		?>
 		<div class="projectBox">
@@ -18,7 +20,7 @@
 			<a href="index.php?page=scrum&amp;id=1">
 			<div class="leftProject"><p>scrum</p></div>
 			</a>
-			<a href="index.php?page=whiteboard&amp;id=1">
+			<a href="index.php?page=whiteboard&amp;id=<?php echo $project['project_id']; ?>">
 			<div class="rightProject"><p>Whiteboard</p></div>
 			</a>
 		</div>

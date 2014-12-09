@@ -41,6 +41,14 @@ class ProjectmemberDAO extends DAO {
 		return false;
 	}
 	
+	public function selectAllMembers($projectid){
+		$sql = "SELECT * FROM `projectmembers` LEFT JOIN `users`ON `Projectmembers`.`member_id` = `users`.`id WHERE `project_id` = :projectid";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':projectid', $projectid);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	}
 
 	
 	public function getValidationErrors($data) {

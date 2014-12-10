@@ -184,7 +184,19 @@ module.exports = (function(){
      	
      	var x;
 	    if (confirm("Are you sure you want to clear the whole project?") == true) {
-	       
+	       	
+	     var del_id = $(this).parent().parent().attr('id');
+	     var data = 'id'+id;
+	     var parent = $(this).parent().parent();
+
+	     $.ajax({
+	     	type: 'POST',
+	     	url: 'index.php?page=whiteboard',
+	     	data: data,
+
+
+	     }
+	     	)
 	    	//DELETE ALL ENTRIES IN WHITEBOARDITEMS WHERE PROJECT_ID = project id 
 
 	    	// maak veld leeg

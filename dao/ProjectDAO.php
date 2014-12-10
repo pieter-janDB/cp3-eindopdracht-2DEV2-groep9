@@ -35,6 +35,14 @@ class ProjectDAO extends DAO {
 	}
 
 
+	public function deleteWhiteboardItems($project_id){
+		$sql = "DELETE `id`, `project_id`, `user_id`, `item_kind`, `message`, `url`, `width`, `height`, `x`, `y`, `color`FROM `whiteboarditems` WHERE `project_id` = :project_id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':name', $name);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
 
 	public function insert($data){
 		$errors = $this->getValidationErrors($data);

@@ -1,4 +1,4 @@
-<section class="whiteboardpage">
+(<section class="whiteboardpage">
 
     <div class="whiteboard">
 
@@ -6,7 +6,6 @@
 
         <div class="sidebar">
         	<ul>
-        		<li><img src="images/text.png"></li>
         		<li><img class="createPostit"src="images/post-it.png"></li>
         		<li><img class="createVideo"src="images/video.png"></li>
                 <form action="#" method="post" enctype="multipart/form-data">
@@ -32,15 +31,9 @@
                         echo $member['lastname'];
                         echo "</li>";
                     }
-
                 ?>
             <ul/>
         </div>
-
-        <?php
-        var_dump($post);
-
-        ?>
     </div>
 
 </section>

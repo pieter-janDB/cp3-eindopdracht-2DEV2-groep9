@@ -9,7 +9,7 @@
         		<li><img src="images/text.png"></li>
         		<li><img class="createPostit"src="images/post-it.png"></li>
         		<li><img class="createVideo"src="images/video.png"></li>
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form id="uploadForm" action="#" method="post" enctype="multipart/form-data">
                     <input type="file" class="uploadImage" name="uploadImage"></input>  
                     <input id="target" class="imageSubmit" type="submit" value="upload" />
                 </form>
@@ -37,10 +37,7 @@
             <ul/>
         </div>
 
-        <?php
-        var_dump($post);
-
-        ?>
+     
     </div>
 
 </section>

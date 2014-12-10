@@ -83,24 +83,12 @@ module.exports = (function(){
 			if(file.type.search('image') === 0){
 
 				//if image => fire de uploadknop
-				//this.imageSubmit.click();
+				this.imageSubmit.click();
 			
-				this.imageSubmit.addEventListener('click' ,ImageUploadHandler.bind(this, file));
-				/*
-					DEZE CODE WERKT AL VOOR PREVIEW
-				var reader = new FileReader();
-
-				reader.onload = function( event ){
-
- 					var img = document.createElement('img');
- 					img.src = reader.result;
-                	
- 					var whiteboard = document.querySelector('.whiteboard');
-
-                	whiteboard.appendChild(img);
-				*/
+				this.imageSubmit.addEventListener('submit' ,ImageUploadHandler.bind(this, file));
+				
 				};
-			//reader.readAsDataURL(file);
+			
 			
 			}
 
@@ -110,36 +98,67 @@ module.exports = (function(){
 
 
 	function ImageUploadHandler(file){
-		event.preventDefault();
-
-		var formData = new FormData();
-
-		formData.append('photos[]', file, file.name);
-		formData.append("project_id", "1");
-		formData.append("user_id", "1");
-		formData.append("item_kind", "picture");
-		formData.append("url", file.name);
-
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'index.php?page=whiteboard', true);
-
-		xhr.onload = function () {
-		  if (xhr.status === 200) {
-		    // File(s) uploaded.
-		    console.log('file uploaded');
-		  } else {
-		    alert('An error occurred!');
-		  }
-		};
-		
-		xhr.send(formData);
+        event.preventDefault(); // Totally stop stuff happening
+        console.log(file);
 
 
-		//upload in database & in images/uploaded zetten.
+        // Create a formdata object and add the files
+		var data = new FormData( document.getElementById("uploadForm") );
 
-		this.createImageHandler(file.name);
+		var whiteboard = this;
+		var file = file;
+		var test;
+
+        $.ajax({
+            url: 'index.php?page=whiteboard',
+            type: 'POST',
+            data: data,
+            cache: false,
+            file: file,
+            whiteboard: whiteboard,
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data, textStatus, jqXHR)
+            {
+            	if(typeof data.error === 'undefined')
+            	{
+            		//success
+            		var testImage = new NewImage.createWithUpload(file.name);
+            		$image = document.querySelector('.whiteboard').appendChild(testImage.el);
+            		
+            	}
+            	else
+            	{
+            		// Handle errors here
+            		console.log('ERRORS: ' + data.error);
+            	}
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {	
+            	test = false;
+            	// Handle errors here
+            	console.log('ERRORS: ' + textStatus);
+          
+            }
+
+        });
+
+		if(test){
+			console.log('maak afbeelding');
+			var testImage = new NewImage.createWithUpload(file.name);
+		}
+
 			
 	}
+
+	   function submitForm(event, data)
+	{
+		console.log('submit form');
+	}
+
+
+
+
 	Whiteboard.prototype.createImageHandler = function(filename){
 
 		this.uploadedImage = new NewImage.createWithUpload(filename);

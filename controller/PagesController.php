@@ -139,10 +139,28 @@ class PagesController extends Controller {
 		if(empty($_SESSION['user']['id'])){
 			$_SESSION['error'] = 'you need to login to visit this page.';
 			$this->redirect('index.php');
+
 		}
 		
 	}
 	public function whiteboard(){
+
+
+		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+			
+			if(!empty($_FILES)){
+
+				$file = $_FILES['uploadImage'];
+				$uploaddir = './images/uploaded/';
+				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
+
+				$this->set('file', $file);
+			
+				
+			}
+		}
+		
+
 		if(empty($_SESSION['user']['id'])){
 			$_SESSION['error'] = 'you need to login to visit this page.';
 			$this->redirect('index.php');
@@ -154,12 +172,18 @@ class PagesController extends Controller {
 		$members = $this->projectmemberDAO->selectAllMembers($_GET['id']);
 		$this->set('members', $members);
 
-		if(!empty($_POST)){
-			exit('test');
-			$post = "test";
-			$this->set('post', $post);
-		}
+		if(isset($_GET['files'])){
 
+			echo "in get files";
+			die();
+			$data = "test";
+
+			$this->set('data', $data);
+
+		}
+		
+
+	
 	}
 
 	

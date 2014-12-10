@@ -73,9 +73,6 @@ module.exports = (function(){
 
 	Whiteboard.prototype.addImageElement = function(e){
 
-		
-
-
 		var file, reader;
 		//check of gebruiker bestand heeft gekozen
 		if(this.createImageButton.files.length > 0){
@@ -115,7 +112,28 @@ module.exports = (function(){
 	function ImageUploadHandler(file){
 		event.preventDefault();
 
+		var formData = new FormData();
+
+		formData.append('photos[]', file, file.name);
+		formData.append("project_id", "1");
+		formData.append("user_id", "1");
+		formData.append("item_kind", "picture");
+		formData.append("url", file.name);
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'index.php?page=whiteboard', true);
+
+		xhr.onload = function () {
+		  if (xhr.status === 200) {
+		    // File(s) uploaded.
+		    console.log('file uploaded');
+		  } else {
+		    alert('An error occurred!');
+		  }
+		};
 		
+		xhr.send(formData);
+
 
 		//upload in database & in images/uploaded zetten.
 

@@ -14,10 +14,6 @@ module.exports = (function(){
 		var el = document.createElement('img');
 		el.classList.add('Image');
 		el.src = file;
-
-		
-		
-
 		return new NewImage(el);
 
 

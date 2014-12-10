@@ -34,6 +34,7 @@
                         
                     }else if($_GET['page'] == "whiteboard"){
                         echo "projectnaam";
+                        echo $members[0]['firstname'];
                     }
                     ?>
                         </h1>

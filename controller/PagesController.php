@@ -150,6 +150,13 @@ class PagesController extends Controller {
 		
 		$members = $this->projectmemberDAO->selectAllMembers($_GET['id']);
 		$this->set('members', $members);
+
+		if(!empty($_POST)){
+			exit('test');
+			$post = "test";
+			$this->set('post', $post);
+		}
+
 	}
 
 	

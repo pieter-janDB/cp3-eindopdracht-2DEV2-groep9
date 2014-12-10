@@ -23,7 +23,6 @@
         <div class="members">
             <p>Members:</p>
             <ul class="menu">
-
                 <?php 
                    
                     forEach($members as $member) {

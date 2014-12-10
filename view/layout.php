@@ -12,11 +12,6 @@
     </head>
     <body>
 
- 
-            
-
-        
-
             <?php if(!empty($_SESSION['user'])): ?>
             <div class="navContainer">
                 <nav>
@@ -33,8 +28,7 @@
                         echo "</a>";
                         
                     }else if($_GET['page'] == "whiteboard"){
-                        echo "projectnaam";
-                        echo $members[0]['firstname'];
+                        echo $projects['name'];
                     }
                     ?>
                         </h1>
@@ -49,13 +43,6 @@
         <?php endif; ?>
            
       
-        
-
-          
-
-           
-
-
             <?php if(!empty($_SESSION['info'])): ?><div class="alert-success"><?php echo $_SESSION['info'];?></div><?php endif; ?>
             <?php if(!empty($_SESSION['error'])): ?><div class="alert-danger"><?php echo $_SESSION['error'];?></div><?php endif; ?>
 

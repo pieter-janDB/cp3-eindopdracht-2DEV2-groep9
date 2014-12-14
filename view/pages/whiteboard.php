@@ -1,4 +1,4 @@
-<section class="whiteboardpage">
+<section class="whiteboardpage" data-projectid="<?php echo $_GET['id']?>" data-userid="<?php echo $_SESSION['user']['id'] ?>">
 
     <div class="whiteboard">
 

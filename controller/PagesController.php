@@ -4,6 +4,7 @@ require_once WWW_ROOT . 'controller' . DS . 'Controller.php';
 require_once WWW_ROOT . 'dao' . DS . 'ProjectDAO.php';
 require_once WWW_ROOT . 'dao' . DS . 'UserDAO.php';
 require_once WWW_ROOT . 'dao' . DS . 'ProjectmemberDAO.php';
+require_once WWW_ROOT . 'dao' . DS . 'WhiteboarditemDAO.php';
 
 
 
@@ -12,12 +13,14 @@ class PagesController extends Controller {
 	private $projectDAO;
 	private $userDAO;
 	private $projectmemberDAO;
+	private $whiteboarditemDAO;
 	
 
 	function __construct() {
 		$this->projectDAO = new ProjectDAO();
 		$this->userDAO = new UserDAO();
 		$this->projectmemberDAO = new ProjectmemberDAO();
+		$this->whiteboarditemDAO = new WhiteboarditemDAO();
 
 	}
 
@@ -25,8 +28,8 @@ class PagesController extends Controller {
 
 	public function index(){
 
-
 	}
+
 	public function newproject(){
 		if(empty($_SESSION['user']['id'])){
 			$_SESSION['error'] = 'you need to login to visit this page.';
@@ -145,15 +148,43 @@ class PagesController extends Controller {
 			
 			if(!empty($_FILES)){
 
+				//images
+
+
 				$file = $_FILES['uploadImage'];
 				$uploaddir = './images/uploaded/';
 				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
 
 				$this->set('file', $file);
-			
 				
 			}
+
+			if(!empty($_POST)){
+
+				//postits
+
+				$data = [];
+
+				$data['title'] = $_POST['title'];
+				$data['text'] = $_POST['text'];
+				$data['project_id'] = $_POST['project_id'];
+				$data['user_id'] = $_POST['user_id'];
+				$data['item_kind'] = $_POST['item_kind'];
+				$data['top'] = $_POST['top'];
+				$data['left'] = $_POST['left'];
+
+				$test = $this->whiteboarditemDAO->insert($data);
+				//print_r laten staan!! is om id door te geven
+				print_r($test['id']);
+		
+			}
+
+
+
+
 		}
+
+			
 		
 
 		if(empty($_SESSION['user']['id'])){

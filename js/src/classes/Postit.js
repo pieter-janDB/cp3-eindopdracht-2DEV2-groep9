@@ -2,8 +2,10 @@ module.exports = (function(){
 	
 	var whiteboard = document.querySelector('.whiteboard');
 
-	function Postit(el) {
+	function Postit(el, title, text) {
 		this.el = el;
+		this.title = title;
+		this.text = text;
 		this.deleteKnop = el.querySelector('.deleteKnop');
 		this.deleteKnop.addEventListener('click', this.deleteClickHandler.bind(this));
 
@@ -56,7 +58,7 @@ module.exports = (function(){
 		el.appendChild(postitTitle);
 		el.appendChild(postitBody);
 
-		return new Postit(el);
+		return new Postit(el, title, text);
 
 
 	}

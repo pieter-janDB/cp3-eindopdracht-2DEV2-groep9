@@ -12,6 +12,9 @@ module.exports = (function(){
 
 	function Whiteboard() {
 
+		this.whiteboardPage = document.querySelector('.whiteboardpage');
+		this.project_id = this.whiteboardPage.getAttribute('data-projectid');
+		this.user_id = this.whiteboardPage.getAttribute('data-userid');
 
 		// gaat later element binnen krijgen welke objecten geplaatst zullen worden
 		//dan foreach element in database met postit een posti it maken
@@ -67,26 +70,51 @@ module.exports = (function(){
 	Whiteboard.prototype.createPostItHandler = function(title, bodyText){
 		 var postit = new Postit.createWithText(title, bodyText);
 		 this.postits.push(postit);
-		 this.whiteboard.appendChild(postit.el);
+		 if(this.whiteboard.appendChild(postit.el)){
+
+		    $.ajax({
+		        type: 'post',
+		        url: window.location.href,
+		        data: {
+		            title: title,
+		            text: bodyText,
+		            project_id: this.project_id,
+		            user_id: this.user_id,
+		            item_kind: "postit",
+		            top: "200px",
+		            left: "150px"
+		        },
+		        success: function( data ) {
+					var segments = data.split("<!DOCTYPE html>");
+					//geef postit id van in database
+					postit.id = segments[0];			
+		       }
+		    });
+
+		 };
 		 
 		 
 		bean.on(postit, 'delete', this.deletePostitHandler.bind(this, postit));
 		bean.on(postit, 'delete', this.deletePostitFromArray.bind(postit));
 
-		 //TOEVOEGEN AAN DB VIA AJAX
+		 
 		 
 	};
 
 	Whiteboard.prototype.deletePostitHandler = function(postit){
-		console.log(this.postits);
+		//remove from array
 		var postitIndex = this.postits.indexOf(postit);
 		if (postitIndex > -1) {
 		    this.postits.splice(postitIndex, 1);
 		}
+
+		//remove from screen
 		this.whiteboard.removeChild(postit.el)
-		console.log(this.postits);
 		
-		
+
+		//remove from database
+
+
 
 	}
 
@@ -109,10 +137,6 @@ module.exports = (function(){
 			//check of het foto is kijken of type image is
 			if(file.type.search('image') === 0){
 
-				//if image => fire de uploadknop
-
-				
-			
 				this.imageSubmit.addEventListener('click' ,ImageUploadHandler.bind(this, file));
 				
 				};
@@ -137,7 +161,6 @@ module.exports = (function(){
 
 		var whiteboard = this;
 		var file = file;
-		var test;
 
         $.ajax({
             url: 'index.php?page=whiteboard',
@@ -153,8 +176,8 @@ module.exports = (function(){
             	if(typeof data.error === 'undefined')
             	{
             		//success
-            		var testImage = new NewImage.createWithUpload(file.name);
-            		$image = document.querySelector('.whiteboard').appendChild(testImage.el);
+            		var ImageDiv = new NewImage.createWithUpload(file.name);
+            		$image = document.querySelector('.whiteboard').appendChild(ImageDiv.el);
             		
             	}
             	else
@@ -165,19 +188,12 @@ module.exports = (function(){
             },
             error: function(jqXHR, textStatus, errorThrown)
             {	
-            	test = false;
             	// Handle errors here
             	console.log('ERRORS: ' + textStatus);
           
             }
 
         });
-
-		if(test){
-			console.log('maak afbeelding');
-			var testImage = new NewImage.createWithUpload(file.name);
-		}
-
 			
 	}
 

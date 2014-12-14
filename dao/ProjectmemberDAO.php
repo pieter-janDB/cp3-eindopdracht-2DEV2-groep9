@@ -19,27 +19,27 @@ class ProjectmemberDAO extends DAO {
 
 
 	public function insert($data){
-		$errors = $this->getValidationErrors($data);
-
-		if (empty($errors)) {
+	
 
 
-			$sql = "INSERT INTO `projectmembers` (`project_id`, `member_id`, `color`)
-				VALUES (:project_id, :member_id, :color)";
-			$stmt = $this->pdo->prepare($sql);
-			$stmt->bindValue(':project_id', $data['project_id']);
-			$stmt->bindValue(':member_id', $data['member_id']);
-			$stmt->bindValue(':color', $data['color']);
+		$sql = "INSERT INTO `projectmembers` (`project_id`, `member_id`, `color`)
+			VALUES (:project_id, :member_id, :color)";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':project_id', $data['project_id']);
+		$stmt->bindValue(':member_id', $data['member_id']);
+		$stmt->bindValue(':color', $data['color']);
 
-			if($stmt->execute()) {
-				
-				$lastInsertId=$this->pdo->lastInsertId();
-				return $this->selectById($lastInsertId);
-			}
+		if($stmt->execute()) {
+			
+			$lastInsertId=$this->pdo->lastInsertId();
+			return $this->selectById($lastInsertId);
+		}else{
+			return false;
 		}
-		
-		return false;
 	}
+		
+		
+	
 	
 	public function selectAllMembers($projectid){
 		$sql = "SELECT `users`.`firstname`, `users`.`lastname` FROM `projectmembers`LEFT JOIN `users` ON `Projectmembers`.`member_id` = `users`.`id` WHERE `project_id` = :projectid";
@@ -51,20 +51,5 @@ class ProjectmemberDAO extends DAO {
 	}
 
 	
-	public function getValidationErrors($data) {
-		$errors = array();
-	/*	if(empty($data['name'])){
-			$errors['name'] = 'Insert name please.';
-		}
-		if(empty($data['description'])){
-			$errors['description'] = 'Insert a description please.';
-		}
-		if(empty($data['deadline'])){
-			$errors['deadline'] = 'Choose a deadline please.';
-		}
-
-	*/			
-		
-		return $errors;
-	}
+	
 }

@@ -154,33 +154,53 @@ class PagesController extends Controller {
 				$file = $_FILES['uploadImage'];
 				$uploaddir = './images/uploaded/';
 				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
-
 				$this->set('file', $file);
 				
+
+
+				
+
+
 			}
 
 			if(!empty($_POST)){
 
-				//postits
+					if($_POST['item_kind'] == 'postit'){
+						//postits
 
-				$data = [];
+						$data = [];
 
-				$data['title'] = $_POST['title'];
-				$data['text'] = $_POST['text'];
-				$data['project_id'] = $_POST['project_id'];
-				$data['user_id'] = $_POST['user_id'];
-				$data['item_kind'] = $_POST['item_kind'];
-				$data['top'] = $_POST['top'];
-				$data['left'] = $_POST['left'];
+						$data['title'] = $_POST['title'];
+						$data['text'] = $_POST['text'];
+						$data['project_id'] = $_GET['id'];
+						$data['user_id'] = $_SESSION['user']['id'];
+						$data['item_kind'] = $_POST['item_kind'];
+						$data['top'] = $_POST['top'];
+						$data['left'] = $_POST['left'];
 
-				$test = $this->whiteboarditemDAO->insert($data);
-				//print_r laten staan!! is om id door te geven
-				print_r($test['id']);
-		
+						$postit = $this->whiteboarditemDAO->insertPostit($data);
+						//print_r laten staan!! is om id door te geven
+						print_r($postit['id']);
+
+					}else if($_POST['item_kind'] == 'image'){
+						//images
+
+						$data = [];
+						$data['project_id'] = $_GET['id'];
+						$data['user_id'] = $_SESSION['user']['id'];
+						$data['item_kind'] = $_POST['item_kind'];
+						$data['top'] = $_POST['top'];
+						$data['left'] = $_POST['left'];
+						$data['filename'] = $_POST['filename'];
+
+						$image = $this->whiteboarditemDAO->insertImage($data);
+						//print_r laten staan!! is om id door te geven
+						print_r($image['id']);
+
+
+
+					}	
 			}
-
-
-
 
 		}
 

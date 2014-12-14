@@ -18,7 +18,7 @@ class WhiteboarditemDAO extends DAO {
 	}
 
 
-	public function insert($data){
+	public function insertPostit($data){
 
 
 		$sql = "INSERT INTO `whiteboarditems` (`title`, `message`, `project_id`, `user_id`, `item_kind`, `top`, `left`)
@@ -31,6 +31,28 @@ class WhiteboarditemDAO extends DAO {
 		$stmt->bindValue(':item_kind', $data['item_kind']);
 		$stmt->bindValue(':top', $data['top']);
 		$stmt->bindValue(':left', $data['left']);
+
+		if($stmt->execute()) {
+			
+			$lastInsertId=$this->pdo->lastInsertId();
+			return $this->selectById($lastInsertId);
+		}else{
+			return false;
+		}
+	}
+
+	public function insertImage($data){
+
+
+		$sql = "INSERT INTO `whiteboarditems` (`project_id`, `user_id`, `item_kind`, `top`, `left`, `filename`)
+			VALUES (:project_id, :user_id, :item_kind, :top, :left, :filename)";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':project_id', $data['project_id']);
+		$stmt->bindValue(':user_id', $data['user_id']);
+		$stmt->bindValue(':item_kind', $data['item_kind']);
+		$stmt->bindValue(':top', $data['top']);
+		$stmt->bindValue(':left', $data['left']);
+		$stmt->bindValue(':filename', $data['filename']);
 
 		if($stmt->execute()) {
 			

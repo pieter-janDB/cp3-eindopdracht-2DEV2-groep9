@@ -25,14 +25,15 @@ module.exports = (function(){
 		this.whiteboard = document.querySelector('.whiteboard');
 		this.elementDiv = document.createElement('div');
 
-		this.postits = new Array();
-		this.uploadedImages = new Array();
+		
+		
 
 		//postit
 
 		this.createPostitButton = document.querySelector('.createPostit');
 		this.createPostitButton.addEventListener('click', this.addPostitForm.bind(this));
 
+		this.postits = new Array();
 
 		//image
 
@@ -40,7 +41,7 @@ module.exports = (function(){
 		this.createImageButton.addEventListener('change', this.addImageElement.bind(this));
 		this.imageSubmit = document.querySelector('.imageSubmit');
 
-		
+		this.uploadedImages = new Array();
 
 		// dropdown members
 		this.createMembersDropdownButton = document.querySelector('.members');
@@ -78,13 +79,12 @@ module.exports = (function(){
 		        data: {
 		            title: title,
 		            text: bodyText,
-		            project_id: this.project_id,
-		            user_id: this.user_id,
 		            item_kind: "postit",
 		            top: "200px",
 		            left: "150px"
 		        },
 		        success: function( data ) {
+		        	console.log(data);
 					var segments = data.split("<!DOCTYPE html>");
 					//geef postit id van in database
 					postit.id = segments[0];			
@@ -95,7 +95,7 @@ module.exports = (function(){
 		 
 		 
 		bean.on(postit, 'delete', this.deletePostitHandler.bind(this, postit));
-		bean.on(postit, 'delete', this.deletePostitFromArray.bind(postit));
+		
 
 		 
 		 
@@ -118,10 +118,6 @@ module.exports = (function(){
 
 	}
 
-	Whiteboard.prototype.deletePostitFromArray = function(){
-		
-		
-	}
 
 	//image
 
@@ -153,8 +149,6 @@ module.exports = (function(){
 		
         event.preventDefault(); // Totally stop stuff happening
 
-        console.log(file);
-
 
         // Create a formdata object and add the files
 		var data = new FormData( document.getElementById("uploadForm") );
@@ -163,7 +157,7 @@ module.exports = (function(){
 		var file = file;
 
         $.ajax({
-            url: 'index.php?page=whiteboard',
+            url: window.location.href,
             type: 'POST',
             data: data,
             cache: false,
@@ -176,9 +170,8 @@ module.exports = (function(){
             	if(typeof data.error === 'undefined')
             	{
             		//success
-            		var ImageDiv = new NewImage.createWithUpload(file.name);
-            		$image = document.querySelector('.whiteboard').appendChild(ImageDiv.el);
-            		
+            		test(file);
+
             	}
             	else
             	{
@@ -194,21 +187,40 @@ module.exports = (function(){
             }
 
         });
+
 			
 	}
 
-	   function submitForm(event, data)
-	{
-		console.log('submit form');
-	}
 
+
+
+	function test(file){
+		
+			
+		$.ajax({
+	        type: 'post',
+	        url: window.location.href,
+	        data: {
+	            item_kind: "image",
+	            top: "200px",
+	            left: "150px",
+	            filename: file.name
+	        },
+	        success: function( data ) {
+	        	var imageDiv = new NewImage.createWithUpload(file.name);
+				$image = document.querySelector('.whiteboard').appendChild(imageDiv.el);
+			
+	        		
+	       }
+	    });
+	}
 
 
 
 	Whiteboard.prototype.createImageHandler = function(filename){
 
 		this.uploadedImage = new NewImage.createWithUpload(filename);
-		this.uploadedImages.push(this.uploadedImage);
+		
 		this.whiteboard.appendChild(this.uploadedImage.el);
 
 	};

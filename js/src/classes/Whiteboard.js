@@ -83,7 +83,7 @@ module.exports = (function(){
 			if(file.type.search('image') === 0){
 
 				//if image => fire de uploadknop
-				this.imageSubmit.click();
+				
 			
 				this.imageSubmit.addEventListener('submit' ,ImageUploadHandler.bind(this, file));
 				
@@ -204,6 +204,7 @@ module.exports = (function(){
      	var x;
 	    if (confirm("Are you sure you want to clear the whole project?") == true) {
 	       
+	    	
 	    	//DELETE ALL ENTRIES IN WHITEBOARDITEMS WHERE PROJECT_ID = project id 
 
 	    	// maak veld leeg

@@ -112,6 +112,7 @@ class UsersController extends Controller {
 			if(empty($errors)) {
 				$existing = $this->userDAO->selectByEmail($_POST['email']);
 				if(!empty($existing)) {
+					exit('test');
 					$hasher = new \Phpass\Hash;
 					if ($hasher->checkPassword($_POST['password'], $existing['password'])) {
 						$_SESSION['info'] = 'Login successful';

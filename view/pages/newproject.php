@@ -23,8 +23,8 @@
 
 			</div>
 			<div class="formRegel">
-				<label class="memberLabel"for="member1">members (beside you):</label>
-				<input id="member1" name="member1" class="member" type="text" placeholder="Voornaam Achternaam"></input>
+				<label class="memberLabel"for="member1">members (email):</label>
+				<input id="member1" name="member1" class="member" type="text" placeholder="voorbeeld@gmail.com"></input>
 				
 			
 

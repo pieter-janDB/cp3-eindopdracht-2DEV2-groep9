@@ -54,19 +54,18 @@ class PagesController extends Controller {
 				$errors['deadline'] = 'please fill in a deadline';
 			}	
 			$toAdd = array();
-			array_push($toAdd, $_SESSION['user']['firstname'] . " " . $_SESSION['user']['lastname']);
-		
-			foreach($_POST as $memberX => $naam) {
-				//memberX = member1/2/3/4
-				//Naam = naam persoon
-			    if(strpos($memberX, 'member') === 0) {
-			    	$toAdd[$memberX] = $naam;
-			    	if(empty($toAdd[$memberX])){
-			    		unset($toAdd[$memberX]);
-			    	}
-			    }
+
+			
+			
+
+			for($i = 2; $i <= count($_POST)-2; $i++){
+				$member_nr = $i-1;
+				$naam =  ("member" . ($i-1));
+
+				$toAdd[$i-2] = $_POST[$naam];		    	
+			
 			}
-					
+			array_push($toAdd, $_SESSION['user']['email']);
 
 			if(empty($errors)) {
 
@@ -90,20 +89,16 @@ class PagesController extends Controller {
 					$userdata['project_id'] = $insertedProject['id'];
 					$userdata['color'] = "#000";
 					
-					forEach($toAdd as $member => $value){
-						$namen = array();
-						$namen = explode(" ", $value);
-
-						if(!empty($namen[2])){
-							$namen[1] = $namen[1] . " " . $namen[2];
+					forEach($toAdd as $email => $value){
+						if(empty($value)){
+							continue;
 						}
-
-						$member = $this->userDAO->selectByName($namen[0], $namen[1]);
-						
+						$member = $this->userDAO->selectByEmail($value);
+			
 						if(!empty($member)){
 
-						$userdata['member_id'] = $member['id'];
-						$insertedUser = $this->projectmemberDAO->insert($userdata);
+							$userdata['member_id'] = $member['id'];
+							$insertedUser = $this->projectmemberDAO->insert($userdata);
 						
 						}else{
 							array_push($failedToAdd, $value);

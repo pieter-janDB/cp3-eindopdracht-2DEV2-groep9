@@ -29,6 +29,15 @@ body{
 
 }
 
+.left{
+	float: left;
+
+}
+.right{
+	float: right;
+
+}
+
 /*font */
 
 @include font-face("Caviar Dreams", font-files("caviardreams-webfont.eot", "fonts/caviardreams-webfont.eot?#iefix", "caviardreams-webfont.woff", "caviardreams-webfont.ttf", "fonts/caviardreams-webfont.svg#caviar_dreamsregular"));
@@ -560,18 +569,33 @@ h1{
 }
 .whiteboard{
 	height: 100vh;
+
+
 }
 
 		/*postit*/
 
+.topBalk{
+		background-color: #ff0;
+		height: 16px;
+		width: 100%;
+
+		img{
+				margin-right: 10px;
+		}
+	}
+
+
 .postit{
-	display: inline-block;
+	display: block;
 	position: absolute;
 	top: 200px;
 	left: 150px;
 	max-width: 300px;
 	background-color: #fff;
 	border: 2px solid black;
+
+
 
 	.postitInputDiv{
 		background-color: #000;
@@ -619,3 +643,16 @@ h1{
 
 }
 
+//pictures
+
+.imageDiv {
+	display: block;
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	width: 500px;
+	height: 500px;
+	background-size: contain;                 
+    background-repeat: no-repeat;
+    background-position: center center;
+}

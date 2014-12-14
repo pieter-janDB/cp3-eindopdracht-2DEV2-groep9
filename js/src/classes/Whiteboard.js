@@ -12,6 +12,7 @@ module.exports = (function(){
 
 	function Whiteboard() {
 
+
 		// gaat later element binnen krijgen welke objecten geplaatst zullen worden
 		//dan foreach element in database met postit een posti it maken
 		//voor elke foto , foto plaatsen etc etc
@@ -29,11 +30,13 @@ module.exports = (function(){
 		this.createPostitButton = document.querySelector('.createPostit');
 		this.createPostitButton.addEventListener('click', this.addPostitForm.bind(this));
 
+
 		//image
 
 		this.createImageButton = document.querySelector('input[name=uploadImage]');
 		this.createImageButton.addEventListener('change', this.addImageElement.bind(this));
 		this.imageSubmit = document.querySelector('.imageSubmit');
+
 		
 
 		// dropdown members
@@ -49,29 +52,53 @@ module.exports = (function(){
 		this.clearBoardButton = document.querySelector('.clearBoard');
 		this.clearBoardButton.addEventListener('click', this.clearBoard.bind(this));
 
+		
 
 
 	}
 
 	// postit
 	Whiteboard.prototype.addPostitForm = function(){
-		this.postitForm = new PostitForm();
-		bean.on(this.postitForm, 'create-postit', this.createPostItHandler.bind(this));
+		var postitForm = new PostitForm();
+		bean.on(postitForm, 'create-postit', this.createPostItHandler.bind(this));
 
 	};
 
 	Whiteboard.prototype.createPostItHandler = function(title, bodyText){
-		 this.postit = new Postit.createWithText(title, bodyText);
-		 this.postits.push(this.postit);
-		 this.whiteboard.appendChild(this.postit.el);
+		 var postit = new Postit.createWithText(title, bodyText);
+		 this.postits.push(postit);
+		 this.whiteboard.appendChild(postit.el);
+		 
+		 
+		bean.on(postit, 'delete', this.deletePostitHandler.bind(this, postit));
+		bean.on(postit, 'delete', this.deletePostitFromArray.bind(postit));
 
 		 //TOEVOEGEN AAN DB VIA AJAX
 		 
 	};
 
+	Whiteboard.prototype.deletePostitHandler = function(postit){
+		console.log(this.postits);
+		var postitIndex = this.postits.indexOf(postit);
+		if (postitIndex > -1) {
+		    this.postits.splice(postitIndex, 1);
+		}
+		this.whiteboard.removeChild(postit.el)
+		console.log(this.postits);
+		
+		
+
+	}
+
+	Whiteboard.prototype.deletePostitFromArray = function(){
+		
+		
+	}
+
 	//image
 
 	Whiteboard.prototype.addImageElement = function(e){
+
 
 		var file, reader;
 		//check of gebruiker bestand heeft gekozen
@@ -83,9 +110,10 @@ module.exports = (function(){
 			if(file.type.search('image') === 0){
 
 				//if image => fire de uploadknop
+
 				
 			
-				this.imageSubmit.addEventListener('submit' ,ImageUploadHandler.bind(this, file));
+				this.imageSubmit.addEventListener('click' ,ImageUploadHandler.bind(this, file));
 				
 				};
 			
@@ -98,7 +126,9 @@ module.exports = (function(){
 
 
 	function ImageUploadHandler(file){
+		
         event.preventDefault(); // Totally stop stuff happening
+
         console.log(file);
 
 

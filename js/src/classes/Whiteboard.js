@@ -24,10 +24,7 @@ module.exports = (function(){
 
 		this.whiteboard = document.querySelector('.whiteboard');
 		this.elementDiv = document.createElement('div');
-
 		
-		
-
 		//postit
 
 		this.createPostitButton = document.querySelector('.createPostit');
@@ -93,11 +90,7 @@ module.exports = (function(){
 
 		 };
 		 
-		 
 		bean.on(postit, 'delete', this.deletePostitHandler.bind(this, postit));
-		
-
-		 
 		 
 	};
 
@@ -115,9 +108,7 @@ module.exports = (function(){
 		//remove from database
 
 
-
 	}
-
 
 	//image
 
@@ -170,7 +161,7 @@ module.exports = (function(){
             	if(typeof data.error === 'undefined')
             	{
             		//success
-            		test(file);
+            		uploadImageToDatabase(file);
 
             	}
             	else
@@ -194,8 +185,9 @@ module.exports = (function(){
 
 
 
-	function test(file){
-		
+	function uploadImageToDatabase(file){
+
+		//uploaden in database en dan op scherm tonen
 			
 		$.ajax({
 	        type: 'post',

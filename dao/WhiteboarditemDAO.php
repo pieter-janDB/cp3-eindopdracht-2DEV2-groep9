@@ -41,6 +41,36 @@ class WhiteboarditemDAO extends DAO {
 		}
 	}
 
+	
+
+	public function updatePosition($data){
+		$sql = "UPDATE `whiteboarditems` 	SET `left` = :left, `top`= :top WHERE `whiteboarditems`.`id` = :id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':id', $data['id']);
+		$stmt->bindValue(':left', $data['left']);
+		$stmt->bindValue(':top', $data['top']);
+		if($stmt->execute()) {
+			$lastInsertId=$this->pdo->lastInsertId();
+			return $this->selectById($lastInsertId);
+		}
+	}
+
+	/*public function test($data){
+		$sql = "INSERT INTO `whiteboarditems` (`project_id`, `left`, `top`)
+			VALUES (:project_id, :left, :top)";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':project_id', $data['id']);
+		$stmt->bindValue(':top', $data['top']);
+		$stmt->bindValue(':left', $data['left']);
+		if($stmt->execute()) {
+			
+			$lastInsertId=$this->pdo->lastInsertId();
+			return $this->selectById($lastInsertId);
+		}else{
+			return false;
+		}
+	}*/
+
 	public function insertImage($data){
 
 

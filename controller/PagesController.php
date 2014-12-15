@@ -156,6 +156,11 @@ class PagesController extends Controller {
 				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
 				$this->set('file', $file);
 
+				$file = $_FILES['uploadVideo'];
+				$uploaddir = './videos/uploaded/';
+				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
+				$this->set('file', $file);
+
 			}
 
 			if(!empty($_POST)){

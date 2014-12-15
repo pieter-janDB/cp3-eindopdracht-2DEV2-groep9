@@ -4,7 +4,11 @@ module.exports = (function(){
 	var PostitForm = require('./PostitForm.js');
 	var Postit = require('./Postit.js');
 	var NewImage = require('./NewImage.js');
+	var NewVideo = require('./NewVideo.js');
 
+
+	var fileInput = document.getElementById('uploadVideo');
+    var video = document.getElementById('video-container');
 	
 	
     var actionDropdown= 1, actionBg = 1;
@@ -25,8 +29,6 @@ module.exports = (function(){
 		this.whiteboard = document.querySelector('.whiteboard');
 		this.elementDiv = document.createElement('div');
 
-		
-		
 
 		//postit
 
@@ -42,6 +44,9 @@ module.exports = (function(){
 		this.imageSubmit = document.querySelector('.imageSubmit');
 
 		this.uploadedImages = new Array();
+
+		//video
+
 
 		// dropdown members
 		this.createMembersDropdownButton = document.querySelector('.members');
@@ -224,6 +229,8 @@ module.exports = (function(){
 		this.whiteboard.appendChild(this.uploadedImage.el);
 
 	};
+
+	//video
 
 
 	 // members dropdown

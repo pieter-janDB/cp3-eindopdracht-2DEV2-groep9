@@ -9,7 +9,14 @@
         <div class="sidebar">
         	<ul>
         		<li><img class="createPostit"src="images/post-it.png"></li>
+
+                <form id="uploadFormVideo" action="#" method="post" enctype="multipart/form-data">
+                    <input type="file" class="uploadVideo" name="uploadVideo"></input>  
+                    <input id="targetVideo" class="videoSubmit" type="submit" value="upload" />
+                </form>
+                
         		<li><img class="createVideo"src="images/video.png"></li>
+
                 <form id="uploadForm" action="#" method="post" enctype="multipart/form-data">
                     <input type="file" class="uploadImage" name="uploadImage"></input>  
                     <input id="target" class="imageSubmit" type="submit" value="upload" />
@@ -38,7 +45,6 @@
         </div>
 
     </div>
-
    
 </section>
 <script src="js/bean.min.js"></script>

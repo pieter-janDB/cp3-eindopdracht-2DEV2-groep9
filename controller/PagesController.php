@@ -157,7 +157,11 @@ class PagesController extends Controller {
 				$this->set('file', $file);
 				
 
-
+				$file = $_FILES['uploadVideo'];
+				$uploaddir = './videos/uploaded/';
+				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
+				$this->set('file', $file);
+				
 				
 
 
@@ -199,10 +203,24 @@ class PagesController extends Controller {
 
 
 
-					}	
+					}	else if($_POST['item_kind'] == 'video'){
+						//video
+
+						$data = [];
+						$data['project_id'] = $_GET['id'];
+						$data['user_id'] = $_SESSION['user']['id'];
+						$data['item_kind'] = $_POST['item_kind'];
+						$data['top'] = $_POST['top'];
+						$data['left'] = $_POST['left'];
+						$data['filename'] = $_POST['filename'];
+
+						$video = $this->whiteboarditemDAO->insertImage($data);
+						//print_r laten staan!! is om id door te geven
+						print_r($video['id']);
 			}
 
 		}
+	}
 
 			
 		

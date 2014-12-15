@@ -657,3 +657,15 @@ h1{
     background-repeat: no-repeat;
     background-position: center center;
 }
+
+.videoDiv {
+	display: block;
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	width: 500px;
+	height: 500px;
+	background-size: contain;                 
+    background-repeat: no-repeat;
+    background-position: center center;
+}

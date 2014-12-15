@@ -19,8 +19,6 @@ class WhiteboarditemDAO extends DAO {
 
 
 	public function insertPostit($data){
-
-
 		$sql = "INSERT INTO `whiteboarditems` (`title`, `message`, `project_id`, `user_id`, `item_kind`, `top`, `left`)
 			VALUES (:title, :message, :project_id, :user_id, :item_kind, :top, :left)";
 		$stmt = $this->pdo->prepare($sql);
@@ -41,9 +39,21 @@ class WhiteboarditemDAO extends DAO {
 		}
 	}
 
+	
+
+	public function updatePosition($data){
+		$sql = "UPDATE `whiteboarditems` 	SET `left` = :left, `top`= :top WHERE `whiteboarditems`.`id` = :id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':id', $data['id']);
+		$stmt->bindValue(':left', $data['left']);
+		$stmt->bindValue(':top', $data['top']);
+		if($stmt->execute()) {
+			$lastInsertId=$this->pdo->lastInsertId();
+			return $this->selectById($lastInsertId);
+		}
+	}
+
 	public function insertImage($data){
-
-
 		$sql = "INSERT INTO `whiteboarditems` (`project_id`, `user_id`, `item_kind`, `top`, `left`, `filename`)
 			VALUES (:project_id, :user_id, :item_kind, :top, :left, :filename)";
 		$stmt = $this->pdo->prepare($sql);

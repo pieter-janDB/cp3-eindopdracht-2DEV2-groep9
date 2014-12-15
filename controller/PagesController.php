@@ -155,22 +155,13 @@ class PagesController extends Controller {
 				$uploaddir = './images/uploaded/';
 				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
 				$this->set('file', $file);
-				
-
-				$file = $_FILES['uploadVideo'];
-				$uploaddir = './videos/uploaded/';
-				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
-				$this->set('file', $file);
-				
-				
-
 
 			}
 
 			if(!empty($_POST)){
 
 					if($_POST['item_kind'] == 'postit'){
-						//postits
+						//new postits
 
 						$data = [];
 
@@ -186,6 +177,13 @@ class PagesController extends Controller {
 						//print_r laten staan!! is om id door te geven
 						print_r($postit['id']);
 
+					}else if($_POST['item_kind'] == 'updatePosition'){
+						$data = [];
+						$data['left'] = $_POST['left'];
+						$data['top'] = $_POST['top'];
+						$data['id'] = $_POST['id'];
+						$this->whiteboarditemDAO->updatePosition($data);
+					
 					}else if($_POST['item_kind'] == 'image'){
 						//images
 

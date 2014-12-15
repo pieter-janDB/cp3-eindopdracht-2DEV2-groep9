@@ -45,6 +45,8 @@ module.exports = (function(){
 
 		this.postitFormDiv = document.createElement('div');
 		this.postitFormDiv.classList.add('postit');
+		this.postitFormDiv.style.top = "200px";
+		this.postitFormDiv.style.left = "150px";
 
 		var postitForm = document.createElement('form');
 

@@ -206,7 +206,14 @@ class PagesController extends Controller {
 
 
 
-					}	else if($_POST['item_kind'] == 'video'){
+					}else if($_POST['item_kind'] == 'deleteAll'){
+						$this->whiteboarditemDAO->deleteProjectItems($_POST['project_id']);
+					
+					}else if($_POST['item_kind'] == 'delete'){
+						$this->whiteboarditemDAO->deleteItemById($_POST['id']);
+					
+					}
+						else if($_POST['item_kind'] == 'video'){
 						//video
 
 						$data = [];

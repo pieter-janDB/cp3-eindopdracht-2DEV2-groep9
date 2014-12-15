@@ -126,14 +126,16 @@ module.exports = (function(){
 			//check of het foto is kijken of type image is
 			if(file.type.search('image') === 0){
 
-				this.imageSubmit.addEventListener('click' ,ImageUploadHandler.bind(this, file));
+				this._imageUploadHandler = imageUploadHandler.bind(this, file);
+				this.imageSubmit.addEventListener('click' ,this._imageUploadHandler);
 				
 				};			
 			}	
 	};
 
-	function ImageUploadHandler(file){
+	function imageUploadHandler(file){
 		
+		console.log('tets');
         event.preventDefault(); // Totally stop stuff happening
         // Create a formdata object and add the files
 		var data = new FormData( document.getElementById("uploadForm") );	
@@ -148,23 +150,24 @@ module.exports = (function(){
             success: function(data, textStatus, jqXHR)
             {
  				console.log( 'ajax success');
+ 				uploadImageToDatabase(file);
             },
             error: function(jqXHR, textStatus, errorThrown)
             {	
             	console.log('ERRORS: ' + textStatus);
             }
         });
+        this.imageSubmit.removeEventListener( 'click', this._imageUploadHandler);
        	
-        this.uploadImageToDatabase(file);
 			
 	}
 
-	Whiteboard.prototype.uploadImageToDatabase = function(file){	
+	function uploadImageToDatabase(file){	
 	
-		console.log(file);
-		var imageDiv = new NewImage.createWithUpload(file.name);
-		this.whiteboard.appendChild(imageDiv.el);
-		this.uploadedImages.push(imageDiv);
+		console.log( this);
+		
+		//this.whiteboard.appendChild(imageDiv.el);
+		//this.uploadedImages.push(imageDiv);
 		$.ajax({
 	        type: 'post',
 	        url: window.location.href,
@@ -176,7 +179,10 @@ module.exports = (function(){
 	        },
 	        success: function( data ) {
 
-	        	
+	        	var imageDiv = new NewImage.createWithUpload(file.name);
+	        	document.querySelector('.whiteboard').appendChild(imageDiv.el);
+
+
 				var segments = data.split("<!DOCTYPE html>");
 				//geef postit id van in database
 				imageDiv.id = segments[0];	
@@ -184,7 +190,8 @@ module.exports = (function(){
 	        		
 	       }
 	    });
-	    bean.on(imageDiv, 'delete', this.deleteimageHandler.bind(this, imageDiv));
+	   // bean.on(imageDiv, 'delete', this.deleteimageHandler.bind(this, imageDiv));
+	   
 	}
 
 

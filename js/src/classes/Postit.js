@@ -12,12 +12,7 @@ module.exports = (function(){
 		this.deleteKnop.addEventListener('click', this.deleteClickHandler.bind(this));
 
 
-
-
 		this._mouseDownHandler = this.mouseDownHandler.bind(this);
-		//referentie naar funtcie (this slaagt op block)
-		//bind this nodig om object mee te geven aan de functie
-		//met bind stel je de this van binnen in de functie in (dit staat in de -root Block- dus this verwijst naar Block)
 		this._mouseMoveHandler = this.mouseMoveHandler.bind(this);
 		this._mouseUpHandler = this.mouseUpHandler.bind(this);
 
@@ -35,15 +30,11 @@ module.exports = (function(){
 
 	};
 
-	Postit.prototype.dragClickHandler = function(event){
-		bean.fire(this, "move");
-	}
 
 	Postit.prototype.mouseDownHandler = function( event ){
 			this.offsetX = event.offsetX;
 			this.offsetY = event.offsetY;
 
-			console.log(this);
 
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
 			window.addEventListener( 'mouseup', this._mouseUpHandler);
@@ -52,7 +43,7 @@ module.exports = (function(){
 	}
 
 	Postit.prototype.mouseMoveHandler = function( event ){
-		console.log('mouse move handler');
+		
 
 		this.el.style.left = event.x-this.offsetX + 'px';
 		this.el.style.top = event.y-this.offsetY + 'px';
@@ -67,13 +58,13 @@ module.exports = (function(){
 		        type: 'post',
 		        url: window.location.href,
 		        data: {
-		            item_kind: "updatePostitPosition",
+		            item_kind: "updatePosition",
 		            top: event.y-this.offsetY,
 		            left: event.x-this.offsetX,
 		            id: this.id
 		        },
 		        success: function( data ) {
-		     		console.log( data );		
+		     		console.log( "ajax success" );		
 		       }
 		    });
 

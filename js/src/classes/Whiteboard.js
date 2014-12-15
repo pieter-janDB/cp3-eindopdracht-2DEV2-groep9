@@ -100,21 +100,16 @@ module.exports = (function(){
 		if (postitIndex > -1) {
 		    this.postits.splice(postitIndex, 1);
 		}
-
 		//remove from screen
-		this.whiteboard.removeChild(postit.el)
+		this.whiteboard.removeChild(postit.el);
 		
-
 		//remove from database
-
 
 	}
 
 	//image
 
 	Whiteboard.prototype.addImageElement = function(e){
-
-
 		var file, reader;
 		//check of gebruiker bestand heeft gekozen
 		if(this.createImageButton.files.length > 0){
@@ -126,94 +121,80 @@ module.exports = (function(){
 
 				this.imageSubmit.addEventListener('click' ,ImageUploadHandler.bind(this, file));
 				
-				};
-			
-			
-			}
-
-	
-		
+				};			
+			}	
 	};
-
 
 	function ImageUploadHandler(file){
 		
         event.preventDefault(); // Totally stop stuff happening
-
-
         // Create a formdata object and add the files
-		var data = new FormData( document.getElementById("uploadForm") );
-
-		var whiteboard = this;
-		var file = file;
-
+		var data = new FormData( document.getElementById("uploadForm") );	
+		
         $.ajax({
             url: window.location.href,
             type: 'POST',
             data: data,
             cache: false,
-            file: file,
-            whiteboard: whiteboard,
             processData: false, // Don't process the files
             contentType: false, // Set content type to false as jQuery will tell the server its a query string request
             success: function(data, textStatus, jqXHR)
             {
-            	if(typeof data.error === 'undefined')
-            	{
-            		//success
-            		uploadImageToDatabase(file);
-
-            	}
-            	else
-            	{
-            		// Handle errors here
-            		console.log('ERRORS: ' + data.error);
-            	}
+ 				console.log( 'ajax success');
             },
             error: function(jqXHR, textStatus, errorThrown)
             {	
-            	// Handle errors here
             	console.log('ERRORS: ' + textStatus);
-          
             }
-
         });
-
+       	
+        this.uploadImageToDatabase(file);
 			
 	}
 
-
-
-
-	function uploadImageToDatabase(file){
-
-		//uploaden in database en dan op scherm tonen
-			
+	Whiteboard.prototype.uploadImageToDatabase = function(file){	
+	
+		console.log(file);
+		var imageDiv = new NewImage.createWithUpload(file.name);
+		this.whiteboard.appendChild(imageDiv.el);
+		this.uploadedImages.push(imageDiv);
 		$.ajax({
 	        type: 'post',
 	        url: window.location.href,
 	        data: {
 	            item_kind: "image",
-	            top: "200px",
-	            left: "150px",
+	            top: "200",
+	            left: "150",
 	            filename: file.name
 	        },
 	        success: function( data ) {
-	        	var imageDiv = new NewImage.createWithUpload(file.name);
-				$image = document.querySelector('.whiteboard').appendChild(imageDiv.el);
-			
+
+	        	
+				var segments = data.split("<!DOCTYPE html>");
+				//geef postit id van in database
+				imageDiv.id = segments[0];	
+				
 	        		
 	       }
 	    });
+	    bean.on(imageDiv, 'delete', this.deleteimageHandler.bind(this, imageDiv));
 	}
 
 
 
-	Whiteboard.prototype.createImageHandler = function(filename){
+	Whiteboard.prototype.deleteimageHandler = function(imageDiv){
+		//remove from array
+		var imageIndex = this.uploadedImages.indexOf(imageDiv);
+		if (imageIndex > -1) {
+		    this.uploadedImages.splice(imageIndex, 1);
+		}
 
-		this.uploadedImage = new NewImage.createWithUpload(filename);
+		//remove from screen
+		this.whiteboard.removeChild(imageDiv.el);
 		
-		this.whiteboard.appendChild(this.uploadedImage.el);
+
+		//remove from database
+		
 
 	};
 

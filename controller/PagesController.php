@@ -177,14 +177,11 @@ class PagesController extends Controller {
 						//print_r laten staan!! is om id door te geven
 						print_r($postit['id']);
 
-					}else if($_POST['item_kind'] == 'updatePostitPosition'){
+					}else if($_POST['item_kind'] == 'updatePosition'){
 						$data = [];
 						$data['left'] = $_POST['left'];
 						$data['top'] = $_POST['top'];
 						$data['id'] = $_POST['id'];
-
-						
-			
 						$this->whiteboarditemDAO->updatePosition($data);
 					
 					}else if($_POST['item_kind'] == 'image'){

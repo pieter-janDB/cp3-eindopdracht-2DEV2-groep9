@@ -4,7 +4,6 @@
 
 	function init() {
 		new Whiteboard();
-
 	}
 
 	init();

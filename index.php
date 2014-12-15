@@ -37,7 +37,7 @@ $routes = array(
         'whiteboard' => array(
         'controller' => 'Pages',
         'action' => 'whiteboard'
-    )  
+    )
 );
 
 if(empty($_GET['page'])){

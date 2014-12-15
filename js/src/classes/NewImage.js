@@ -9,11 +9,12 @@ module.exports = (function(){
 
 	}
 
-	NewImage.createWithUpload = function(file){
+	NewImage.createWithUpload = function(filename){
 		
 		var el = document.createElement('img');
 		el.classList.add('Image');
-		el.src = file;
+		var location = "./images/uploaded/";
+		el.src = location + filename;
 		return new NewImage(el);
 
 

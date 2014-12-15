@@ -51,6 +51,7 @@ class UserDAO extends DAO {
 	}
 
 
+
 	public function selectByName($voornaam, $achternaam){
 
 		$sql = "SELECT * FROM `users` WHERE `firstname` = :voornaam AND `lastname` = :achternaam";

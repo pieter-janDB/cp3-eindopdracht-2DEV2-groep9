@@ -12,19 +12,19 @@
 	<form action="index.php?page=newproject" method="post" >
 			<div class="formRegel">
 				<label for="name">Project Name:</label>
-				<input id="name" name="name" type="text"></input>
+				<input id="name" name="name" type="text" value="<?php echo $_POST['name'];?>"></input>
                     <?php if(!empty($errors['name'])) echo "<p class=\"validationerror\">" . $errors['name'] . " </p>"; ?>
 			</div>
 			<div class="formRegel">
 
 				<label for="description">Description:</label>
-				<textarea name="description" id="description" cols="40" rows="6" requiredvalue="<?php if(!empty($_POST['vraag'])) echo $_POST['vraag'];?>" /></textarea>
+				<textarea name="description" id="description" cols="40" rows="6" required value="<?php echo $_POST['description'];?>" /></textarea>
                     <?php if(!empty($errors['description'])) echo "<p class=\"validationerror\">" . $errors['description'] . " </p>"; ?>
 
 			</div>
 			<div class="formRegel">
-				<label class="memberLabel"for="member1">members (beside you):</label>
-				<input id="member1" name="member1" class="member" type="text" placeholder="Voornaam Achternaam"></input>
+				<label class="memberLabel"for="member1">members (email):</label>
+				<input id="member1" name="member1" class="member" type="text" placeholder="voorbeeld@gmail.com" <?php echo $_POST['member1'];?>></input>
 				
 			
 

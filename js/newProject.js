@@ -12,7 +12,7 @@
  	} 
 
 
- 	function addMember(e){ 
+ 	function addMember(e){
 
 
 		memberAantal++;

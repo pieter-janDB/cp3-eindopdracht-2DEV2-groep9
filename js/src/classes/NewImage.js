@@ -7,14 +7,16 @@ module.exports = (function(){
 		
 		//later nog this.deleteknop / resize / edit?
 
-	}
+}
 
 	NewImage.createWithUpload = function(filename){
 		
-		var el = document.createElement('img');
-		el.classList.add('Image');
+		var el = document.createElement('div');
+		el.classList.add('imageDiv');
 		var location = "./images/uploaded/";
-		el.src = location + filename;
+		el.style.width = "200px";
+		el.style.height = "200px";
+		el.style.backgroundImage = "url(" + location + filename + ")";
 		return new NewImage(el);
 
 

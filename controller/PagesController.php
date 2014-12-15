@@ -4,6 +4,7 @@ require_once WWW_ROOT . 'controller' . DS . 'Controller.php';
 require_once WWW_ROOT . 'dao' . DS . 'ProjectDAO.php';
 require_once WWW_ROOT . 'dao' . DS . 'UserDAO.php';
 require_once WWW_ROOT . 'dao' . DS . 'ProjectmemberDAO.php';
+require_once WWW_ROOT . 'dao' . DS . 'WhiteboarditemDAO.php';
 
 
 
@@ -12,12 +13,14 @@ class PagesController extends Controller {
 	private $projectDAO;
 	private $userDAO;
 	private $projectmemberDAO;
+	private $whiteboarditemDAO;
 	
 
 	function __construct() {
 		$this->projectDAO = new ProjectDAO();
 		$this->userDAO = new UserDAO();
 		$this->projectmemberDAO = new ProjectmemberDAO();
+		$this->whiteboarditemDAO = new WhiteboarditemDAO();
 
 	}
 
@@ -25,8 +28,8 @@ class PagesController extends Controller {
 
 	public function index(){
 
-
 	}
+
 	public function newproject(){
 		if(empty($_SESSION['user']['id'])){
 			$_SESSION['error'] = 'you need to login to visit this page.';
@@ -54,19 +57,18 @@ class PagesController extends Controller {
 				$errors['deadline'] = 'please fill in a deadline';
 			}	
 			$toAdd = array();
-			array_push($toAdd, $_SESSION['user']['firstname'] . " " . $_SESSION['user']['lastname']);
-		
-			foreach($_POST as $memberX => $naam) {
-				//memberX = member1/2/3/4
-				//Naam = naam persoon
-			    if(strpos($memberX, 'member') === 0) {
-			    	$toAdd[$memberX] = $naam;
-			    	if(empty($toAdd[$memberX])){
-			    		unset($toAdd[$memberX]);
-			    	}
-			    }
+
+			
+			
+
+			for($i = 2; $i <= count($_POST)-2; $i++){
+				$member_nr = $i-1;
+				$naam =  ("member" . ($i-1));
+
+				$toAdd[$i-2] = $_POST[$naam];		    	
+			
 			}
-					
+			array_push($toAdd, $_SESSION['user']['email']);
 
 			if(empty($errors)) {
 
@@ -90,20 +92,16 @@ class PagesController extends Controller {
 					$userdata['project_id'] = $insertedProject['id'];
 					$userdata['color'] = "#000";
 					
-					forEach($toAdd as $member => $value){
-						$namen = array();
-						$namen = explode(" ", $value);
-
-						if(!empty($namen[2])){
-							$namen[1] = $namen[1] . " " . $namen[2];
+					forEach($toAdd as $email => $value){
+						if(empty($value)){
+							continue;
 						}
-
-						$member = $this->userDAO->selectByName($namen[0], $namen[1]);
-						
+						$member = $this->userDAO->selectByEmail($value);
+			
 						if(!empty($member)){
 
-						$userdata['member_id'] = $member['id'];
-						$insertedUser = $this->projectmemberDAO->insert($userdata);
+							$userdata['member_id'] = $member['id'];
+							$insertedUser = $this->projectmemberDAO->insert($userdata);
 						
 						}else{
 							array_push($failedToAdd, $value);
@@ -150,15 +148,63 @@ class PagesController extends Controller {
 			
 			if(!empty($_FILES)){
 
+				//images
+
+
 				$file = $_FILES['uploadImage'];
 				$uploaddir = './images/uploaded/';
 				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
-
 				$this->set('file', $file);
-			
 				
+
+
+				
+
+
 			}
+
+			if(!empty($_POST)){
+
+					if($_POST['item_kind'] == 'postit'){
+						//postits
+
+						$data = [];
+
+						$data['title'] = $_POST['title'];
+						$data['text'] = $_POST['text'];
+						$data['project_id'] = $_GET['id'];
+						$data['user_id'] = $_SESSION['user']['id'];
+						$data['item_kind'] = $_POST['item_kind'];
+						$data['top'] = $_POST['top'];
+						$data['left'] = $_POST['left'];
+
+						$postit = $this->whiteboarditemDAO->insertPostit($data);
+						//print_r laten staan!! is om id door te geven
+						print_r($postit['id']);
+
+					}else if($_POST['item_kind'] == 'image'){
+						//images
+
+						$data = [];
+						$data['project_id'] = $_GET['id'];
+						$data['user_id'] = $_SESSION['user']['id'];
+						$data['item_kind'] = $_POST['item_kind'];
+						$data['top'] = $_POST['top'];
+						$data['left'] = $_POST['left'];
+						$data['filename'] = $_POST['filename'];
+
+						$image = $this->whiteboarditemDAO->insertImage($data);
+						//print_r laten staan!! is om id door te geven
+						print_r($image['id']);
+
+
+
+					}	
+			}
+
 		}
+
+			
 		
 
 		if(empty($_SESSION['user']['id'])){

@@ -1,4 +1,6 @@
-(<section class="whiteboardpage">
+
+<section class="whiteboardpage" data-projectid="<?php echo $_GET['id']?>" data-userid="<?php echo $_SESSION['user']['id'] ?>">
+
 
     <div class="whiteboard">
 
@@ -34,8 +36,10 @@
                 ?>
             <ul/>
         </div>
+
     </div>
 
+   
 </section>
 <script src="js/bean.min.js"></script>
 <script src="js/script.dist.js" type="text/javascript"></script>

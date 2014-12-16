@@ -73,7 +73,7 @@ module.exports = (function(){
 	};
 
 	Whiteboard.prototype.createPostItHandler = function(title, bodyText){
-		 var postit = new Postit.createWithText(title, bodyText);
+		 var postit = new Postit.createWithText(title, bodyText, 200, 150);
 		 this.postits.push(postit);
 		 if(this.whiteboard.appendChild(postit.el)){
 
@@ -192,7 +192,7 @@ module.exports = (function(){
 	        },
 	        success: function( data ) {
 	        	console.log(thisX);
-	        	var imageDiv = new NewImage.createWithUpload(file.name);
+	        	var imageDiv = new NewImage.createWithUpload(file.name, 200, 150);
 	        	var segments = data.split("<!DOCTYPE html>");
 				//geef image id van in database
 				imageDiv.id = segments[0];	
@@ -264,11 +264,23 @@ module.exports = (function(){
      //clear board
 
      Whiteboard.prototype.clearBoard = function(){
-     	
-     	var x;
+     	var project_id = this.project_id;
 	    if (confirm("Are you sure you want to clear the whole project?") == true) {
 	       	
 	    	//DELETE ALL ENTRIES IN WHITEBOARDITEMS WHERE PROJECT_ID = project id 
+			$.ajax({
+		        type: 'post',
+		        url: window.location.href,
+		        data: {
+		            item_kind: "deleteAll",
+		            project_id: project_id,
+		
+		        },
+		        success: function( data ) {		
+		        		console.log('ajax success');
+		        		location.reload();
+		       }
+	    	});
 
 	    	// maak veld leeg
 

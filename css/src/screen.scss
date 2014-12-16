@@ -559,14 +559,32 @@ h1{
 		position: absolute;
 		top: 120px;
 		left: 10px;
-		background-color: #000;
+		background-image: url('../images/menubarBg.png');
 		float: left;
-		background-color: #000;
+
 		width: 80px;
 		border-radius: 8px;
-	li{
-		padding: 8px;
+
+		.uploadVideo{
+			margin-top: 10px;
+		}
+		input[type=file]{
+
+			width: 62px;
+		    height: 62px;
+		    margin-left: 8px;
+		    outline: none;
+		    background: #fff;
+		    opacity: 0.0001;
+		    cursor: hand;
+		    background-color: red;
+		    display: block;
+		}
+
+		li{
+			padding: 8px;
 	}
+
 	.imageSubmit, .videoSubmit{
 		background-color: #fff;
 		border-radius: 4px;
@@ -574,9 +592,19 @@ h1{
 		color: $green;
 		font-family: $mainFont;
 		text-transform: uppercase;
-		margin-left: 10px;
+		margin-left: 12px;
+		
+		margin-top: 3px;
+	
+
 	}
+
+	.videoSubmit{
+		margin-bottom: 10px;
+
 	}
+	
+}
 	.members{
 
 		position: absolute;

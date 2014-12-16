@@ -65,6 +65,7 @@ module.exports = (function(){
 
 		//image
 
+		
 		this.createImageButton = document.querySelector('input[name=uploadImage]');
 		this.createImageButton.addEventListener('change', this.addImageElement.bind(this));
 		this.imageSubmit = document.querySelector('.imageSubmit');
@@ -177,6 +178,10 @@ module.exports = (function(){
 	//image
 
 	Whiteboard.prototype.addImageElement = function(e){
+
+		this.imageSubmit.style.background = "#86c06a";
+		this.imageSubmit.style.color = "#fff";
+
 		var file, reader;
 		//check of gebruiker bestand heeft gekozen
 		if(this.createImageButton.files.length > 0){
@@ -224,6 +229,8 @@ module.exports = (function(){
         });
         this.imageSubmit.removeEventListener( 'click', this._imageUploadHandler);
 		this.createImageButton.value = '';
+		this.imageSubmit.style.background = "#fff";
+		this.imageSubmit.style.color = "#86c06a";
 	}
 
 	Whiteboard.prototype.uploadImageToDatabase = function(file, thisX){

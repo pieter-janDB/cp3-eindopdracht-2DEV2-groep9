@@ -31,8 +31,8 @@ module.exports = (function(){
 
 
 	NewVideo.prototype.mouseDownHandler = function( event ){
-			this.offsetX = 145+ event.offsetX;
-			this.offsetY = event.offsetY;
+			this.offsetX = 315+ event.offsetX;
+			this.offsetY =  event.offsetY;
 
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
 			window.addEventListener( 'mouseup', this._mouseUpHandler);

@@ -25,6 +25,15 @@ class ProjectDAO extends DAO {
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
+		public function selectByDesc($description){
+		$sql = "SELECT * FROM `projects` WHERE `description` = :description";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':description', $description);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+
 	public function selectAllByUserId($id){
 		$sql = "SELECT * FROM `projects` LEFT JOIN `projectmembers` ON `projectmembers`.`project_id` = `projects`.`id` WHERE `projectmembers`.`member_id` = $id";
 

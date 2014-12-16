@@ -365,21 +365,51 @@ h1{
 		margin-right: 20px;
 		margin-top: 20px;
 		border-radius: 10px;
-		>p{
+		.projectName{
 			color: #fff;
 			font-family: $mainFont;
 			text-align: center;
-			font-size: 1.6em;
+			font-size: 2em;
 			padding: 17px 0px;
+			text-transform: uppercase;
 		}
-		.rightProject, .leftProject{
-			height: 150px;
+		.desc{
+				color: #000;
+				background-color: $green;
+				height: 30px;
+				width: 210px;
+				font-family: $mainFont;
+				text-align: center;
+				font-size: 1.5em;
+				padding: 5px;
+				margin-top: 4px;
+				word-wrap: break-word;
+			}
+		.whitebrd{
+			color: #fff;
+			text-decoration: none;
+			font-family: $mainFont;
+			text-transform: uppercase;
+			font-size: 1.8em;
+			text-align: center;
+			margin-top: 70px;
+
+			a{
+				color: #fff;
+				text-decoration: none;
+			}
+			a:hover{
+				color: $green;
+			}
+		}
+		.rightProject{
+			height: 100px;
 			background-color: #fff;
-			width: 50%;
+			border-radius: 4px;
+			width: 100%;
 			float: left;
 			text-align: center;
 			box-sizing: border-box;
-			border: 1px solid #000;
 			display: none;
 
 			p{
@@ -389,16 +419,17 @@ h1{
 				font-size: 1.6em;
 				color: #000;
 			}
+
 		}
 		
 
 	}
 
 	.projectBox:hover{
-		.rightProject, .leftProject{
+		.rightProject{
 			display: block;
 		}
-		.rightProject:hover, .leftProject:hover{
+		.rightProject:hover{
 			opacity: 1.0;
 			background-color: $green;
 		}
@@ -535,6 +566,15 @@ h1{
 		border-radius: 8px;
 	li{
 		padding: 8px;
+	}
+	.imageSubmit, .videoSubmit{
+		background-color: #fff;
+		border-radius: 4px;
+		border: 1px solid $green;
+		color: $green;
+		font-family: $mainFont;
+		text-transform: uppercase;
+		margin-left: 10px;
 	}
 	}
 	.members{

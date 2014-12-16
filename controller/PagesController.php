@@ -206,7 +206,14 @@ class PagesController extends Controller {
 
 
 
-					}	else if($_POST['item_kind'] == 'video'){
+					}else if($_POST['item_kind'] == 'deleteAll'){
+						$this->whiteboarditemDAO->deleteProjectItems($_POST['project_id']);
+					
+					}else if($_POST['item_kind'] == 'delete'){
+						$this->whiteboarditemDAO->deleteItemById($_POST['id']);
+					
+					}
+						else if($_POST['item_kind'] == 'video'){
 						//video
 
 						$data = [];
@@ -220,12 +227,12 @@ class PagesController extends Controller {
 						$video = $this->whiteboarditemDAO->insertImage($data);
 						//print_r laten staan!! is om id door te geven
 						print_r($video['id']);
+				}
+
 			}
-
 		}
-	}
 
-			
+				
 		
 
 		if(empty($_SESSION['user']['id'])){
@@ -239,15 +246,7 @@ class PagesController extends Controller {
 		$members = $this->projectmemberDAO->selectAllMembers($_GET['id']);
 		$this->set('members', $members);
 
-		if(isset($_GET['files'])){
-
-			echo "in get files";
-			die();
-			$data = "test";
-
-			$this->set('data', $data);
-
-		}
+		
 		
 
 	

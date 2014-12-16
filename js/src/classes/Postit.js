@@ -71,12 +71,12 @@ module.exports = (function(){
 
 	}
 
-	Postit.createWithText = function(title, text){
+	Postit.createWithText = function(title, text, top,left){
 		
 		var el = document.createElement('div');
 		el.classList.add('postit');
-		el.style.top = "200px";
-		el.style.left = "150px";
+		el.style.top = top + "px";
+		el.style.left = left + "px";
 		var postitTitle = document.createElement('h2');
 		postitTitle.classList.add('postitTitle');
 		var postitBody = document.createElement('p');

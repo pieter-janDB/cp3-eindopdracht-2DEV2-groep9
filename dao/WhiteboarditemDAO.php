@@ -52,6 +52,20 @@ class WhiteboarditemDAO extends DAO {
 			return $this->selectById($lastInsertId);
 		}
 	}
+	public function deleteProjectItems($project_id){
+		$sql = "DELETE FROM `whiteboarditems` WHERE `project_id` = :project_id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':project_id', $project_id);
+		$stmt->execute();
+	}
+
+	
+	public function deleteItemById($id){
+		$sql = "DELETE FROM `whiteboarditems` WHERE `id` = :id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':id', $id);
+		$stmt->execute();
+	}
 
 	public function insertImage($data){
 		$sql = "INSERT INTO `whiteboarditems` (`project_id`, `user_id`, `item_kind`, `top`, `left`, `filename`)

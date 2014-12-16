@@ -66,10 +66,13 @@ module.exports = (function(){
 
 	}
 
-	NewImage.createWithUpload = function(filename){
+	NewImage.createWithUpload = function(filename, top, left){
 		
 		var el = document.createElement('div');
 		el.classList.add('imageContainerDiv');
+		el.style.top = top + "px";
+		el.style.left = left + "px";
+	
 
 		var imageDiv = document.createElement('div');
 		imageDiv.classList.add('imageDiv');

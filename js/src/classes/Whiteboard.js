@@ -73,7 +73,7 @@ module.exports = (function(){
 	};
 
 	Whiteboard.prototype.createPostItHandler = function(title, bodyText){
-		 var postit = new Postit.createWithText(title, bodyText);
+		 var postit = new Postit.createWithText(title, bodyText, 200, 150);
 		 this.postits.push(postit);
 		 if(this.whiteboard.appendChild(postit.el)){
 
@@ -112,6 +112,20 @@ module.exports = (function(){
 		
 		//remove from database
 
+
+		$.ajax({
+	        type: 'post',
+	        url: window.location.href,
+	        data: {
+	            item_kind: "delete",
+	            id: postit.id
+	        },
+	        success: function( data ) {		
+	        		console.log('ajax success');
+	       }
+	    });
+
+
 	}
 
 	//image
@@ -126,14 +140,17 @@ module.exports = (function(){
 			//check of het foto is kijken of type image is
 			if(file.type.search('image') === 0){
 
-				this.imageSubmit.addEventListener('click' ,ImageUploadHandler.bind(this, file));
+				this._imageUploadHandler = this.imageUploadHandler.bind(this, file, this);
+				this.imageSubmit.addEventListener('click' ,this._imageUploadHandler);
 				
 				};			
 			}	
 	};
 
-	function ImageUploadHandler(file){
-		
+	Whiteboard.prototype.imageUploadHandler = function(file, thisX){
+		console.log(this);
+		console.log('tets');
+		console.log(thisX);
         event.preventDefault(); // Totally stop stuff happening
         // Create a formdata object and add the files
 		var data = new FormData( document.getElementById("uploadForm") );	
@@ -148,60 +165,68 @@ module.exports = (function(){
             success: function(data, textStatus, jqXHR)
             {
  				console.log( 'ajax success');
+ 				thisX.uploadImageToDatabase(file, thisX);
+
+ 				// hoe kan ik hier this aan meegeven ???? 
+ 				
             },
             error: function(jqXHR, textStatus, errorThrown)
             {	
             	console.log('ERRORS: ' + textStatus);
             }
         });
-       	
-        this.uploadImageToDatabase(file);
-			
+        this.imageSubmit.removeEventListener( 'click', this._imageUploadHandler);
+		this.createImageButton.value = '';
 	}
 
-	Whiteboard.prototype.uploadImageToDatabase = function(file){	
-	
-		console.log(file);
-		var imageDiv = new NewImage.createWithUpload(file.name);
-		this.whiteboard.appendChild(imageDiv.el);
-		this.uploadedImages.push(imageDiv);
+	Whiteboard.prototype.uploadImageToDatabase = function(file, thisX){
+
 		$.ajax({
 	        type: 'post',
 	        url: window.location.href,
 	        data: {
 	            item_kind: "image",
-	            top: "200",
-	            left: "150",
+	            top: "200px",
+	            left: "150px",
 	            filename: file.name
 	        },
 	        success: function( data ) {
-
-	        	
-				var segments = data.split("<!DOCTYPE html>");
-				//geef postit id van in database
+	        	console.log(thisX);
+	        	var imageDiv = new NewImage.createWithUpload(file.name, 200, 150);
+	        	var segments = data.split("<!DOCTYPE html>");
+				//geef image id van in database
 				imageDiv.id = segments[0];	
-				
+				thisX.whiteboard.appendChild(imageDiv.el);
+				thisX.uploadedImages.push(imageDiv);
+				bean.on(imageDiv, 'delete', thisX.deleteimageHandler.bind(this, imageDiv, thisX));
+				console.log(thisX.uploadedImages);
 	        		
 	       }
 	    });
-	    bean.on(imageDiv, 'delete', this.deleteimageHandler.bind(this, imageDiv));
 	}
 
-
-
-	Whiteboard.prototype.deleteimageHandler = function(imageDiv){
+	Whiteboard.prototype.deleteimageHandler = function(imageDiv, thisX){
 		//remove from array
-		var imageIndex = this.uploadedImages.indexOf(imageDiv);
+		var imageIndex = thisX.uploadedImages.indexOf(imageDiv);
 		if (imageIndex > -1) {
-		    this.uploadedImages.splice(imageIndex, 1);
+		    thisX.uploadedImages.splice(imageIndex, 1);
 		}
 
 		//remove from screen
-		this.whiteboard.removeChild(imageDiv.el);
-		
+		document.querySelector('.whiteboard').removeChild(imageDiv.el);
 
 		//remove from database
-		
+		$.ajax({
+	        type: 'post',
+	        url: window.location.href,
+	        data: {
+	            item_kind: "delete",
+	            id: imageDiv.id
+	        },
+	        success: function( data ) {		
+	        		console.log('ajax success');
+	       }
+	    });		
 
 	};
 
@@ -239,11 +264,23 @@ module.exports = (function(){
      //clear board
 
      Whiteboard.prototype.clearBoard = function(){
-     	
-     	var x;
+     	var project_id = this.project_id;
 	    if (confirm("Are you sure you want to clear the whole project?") == true) {
 	       	
 	    	//DELETE ALL ENTRIES IN WHITEBOARDITEMS WHERE PROJECT_ID = project id 
+			$.ajax({
+		        type: 'post',
+		        url: window.location.href,
+		        data: {
+		            item_kind: "deleteAll",
+		            project_id: project_id,
+		
+		        },
+		        success: function( data ) {		
+		        		console.log('ajax success');
+		        		location.reload();
+		       }
+	    	});
 
 	    	// maak veld leeg
 

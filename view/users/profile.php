@@ -16,13 +16,13 @@
 
 		?>
 		<div class="projectBox">
-			<p> <?php echo $project['name'] ?> </p>
-			<a href="index.php?page=scrum&amp;id=1">
-			<div class="leftProject"><p>scrum</p></div>
-			</a>
-			<a href="index.php?page=whiteboard&amp;id=<?php echo $project['project_id']; ?>">
-			<div class="rightProject"><p>Whiteboard</p></div>
-			</a>
+			<p class="projectName"> <?php echo $project['name'] ?> </p>
+			<p class="desc"><?php echo $project['description'] ?></p>
+			
+			
+			
+			<p class="whitebrd"><a href="index.php?page=whiteboard&amp;id=<?php echo $project['project_id']; ?>">Open project</a></p>
+			
 		</div>
 
 		<?php endForEach;?>

@@ -28,7 +28,7 @@
         </div>
 
         <div class="members">
-            <img src="./images/dropdown.png" width="25px" height="25px" alt="dropdown" class="dropDownClicker right" />
+            <img src="./images/dropdown.png" width="15px" height="15px" alt="dropdown" class="dropDownClicker right" />
                 <p>Members</p>
           
             <ul class="menu">
@@ -45,7 +45,7 @@
                 ?>
                 <li>
                     <form id="uploadForm" action="index.php?page=addMember&amp;id=<?php echo $_GET['id'] ?>" method="post">
-                        <input type="text"class="addmemberWhiteboard left" placeholder="voorbeeld@gmail.Com" name="email"></input>  
+                        <input type="text"class="addmemberWhiteboard left" placeholder="voorbeeld@gmail.com" name="email"></input>  
                         <input id="target" class="addmemberWhiteboardSubmit left" type="submit" value="+" />
                     </form>
 

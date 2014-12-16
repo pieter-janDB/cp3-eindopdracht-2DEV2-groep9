@@ -31,11 +31,12 @@ module.exports = (function(){
 
 
 	NewVideo.prototype.mouseDownHandler = function( event ){
-		console.log(event.currentTarget.parentNode.offsetWidth);
+
 			this.parentOffset = event.currentTarget.parentNode.offsetWidth - 52;
 
 			this.offsetX = this.parentOffset + event.offsetX;
 			this.offsetY = event.offsetY;
+
 
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
 			window.addEventListener( 'mouseup', this._mouseUpHandler);

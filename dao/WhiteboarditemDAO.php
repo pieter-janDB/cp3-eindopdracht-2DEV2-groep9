@@ -19,8 +19,8 @@ class WhiteboarditemDAO extends DAO {
 
 
 	public function insertPostit($data){
-		$sql = "INSERT INTO `whiteboarditems` (`title`, `message`, `project_id`, `user_id`, `item_kind`, `top`, `left`)
-			VALUES (:title, :message, :project_id, :user_id, :item_kind, :top, :left)";
+		$sql = "INSERT INTO `whiteboarditems` (`title`, `message`, `project_id`, `user_id`, `item_kind`, `top`, `left`, `width`, `height`)
+			VALUES (:title, :message, :project_id, :user_id, :item_kind, :top, :left, :width, :height)";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindValue(':title', $data['title']);
 		$stmt->bindValue(':message', $data['text']);
@@ -29,6 +29,8 @@ class WhiteboarditemDAO extends DAO {
 		$stmt->bindValue(':item_kind', $data['item_kind']);
 		$stmt->bindValue(':top', $data['top']);
 		$stmt->bindValue(':left', $data['left']);
+		$stmt->bindValue(':width', $data['width']);
+		$stmt->bindValue(':height', $data['height']);
 
 		if($stmt->execute()) {
 			
@@ -45,6 +47,21 @@ class WhiteboarditemDAO extends DAO {
 		$stmt->bindValue(':id', $data['id']);
 		$stmt->bindValue(':left', $data['left']);
 		$stmt->bindValue(':top', $data['top']);
+		if($stmt->execute()) {
+			$lastInsertId=$this->pdo->lastInsertId();
+			return $this->selectById($lastInsertId);
+		}
+	}
+
+	public function updatePositionAndDimension($data){
+		$sql = "UPDATE `whiteboarditems` 	SET `left` = :left, `top`= :top, `width`= :width, `height`= :height WHERE `whiteboarditems`.`id` = :id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':id', $data['id']);
+		$stmt->bindValue(':left', $data['left']);
+		$stmt->bindValue(':top', $data['top']);
+		$stmt->bindValue(':width', $data['width']);
+		$stmt->bindValue(':height', $data['height']);
+
 		if($stmt->execute()) {
 			$lastInsertId=$this->pdo->lastInsertId();
 			return $this->selectById($lastInsertId);
@@ -75,14 +92,16 @@ class WhiteboarditemDAO extends DAO {
 	}
 
 	public function insertImage($data){
-		$sql = "INSERT INTO `whiteboarditems` (`project_id`, `user_id`, `item_kind`, `top`, `left`, `filename`)
-			VALUES (:project_id, :user_id, :item_kind, :top, :left, :filename)";
+		$sql = "INSERT INTO `whiteboarditems` (`project_id`, `user_id`, `item_kind`, `top`, `left`, `width`, `height`, `filename`)
+			VALUES (:project_id, :user_id, :item_kind, :top, :left, :width, :height, :filename)";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindValue(':project_id', $data['project_id']);
 		$stmt->bindValue(':user_id', $data['user_id']);
 		$stmt->bindValue(':item_kind', $data['item_kind']);
 		$stmt->bindValue(':top', $data['top']);
 		$stmt->bindValue(':left', $data['left']);
+		$stmt->bindValue(':width', $data['width']);
+		$stmt->bindValue(':height', $data['height']);
 		$stmt->bindValue(':filename', $data['filename']);
 
 		if($stmt->execute()) {

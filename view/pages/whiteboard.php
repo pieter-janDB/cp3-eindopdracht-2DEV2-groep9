@@ -63,6 +63,8 @@
                         echo "data-filename=\"" . $item['filename'] . "\"";
                         echo "data-left=\"" . $item['left'] . "\"";
                         echo "data-top=\"" . $item['top'] . "\"";
+                        echo "data-width=\"" . $item['width'] . "\"";
+                        echo "data-height=\"" . $item['height'] . "\"";
                         echo ">";
                         echo "</li>";
                     }

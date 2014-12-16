@@ -727,15 +727,24 @@ h1{
 		cursor: crosshair;
 	}
 
-	.dragKnop{
+	.dragKnop, .resizeKnop{
 	width: 16px;
 	height: 16px;
-	background-image: url('../images/draganddrop.jpg');
 	background-size: contain; 
 
 	}
+	.dragKnop{
+		background-image: url('../images/draganddrop.jpg');
+
+	}
+	.resizeKnop{
+		background-image: url('../images/resize.png');
+	}
 	.dragKnop:hover{
 		cursor: move;
+	}
+	.resizeKnop:hover{
+		cursor: se-resize;
 	}
 }
 
@@ -749,11 +758,20 @@ h1{
 	
 	}
 }
+.postitForm{
+	max-width: 300px;
+
+}
 
 .postit{
+	min-width: 100px;
+	min-height: 80px;
+}
+
+.postitForm, .postit{
 	display: block;
 	position: absolute;
-	max-width: 300px;
+	word-wrap: break-word;
 	background-color: #fff;
 	border: 2px solid black;
 
@@ -817,8 +835,7 @@ h1{
 }
 
 .imageDiv{
-	width: 500px;
-	height: 500px;
+	
 	background-size: contain;                 
     background-repeat: no-repeat;
     background-position: center center;

@@ -92,7 +92,7 @@ module.exports = (function(){
 	};
 
 	Whiteboard.prototype.createPostItHandler = function(title, bodyText){
-		 var postit = new Postit.createWithText(title, bodyText, 200, 150);
+		 var postit = new Postit.createWithText(title, bodyText, 200, 150, 0, 0);
 		 this.postits.push(postit);
 		 if(this.whiteboard.appendChild(postit.el)){
 
@@ -103,8 +103,10 @@ module.exports = (function(){
 		            title: title,
 		            text: bodyText,
 		            item_kind: "postit",
-		            top: "200px",
-		            left: "150px"
+		            top: "200",
+		            left: "150",
+		            width: "0",
+		            height: "0"
 		        },
 		        success: function( data ) {
 		        	console.log(data);
@@ -149,7 +151,7 @@ module.exports = (function(){
 
 	Whiteboard.prototype.createPostitFromDatabase = function(itemToAdd){
 
-		 var postit = new Postit.createWithText(itemToAdd.getAttribute('data-title'), itemToAdd.getAttribute('data-message'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'));
+		 var postit = new Postit.createWithText(itemToAdd.getAttribute('data-title'), itemToAdd.getAttribute('data-message'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'), itemToAdd.getAttribute('data-width'), itemToAdd.getAttribute('data-height'));
 		 this.postits.push(postit);
 		 this.whiteboard.appendChild(postit.el);
 		 postit.id = itemToAdd.getAttribute('data-id');
@@ -217,6 +219,7 @@ module.exports = (function(){
 
 	Whiteboard.prototype.uploadImageToDatabase = function(file, thisX){
 
+		console.log(file.width);
 		$.ajax({
 	        type: 'post',
 	        url: window.location.href,
@@ -224,10 +227,13 @@ module.exports = (function(){
 	            item_kind: "image",
 	            top: "200px",
 	            left: "150px",
+	            width: "200px",
+	            height: "150px",
 	            filename: file.name
 	        },
 	        success: function( data ) {
-	        	var imageDiv = new NewImage.createWithUpload(file.name, 200, 150);
+
+	        	var imageDiv = new NewImage.createWithUpload(file.name, 200, 150, 200,150);
 	        	var segments = data.split("<!DOCTYPE html>");
 				//geef image id van in database
 				imageDiv.id = segments[0];	
@@ -238,6 +244,7 @@ module.exports = (function(){
 	       }
 	    });
 	}
+
 
 	Whiteboard.prototype.deleteImageHandler = function(imageDiv, thisX){
 		//remove from array
@@ -265,8 +272,9 @@ module.exports = (function(){
 	};
 
 	Whiteboard.prototype.createImageFromDatabase = function(itemToAdd){
+		console.log(itemToAdd.getAttribute('data-height'));
 
-		var imageDiv = new NewImage.createWithUpload(itemToAdd.getAttribute('data-filename'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'));		 
+		var imageDiv = new NewImage.createWithUpload(itemToAdd.getAttribute('data-filename'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'), itemToAdd.getAttribute('data-width'), itemToAdd.getAttribute('data-height'));		 
 		this.uploadedImages.push(imageDiv);
 		this.whiteboard.appendChild(imageDiv.el);
 		imageDiv.id = itemToAdd.getAttribute('data-id');

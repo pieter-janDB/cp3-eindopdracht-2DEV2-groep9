@@ -168,6 +168,8 @@ class PagesController extends Controller {
 						$data['item_kind'] = $_POST['item_kind'];
 						$data['top'] = $_POST['top'];
 						$data['left'] = $_POST['left'];
+						$data['width'] = $_POST['width'];
+						$data['height'] = $_POST['height'];
 
 						$postit = $this->whiteboarditemDAO->insertPostit($data);
 						//print_r laten staan!! is om id door te geven
@@ -189,6 +191,8 @@ class PagesController extends Controller {
 						$data['item_kind'] = $_POST['item_kind'];
 						$data['top'] = $_POST['top'];
 						$data['left'] = $_POST['left'];
+						$data['width'] = $_POST['width'];
+						$data['height'] = $_POST['height'];
 						$data['filename'] = $_POST['filename'];
 
 						$image = $this->whiteboarditemDAO->insertImage($data);
@@ -204,7 +208,7 @@ class PagesController extends Controller {
 						$this->whiteboarditemDAO->deleteItemById($_POST['id']);
 					
 					}
-						else if($_POST['item_kind'] == 'video'){
+					else if($_POST['item_kind'] == 'video'){
 						//video
 
 						$data = [];
@@ -215,10 +219,19 @@ class PagesController extends Controller {
 						$data['left'] = $_POST['left'];
 						$data['filename'] = $_POST['filename'];
 
-						$video = $this->whiteboarditemDAO->insertImage($data);
+						$video = $this->whiteboarditemDAO->insertVideo($data);
 						//print_r laten staan!! is om id door te geven
 						print_r($video['id']);
-				}
+					}else if($_POST['item_kind'] == 'updatePositionAndDimension'){
+
+						$data = [];
+						$data['left'] = $_POST['left'];
+						$data['top'] = $_POST['top'];
+						$data['width'] = $_POST['width'];
+						$data['height'] = $_POST['height'];
+						$data['id'] = $_POST['id'];
+						$this->whiteboarditemDAO->updatePositionAndDimension($data);
+					}
 
 			}
 		}//einde ajax handlers

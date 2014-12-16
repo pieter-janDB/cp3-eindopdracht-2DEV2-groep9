@@ -551,6 +551,7 @@ h1{
 	display: none;
 }
 
+
 .whiteboardpage{
 
 	
@@ -585,31 +586,45 @@ h1{
 		width: 150px;
 		height: 30px;
 		border-radius: 8px;
-			p{
-				color: #fff;
-				font-family: $mainFont;
-				text-transform: uppercase;
-				font-size: 1.8em;
-				padding: 6px;
-				margin-left: 28px;
-			}
-			.menu{
-				background-color: #75bb54;
-				width: 150px;
-				height: 80px;
-				margin-top: -5px;
-				z-index: -1px;
-				display:none;
 
-				li{
-					font-family: $mainFont;
-					color: #fff;
-					text-transform: uppercase;
-					padding-top: 10px;
-					padding-left: 10px;
-					font-size: 1.5em;
+
+		.dropDownClicker{
+			padding: 3px;
+
+		}
+
+		p{
+			color: #fff;
+			font-family: $mainFont;
+			text-transform: uppercase;
+			font-size: 1.8em;
+			padding: 6px;
+			margin-left: 28px;
+		}
+		.menu{
+			background-color: #75bb54;
+			width: 150px;
+			overflow: auto;
+			margin-top: -5px;
+			z-index: -1px;
+			display:none;
+			border-bottom-left-radius: 8px;
+			border-bottom-right-radius: 8px;
+			li{
+				font-family: $mainFont;
+				color: #fff;
+				text-transform: uppercase;
+				padding-top: 10px;
+				padding-left: 10px;
+				font-size: 1.5em;
+
+				.addmemberWhiteboard{
+					width: 100px;
+
 				}
+
 			}
+		}
 	}
 }
 .whiteboard{

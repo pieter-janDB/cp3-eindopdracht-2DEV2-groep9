@@ -37,6 +37,10 @@ $routes = array(
         'whiteboard' => array(
         'controller' => 'Pages',
         'action' => 'whiteboard'
+    ),
+        'addMember' => array(
+        'controller' => 'Pages',
+        'action' => 'addMember'
     )
 );
 

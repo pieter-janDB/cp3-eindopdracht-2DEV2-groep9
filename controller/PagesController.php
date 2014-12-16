@@ -256,6 +256,50 @@ class PagesController extends Controller {
 	
 	}
 
+	public function addMember(){
+		$url = $_SERVER['HTTP_REFERER'];
+
+		if(empty($_GET['id'])){
+			$_SESSION['error'] = "unknown project";
+			$this->redirect($url);
+		}else{
+			$project = $this->projectDAO->selectById($_GET['id']);
+			if(empty($project)){
+				$_SESSION['error'] = "unknown project";
+				$this->redirect($url);
+			}
+		}
+
+		
+		if(!empty($_POST['email'])) {
+
+			$member = $this->userDAO->selectByEmail($_POST['email']);
+
+			if(!empty($member)){
+
+				$userdata['project_id'] = $_GET['id'];
+				$userdata['color'] = "#000";
+				$userdata['member_id'] = $member['id'];
+				$insertedUser = $this->projectmemberDAO->insert($userdata);
+				if(!empty($insertedUser)){
+					$_SESSION['info'] = $insertedUser['email'] . "successfully added";
+					$this->redirect($url);
+				}else{
+					$_SESSION['error'] = "failed to add to database.";
+					$this->redirect($url);
+				}
+
+			}else{
+				$_SESSION['error'] = "unknown email.";
+				$this->redirect($url);
+			}
+		}else{
+			$_SESSION['error'] = "please fill in an email to add.";
+			$this->redirect($url);
+		}
+
+	}
+
 
 	
 

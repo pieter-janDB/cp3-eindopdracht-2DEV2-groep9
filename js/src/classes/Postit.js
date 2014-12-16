@@ -38,11 +38,8 @@ module.exports = (function(){
 			this.offsetX = this.parentOffset + event.offsetX;
 			this.offsetY = event.offsetY;
 
-
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
 			window.addEventListener( 'mouseup', this._mouseUpHandler);
-
-
 	}
 
 	Postit.prototype.mouseMoveHandler = function( event ){
@@ -70,8 +67,6 @@ module.exports = (function(){
 		     		console.log( "ajax success" );		
 		       }
 		    });
-
-
 	}
 
 	Postit.createWithText = function(title, text, top,left){
@@ -98,12 +93,8 @@ module.exports = (function(){
 		topBalk.appendChild(deleteKnop);
 		topBalk.appendChild(dragKnop);
 
-
-
-
 		var titleText = document.createTextNode(title);
 		var bodyText = document.createTextNode(text);
-		
 		
 		postitTitle.appendChild(titleText);
 		postitBody.appendChild(bodyText);
@@ -114,10 +105,8 @@ module.exports = (function(){
 
 		return new Postit(el, title, text);
 
-
 	}
-
-
 	
 	return Postit;
+	
 })();

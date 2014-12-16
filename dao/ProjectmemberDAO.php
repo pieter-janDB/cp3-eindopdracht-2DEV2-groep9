@@ -19,9 +19,6 @@ class ProjectmemberDAO extends DAO {
 
 
 	public function insert($data){
-	
-
-
 		$sql = "INSERT INTO `projectmembers` (`project_id`, `member_id`, `color`)
 			VALUES (:project_id, :member_id, :color)";
 		$stmt = $this->pdo->prepare($sql);
@@ -38,9 +35,6 @@ class ProjectmemberDAO extends DAO {
 		}
 	}
 		
-		
-	
-	
 	public function selectAllMembers($projectid){
 		$sql = "SELECT `users`.`firstname`, `users`.`lastname` FROM `projectmembers`LEFT JOIN `users` ON `Projectmembers`.`member_id` = `users`.`id` WHERE `project_id` = :projectid";
 		$stmt = $this->pdo->prepare($sql);
@@ -48,8 +42,5 @@ class ProjectmemberDAO extends DAO {
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	}
-
-	
-	
+	}	
 }

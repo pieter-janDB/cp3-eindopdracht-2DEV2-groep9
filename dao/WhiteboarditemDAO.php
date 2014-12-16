@@ -39,8 +39,6 @@ class WhiteboarditemDAO extends DAO {
 		}
 	}
 
-	
-
 	public function updatePosition($data){
 		$sql = "UPDATE `whiteboarditems` 	SET `left` = :left, `top`= :top WHERE `whiteboarditems`.`id` = :id";
 		$stmt = $this->pdo->prepare($sql);
@@ -52,6 +50,7 @@ class WhiteboarditemDAO extends DAO {
 			return $this->selectById($lastInsertId);
 		}
 	}
+
 	public function deleteProjectItems($project_id){
 		$sql = "DELETE FROM `whiteboarditems` WHERE `project_id` = :project_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -59,7 +58,6 @@ class WhiteboarditemDAO extends DAO {
 		$stmt->execute();
 	}
 
-	
 	public function deleteItemById($id){
 		$sql = "DELETE FROM `whiteboarditems` WHERE `id` = :id";
 		$stmt = $this->pdo->prepare($sql);
@@ -115,8 +113,4 @@ class WhiteboarditemDAO extends DAO {
 				return false;
 			}
 		}
-	
-	
-	
-
 }

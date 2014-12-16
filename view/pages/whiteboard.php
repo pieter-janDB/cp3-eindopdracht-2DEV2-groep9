@@ -1,7 +1,6 @@
 
 <section class="whiteboardpage" data-projectid="<?php echo $_GET['id']?>" data-userid="<?php echo $_SESSION['user']['id'] ?>">
 
-
     <div class="whiteboard">
 
         <!-- voor elk element in database een element maken op whiteboard.-->
@@ -10,10 +9,7 @@
         	<ul>
         		<li><img class="createPostit"src="images/post-it.png"></li>
 
-              
-                
-        		
-                  <form id="uploadFormVideo" action="#" method="post" enctype="multipart/form-data">
+                <form id="uploadFormVideo" action="#" method="post" enctype="multipart/form-data">
                     <input type="file" id="videoInput" class="uploadVideo" name="uploadVideo" accept="video/mp4"></input>  
                     <input class="videoSubmit" type="submit" value="upload" />
                 </form>
@@ -22,6 +18,7 @@
                     <input type="file"class="uploadImage" name="uploadImage"></input>  
                     <input class="imageSubmit" type="submit" value="upload" />
                 </form>
+
         		<li><img class="grid" id="changeByClick" src="images/grid.png"></li>
         		<li><img class="clearBoard"src="images/delete.png"></li>
         	</ul>
@@ -33,7 +30,6 @@
           
             <ul class="menu">
                 <?php 
-                   
                     forEach($members as $member) {
                         echo "<li>";
                         echo $member['firstname'];
@@ -41,7 +37,6 @@
                         echo $member['lastname'];
                         echo "</li>";
                     }
-
                 ?>
                 <li>
                     <form id="uploadForm" action="index.php?page=addMember&amp;id=<?php echo $_GET['id'] ?>" method="post">
@@ -70,8 +65,6 @@
                         echo "data-top=\"" . $item['top'] . "\"";
                         echo ">";
                         echo "</li>";
-                
-                  
                     }
                 ?>
             </ul>
@@ -79,8 +72,6 @@
   
     </div>
 
-</script>
-   
 </section>
 <script src="js/bean.min.js"></script>
 <script src="js/script.dist.js" type="text/javascript"></script>

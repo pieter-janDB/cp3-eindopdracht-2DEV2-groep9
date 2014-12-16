@@ -4,22 +4,17 @@ module.exports = (function(){
 
 	function NewImage(el) {
 		this.el = el;
-		
-		//later nog this.deleteknop / draganddrop / edit?
 
 		this.deleteKnop = el.querySelector('.deleteKnop');
 		this.deleteKnop.addEventListener('click', this.deleteClickHandler.bind(this));
-
 
 		this._mouseDownHandler = this.mouseDownHandler.bind(this);
 		this._mouseMoveHandler = this.mouseMoveHandler.bind(this);
 		this._mouseUpHandler = this.mouseUpHandler.bind(this);
 
-
 		this.dragKnop = el.querySelector('.dragKnop');
 		this.dragKnop.addEventListener('mousedown', this._mouseDownHandler);
 
-		//later nog this.deleteknop / draganddrop / edit?""
 
 	}
 	
@@ -43,7 +38,6 @@ module.exports = (function(){
 
 	NewImage.prototype.mouseMoveHandler = function( event ){
 		
-		
 		this.el.style.left = event.x-this.offsetX + 'px';
 		this.el.style.top = event.y-this.offsetY + 'px';
 		
@@ -66,8 +60,6 @@ module.exports = (function(){
 		     		console.log( "ajax success" );		
 		       }
 		    });
-
-
 	}
 
 	NewImage.createWithUpload = function(filename, top, left){
@@ -77,11 +69,9 @@ module.exports = (function(){
 		el.style.top = top + "px";
 		el.style.left = left + "px";
 	
-
 		var imageDiv = document.createElement('div');
 		imageDiv.classList.add('imageDiv');
 
-		
 		var location = "./images/uploaded/";
 		imageDiv.style.width = "200px";
 		imageDiv.style.height = "200px";
@@ -102,17 +92,12 @@ module.exports = (function(){
 		el.appendChild(topBalk);
 		el.appendChild(imageDiv);
 
-
-
-
 		return new NewImage(el);
-
 
 	};
 
-
-	
 	return NewImage;
+	
 })();
 
 

@@ -7,7 +7,6 @@ require_once WWW_ROOT . 'dao' . DS . 'ProjectmemberDAO.php';
 require_once WWW_ROOT . 'dao' . DS . 'WhiteboarditemDAO.php';
 
 
-
 class PagesController extends Controller {
 
 	private $projectDAO;
@@ -21,10 +20,7 @@ class PagesController extends Controller {
 		$this->userDAO = new UserDAO();
 		$this->projectmemberDAO = new ProjectmemberDAO();
 		$this->whiteboarditemDAO = new WhiteboarditemDAO();
-
 	}
-
-
 
 	public function index(){
 
@@ -59,8 +55,6 @@ class PagesController extends Controller {
 			$toAdd = array();
 
 			
-			
-
 			for($i = 2; $i <= count($_POST)-2; $i++){
 				$member_nr = $i-1;
 				$naam =  ("member" . ($i-1));
@@ -126,10 +120,6 @@ class PagesController extends Controller {
 			
 		}		
 
-
-
-
-		
 	}
 
 
@@ -141,6 +131,7 @@ class PagesController extends Controller {
 		}
 		
 	}
+
 	public function whiteboard(){
 
 
@@ -163,9 +154,6 @@ class PagesController extends Controller {
 			}
 			
 			
-		
-			
-
 			if(!empty($_POST)){
 
 					if($_POST['item_kind'] == 'postit'){
@@ -250,9 +238,6 @@ class PagesController extends Controller {
 
 		$items = $this->whiteboarditemDAO->getItemsByProject($_GET['id']);
 		$this->set('items', $items);
-		
-		
-
 	
 	}
 
@@ -298,13 +283,7 @@ class PagesController extends Controller {
 			$this->redirect($url);
 		}
 
-	}
-
-
-	
-
-	
-	
+	}	
 
 }
 

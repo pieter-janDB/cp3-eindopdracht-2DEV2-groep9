@@ -4,17 +4,13 @@
 
 	function init(){ 
 
-			
 			addMemberButton = document.querySelector('.addMember');
 			addMemberButton.addEventListener('click', addMember);
 		
 
  	} 
 
-
  	function addMember(e){
-
-
 		memberAantal++;
 		var memberLabel = document.querySelector('.memberLabel');
 		var newInput = document.createElement('input');
@@ -31,8 +27,5 @@
 	}
 	
  	init(); 
-
-
-
 
 })();

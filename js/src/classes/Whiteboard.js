@@ -1,5 +1,4 @@
 module.exports = (function(){
-	//var ..... = require('./.....');
 
 	var PostitForm = require('./PostitForm.js');
 	var Postit = require('./Postit.js');
@@ -52,23 +51,12 @@ module.exports = (function(){
 
 		}, this);
 
-
-		// gaat later element binnen krijgen welke objecten geplaatst zullen worden
-		//dan foreach element in database met postit een posti it maken
-		//voor elke foto , foto plaatsen etc etc
-
-		//elk object in een array invoeren en bijhouden zoals bij todoApp oef.
-
-
 		//postit
-
 		this.createPostitButton = document.querySelector('.createPostit');
 		this.createPostitButton.addEventListener('click', this.addPostitForm.bind(this));
 
 
 		//image
-
-		
 		this.createImageButton = document.querySelector('input[name=uploadImage]');
 		this.createImageButton.addEventListener('change', this.addImageElement.bind(this));
 		this.imageSubmit = document.querySelector('.imageSubmit');
@@ -79,9 +67,7 @@ module.exports = (function(){
 		this.createVideoButton.addEventListener('change', this.addVideoElement.bind(this));
 		this.videoSubmit = document.querySelector('.videoSubmit');
 
-		
-
-
+	
 		// dropdown members
 		this.createMembersDropdownButton = document.querySelector('.dropDownClicker');
 		this.createMembersDropdownButton.addEventListener('click', this.showDropdown);
@@ -95,9 +81,6 @@ module.exports = (function(){
 
 		this.clearBoardButton = document.querySelector('.clearBoard');
 		this.clearBoardButton.addEventListener('click', this.clearBoard.bind(this));
-
-		
-
 
 	}
 
@@ -164,7 +147,6 @@ module.exports = (function(){
 
 	}
 
-
 	Whiteboard.prototype.createPostitFromDatabase = function(itemToAdd){
 
 		 var postit = new Postit.createWithText(itemToAdd.getAttribute('data-title'), itemToAdd.getAttribute('data-message'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'));
@@ -174,9 +156,6 @@ module.exports = (function(){
 		 bean.on(postit, 'delete', this.deletePostitHandler.bind(this, postit));
 
 	}
-
-
-
 
 	//image
 
@@ -285,8 +264,6 @@ module.exports = (function(){
 
 	};
 
-
-
 	Whiteboard.prototype.createImageFromDatabase = function(itemToAdd){
 
 		var imageDiv = new NewImage.createWithUpload(itemToAdd.getAttribute('data-filename'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'));		 
@@ -296,9 +273,6 @@ module.exports = (function(){
 		bean.on(imageDiv, 'delete', this.deleteImageHandler.bind(this, imageDiv, this));
 
 	}
-
-
-
 
 	//video
 
@@ -414,8 +388,6 @@ module.exports = (function(){
 
 
 	 // members dropdown
-
-
     Whiteboard.prototype.showDropdown = function(e){
         if(actionDropdown === 1){
            document.querySelector('.menu').style.display="block";
@@ -429,12 +401,7 @@ module.exports = (function(){
      };
 
 
-
-
-
-
      // grid
-
      Whiteboard.prototype.changeBG = function(){
 
         if(actionBg === 1){
@@ -450,7 +417,6 @@ module.exports = (function(){
      };
 
      //clear board
-
      Whiteboard.prototype.clearBoard = function(){
      	var project_id = this.project_id;
 	    if (confirm("Are you sure you want to clear the whole project?") == true) {

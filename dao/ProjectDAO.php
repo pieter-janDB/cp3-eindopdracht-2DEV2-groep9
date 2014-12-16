@@ -75,7 +75,6 @@ class ProjectDAO extends DAO {
 		return false;
 	}
 	
-
 	
 	public function getValidationErrors($data) {
 		$errors = array();

@@ -31,7 +31,6 @@ class UserDAO extends DAO {
 
 	public function insert($data){
 		$errors = $this->getValidationErrors($data);
-		
 		if (empty($errors)) {
 			$sql = "INSERT INTO `users` (`firstname`, `lastname`, `email`, `password` )
 				VALUES (:firstname, :lastname, :email, :password)";
@@ -50,8 +49,6 @@ class UserDAO extends DAO {
 
 	}
 
-
-
 	public function selectByName($voornaam, $achternaam){
 
 		$sql = "SELECT * FROM `users` WHERE `firstname` = :voornaam AND `lastname` = :achternaam";
@@ -62,9 +59,6 @@ class UserDAO extends DAO {
 
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
-	
-
-
 	
 	public function getValidationErrors($data) {
 		$errors = array();
@@ -79,9 +73,7 @@ class UserDAO extends DAO {
 		}
 		if(empty($data['password'])){
 			$errors['password'] = 'please fill in your password';
-		}
-
-				
+		}		
 		
 		return $errors;
 	}

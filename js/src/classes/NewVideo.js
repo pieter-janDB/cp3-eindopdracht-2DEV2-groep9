@@ -4,12 +4,9 @@ module.exports = (function(){
 
 	function NewVideo(el) {
 		this.el = el;
-		
-		//later nog this.deleteknop / draganddrop / edit?
 
 		this.deleteKnop = el.querySelector('.deleteKnop');
 		this.deleteKnop.addEventListener('click', this.deleteClickHandler.bind(this));
-
 
 		this._mouseDownHandler = this.mouseDownHandler.bind(this);
 		this._mouseMoveHandler = this.mouseMoveHandler.bind(this);
@@ -18,8 +15,6 @@ module.exports = (function(){
 
 		this.dragKnop = el.querySelector('.dragKnop');
 		this.dragKnop.addEventListener('mousedown', this._mouseDownHandler);
-
-		//later nog this.deleteknop / draganddrop / edit?""
 
 	}
 	
@@ -43,7 +38,7 @@ module.exports = (function(){
 	}
 
 	NewVideo.prototype.mouseMoveHandler = function( event ){
-		
+
 		this.el.style.left = event.x-this.offsetX + 'px';
 		this.el.style.top = event.y-this.offsetY + 'px';
 		
@@ -66,8 +61,6 @@ module.exports = (function(){
 		     		console.log( "ajax success" );		
 		       }
 		    });
-
-
 	}
 
 	NewVideo.createWithUpload = function(filename, top, left){
@@ -105,17 +98,12 @@ module.exports = (function(){
 		el.appendChild(topBalk);
 		el.appendChild(videoDiv);
 
-
-
-
 		return new NewVideo(el);
-
 
 	};
 
-
-	
 	return NewVideo;
+	
 })();
 
 

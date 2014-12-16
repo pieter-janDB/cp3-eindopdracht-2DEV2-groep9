@@ -2,9 +2,10 @@
 
     <h2><a href="index.php?page=index">Whiteboard</a></h2>
     <h3>Online whiteboard and scrum</h3>
-</script>
+
     <div id="login">
     	<p>Login</p>
+
     	<form id="loginFrm"name="loginForm"action="index.php?page=login" method="post" >
     		<div class="loginForm">
     		  <ul>
@@ -28,6 +29,7 @@
 			<input type="submit" value="LOG IN" id="inloggen">
 
     	</form>
+        
     </div>
     <p class="registerButton">New here? <a href="index.php?page=register">Register!</a></p>
 

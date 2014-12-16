@@ -4,7 +4,6 @@
 	</header>
 
 
-
 	<div class="greenbar">
 		<p>new project</p>
 	</div>
@@ -40,11 +39,9 @@
 				<?php if(!empty($errors['deadline'])) echo "<p class=\"validationerror\">" . $errors['deadline'] . " </p>"; ?>
 			</div>
 		  
-		        
-		        
 		        <input class="createButton" id="createbutton" type="submit" value="CREATE">
 		 
-			</form>
+	</form>
 
 
 </section>

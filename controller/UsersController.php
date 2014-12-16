@@ -6,8 +6,6 @@ require_once WWW_ROOT . 'dao' . DS . 'ProjectDAO.php';
 require_once WWW_ROOT . 'phpass' .  DS . 'Phpass.php';
 
 
-
-
 class UsersController extends Controller {
 
 	private $userDAO;
@@ -15,16 +13,13 @@ class UsersController extends Controller {
 	
 	
 	function __construct() {
+
 		$this->userDAO = new UserDAO();
 		$this->projectDAO = new ProjectDAO();
-
-
 	}
 
 
 	public function profile(){
-
-		
 
 		if(empty($_SESSION['user']['id'])){
 			$_SESSION['error'] = 'Fill in your e-mail and password.';
@@ -43,7 +38,6 @@ class UsersController extends Controller {
 		
 
 	}
-
 
 
 	public function register() {
@@ -128,9 +122,6 @@ class UsersController extends Controller {
 		}
 		$this->redirect('index.php?page=profile');
 	}
-
-
-
 
 	public function logout(){
 		unset($_SESSION['user']);

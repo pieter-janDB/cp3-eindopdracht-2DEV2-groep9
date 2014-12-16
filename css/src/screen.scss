@@ -2,6 +2,7 @@
 body{
 	background-color: #e1e1e1;
 }
+
 .container{
 	width: 900px;
 	margin: 0 auto;
@@ -17,22 +18,23 @@ body{
   background-repeat: no-repeat;
   background-position: 10px center;
 }
+
 .alert-success{
   color: #4F8A10;
   background-color: #DFF2BF;
   background-image:url('../images/success.png');
 }
+
 .alert-danger{
   color: #D8000C;
   background-color: #FFBABA;
   background-image: url('../images/error.png');
-
 }
 
 .left{
 	float: left;
-
 }
+
 .right{
 	float: right;
 
@@ -52,11 +54,13 @@ body{
 		text-align: center;
 		margin-top: 40px;
 		letter-spacing: 6px;
-		a{
+
+			a{
 		color: #000;
 		text-decoration: none;
+			}
 		}
-		}
+
 	h3{
 		font-family: $mainFont;
 		font-size: 2em;
@@ -67,7 +71,8 @@ body{
 		background-color: $green;
 		padding: 5px;
 		color: #FFFFFF;
-		}
+	   }
+
 	#login{
 		border: 3px solid #000;
 		width: 400px;
@@ -87,20 +92,23 @@ body{
 			padding: 10px;
 			  }
 		   }
+
 	.loginForm{
 		margin-top: 50px;
 		margin-left: 30px;
+
 		label{
 			font-family: $mainFont;
 			font-size:1.8em;
 			text-transform: uppercase;
 			letter-spacing: 10px;
 
-		}
+			}
 		.hidden{
 			display: none;
 			font-size: 1em;
 		}
+
 		#email{
 			width:320px;
 			height: 30px;
@@ -108,6 +116,7 @@ body{
 			border: 1px solid #fff;
 			margin-top: 10px;
 		}
+
 		#password{
 			width:250px;
 			height: 30px;
@@ -116,7 +125,9 @@ body{
 			margin-top: 10px;
 		}
 	}
+
 	form{
+
 		#inloggen{
 			margin-top: 50px;
 			margin-left: 140px;
@@ -130,11 +141,13 @@ body{
 			padding: 8px;
 
 		}
+
 		#inloggen:hover{
 			background-color:#fff;
 			color: #000;
 		}
 	}
+
 	.registerButton{
 	font-family: $mainFont;
 	font-size:1.8em;
@@ -142,6 +155,7 @@ body{
 	margin-top:20px;
 	margin-left: 320px;
 	letter-spacing: 5px;
+
 		a{
 		color:#000;
 		}
@@ -156,6 +170,7 @@ body{
 		margin: 0 auto;
 		margin-top: 80px;
 		border-radius: 5px;
+
 			.title{
 			font-family: $mainFont;
 			font-size: 3em;
@@ -167,6 +182,7 @@ body{
 			padding: 10px;
 			  }
 			}
+
 	.registerForm{
 		margin-top: 20px;
 		margin-left: 60px;
@@ -177,10 +193,12 @@ body{
 			letter-spacing: 8px;
 		
 			}
+
 		.hidden{
 			display: none;
 			font-size: 1em;
 		}
+
 		#firstname{
 			width:240px;
 			height: 20px;
@@ -188,6 +206,7 @@ body{
 			border: 1px solid #fff;
 			margin-bottom: 5px;
 		}
+
 		#lastname{
 			width:250px;
 			height: 20px;
@@ -195,6 +214,7 @@ body{
 			border: 1px solid #fff;
 			margin-bottom: 5px;
 		}
+
 		#email{
 			width:284px;
 			height: 20px;
@@ -203,6 +223,7 @@ body{
 			margin-top: 10px;
 			margin-bottom: 5px;
 		}
+
 		#chsPass{
 			width:146px;
 			height: 20px;
@@ -210,6 +231,7 @@ body{
 			border: 1px solid #fff;
 			margin-bottom: 5px;
 		}
+
 		#rptPass{
 			width:155px;
 			height: 20px;
@@ -218,6 +240,7 @@ body{
 			margin-bottom: 5px;
 		}
 	}
+
 	form{
 		#regstr{
 			margin-top: 30px;
@@ -231,12 +254,13 @@ body{
 			border: 1px solid #000;
 			padding: 8px;
 			padding-left: 14px;
-
 		}
+
 		#regstr:hover{
 			background-color:#fff;
 			color: #000;
 		}
+
 		span{
 			color: #a42b29;
 			font-family: $mainFont;
@@ -246,6 +270,7 @@ body{
 }
 
 /*navigatiebalk */
+
 .navContainer{
 	background-color: #000;
 	height: 110px;
@@ -254,12 +279,11 @@ body{
 }
 
 nav{
-
-	font-family: $mainFont;
-	background-color: #000;
-	height: 110px;
-	width: 900px;
-	margin: 0 auto;
+  font-family: $mainFont;
+  background-color: #000;
+  height: 110px;
+  width: 900px;
+  margin: 0 auto;
 
 	h1{
 	float: left;
@@ -267,6 +291,7 @@ nav{
 	font-size: 3.6em;
 	color: #fff;
 	text-transform: uppercase;
+
 		a{
 			color: #fff;
 			text-decoration: none;
@@ -277,18 +302,20 @@ nav{
 		text-align: right;
 		color: #fff;
 		padding: 40px 60px 0px 0px;
-		
 	}
+
 	.logoutknop{
 		text-align: right;
 		color: $green;
 		text-decoration: underline;
 		text-transform: uppercase;
 		padding: 10px 60px 15px 0px;
-		a{
-			color: $green;
-		}
+
+			a{
+				color: $green;
+			}
 	}
+
 	.bckToProfile{
 		text-align: right;
 		color: $green;
@@ -296,27 +323,31 @@ nav{
 		text-transform: uppercase;
 		margin-top: -25px;
 		margin-right: 120px;
-		a{
-		color: $green;
-		}
+
+			a{
+			color: $green;
+			}
 		
-	}
+	}	
 }
 
 
 /*profile+newproject */
+
 h1{
-		font-family: $mainFont;
-		text-transform: uppercase;
-		font-size: 3.0em;
-		padding: 75px 0px 70px 100px;
-	}
+	font-family: $mainFont;
+	text-transform: uppercase;
+	font-size: 3.0em;
+	padding: 75px 0px 70px 100px;
+}
+
 .greenbar{
 		font-family: $mainFont;
 		background-color: $green;
 		height: 50px;
 		width: 700px;
 		margin: 0px auto 40px auto;
+
 		p{
 			text-align: center;
 			font-size: 2.3em;
@@ -325,8 +356,8 @@ h1{
 			text-transform: uppercase;
 		}
 	}
-	.addproject{
 
+	.addproject{
 		clear: both;
 		margin-left: 100px;
 	
@@ -334,6 +365,7 @@ h1{
 			margin-top: 60px;
 			float: left;
 		}
+
 		p{	
 			font-family: $mainFont;
 			margin-top: 72px;
@@ -357,6 +389,7 @@ h1{
 		margin: 0px 0px 0px 100px;
 
 	}
+
 	.projectBox{
 		width: 220px;
 		height: 200px;
@@ -365,6 +398,7 @@ h1{
 		margin-right: 20px;
 		margin-top: 20px;
 		border-radius: 10px;
+
 		.projectName{
 			color: $green;
 			font-family: $mainFont;
@@ -373,18 +407,20 @@ h1{
 			padding: 17px 0px;
 			text-transform: uppercase;
 		}
+
 		.desc{
-				color: #000;
-				background-color: #fff;
-				height: 30px;
-				width: 210px;
-				font-family: $mainFont;
-				text-align: center;
-				font-size: 1.5em;
-				padding: 5px;
-				margin-top: 4px;
-				word-wrap: break-word;
+			color: #000;
+			background-color: #fff;
+			height: 30px;
+			width: 210px;
+			font-family: $mainFont;
+			text-align: center;
+			font-size: 1.5em;
+			padding: 5px;
+			margin-top: 4px;
+			word-wrap: break-word;
 			}
+
 		.whitebrd{
 			color: #fff;
 			text-decoration: none;
@@ -394,12 +430,12 @@ h1{
 			text-align: center;
 			margin-top: 70px;
 
-			a{
-				color: #fff;
-				text-decoration: none;
-			}
-			a:hover{
-				color: $green;
+				a{
+				 color: #fff;
+				 text-decoration: none;
+				}
+				a:hover{
+				 color: $green;
 			}
 		}
 		.rightProject{
@@ -426,6 +462,7 @@ h1{
 	}
 
 	.projectBox:hover{
+
 		.rightProject{
 			display: block;
 		}
@@ -438,12 +475,11 @@ h1{
 
 	.addproject{
 
-
-
 		img{
 			float: left;
 			margin-bottom: 20px;
 		}
+
 		p{
 			color: $green;
 			padding-top: 5px;
@@ -467,6 +503,7 @@ h1{
 }
 .formRegel{
 	margin:45px 0px 0px 150px;
+	
 	label{
 		font-family:$mainFont;
 		font-size: 1.8em;
@@ -475,31 +512,37 @@ h1{
 		float: left;
 		text-transform: uppercase;
 	}
+
 	input, textarea{
 		border-radius: 5px;
 		border: 0px;
 		width: 350px;
 		padding-left: 10px;
-	
 	}
+
 	input{
 		height: 20px;
 	}
+
 	.member{
 		width: 250px;
 	}
+
 	.datum{
 		width: 140px;
 	}
+
 	textarea{
 		height: 60px;
 	}
+
 	.newMember{
 		margin: 20px 0px 0px 220px;
 		width: 250px;
 
 	}
 }
+
 .addMember{
 	margin: 25px 10px 25px 370px;
 
@@ -547,8 +590,6 @@ h1{
 
 /* whiteboard */
 
-
-
 .whiteboardpage{
 
 	.databaseItems{
@@ -569,6 +610,7 @@ h1{
 		.uploadVideo{
 			margin-top: 10px;
 		}
+
 		input[type=file]{
 
 			width: 62px;
@@ -594,10 +636,7 @@ h1{
 			font-family: $mainFont;
 			text-transform: uppercase;
 			margin-left: 12px;
-			
 			margin-top: 3px;
-		
-
 		}
 
 		.videoSubmit{
@@ -608,7 +647,6 @@ h1{
 	}
 
 	.members{
-
 		position: absolute;
 		top: 120px;
 		right: 20px;
@@ -632,6 +670,7 @@ h1{
 			padding: 6px;
 			margin-left: 28px;
 		}
+
 		.menu{
 			background-color: #75bb54;
 			width: 180px;
@@ -641,6 +680,7 @@ h1{
 			display:none;
 			border-bottom-left-radius: 8px;
 			border-bottom-right-radius: 8px;
+
 			li{
 				font-family: $mainFont;
 				color: #fff;
@@ -654,7 +694,6 @@ h1{
 					border: 1px solid $green;
 					border-radius: 4px;
 					height: 22px;
-
 				}
 
 				.addmemberWhiteboardSubmit{
@@ -671,11 +710,9 @@ h1{
 }
 .whiteboard{
 	height: 100vh;
-
-
 }
 
-		/*postit*/
+/*postit*/
 
 .topBalk{
 	background-color: $green;
@@ -683,9 +720,7 @@ h1{
 	width: 100%;
 
 	img, .dragKnop{
-		margin-right: 10px;
-
-	
+		margin-right: 10px;	
 	}
 
 	img:hover{
@@ -707,8 +742,8 @@ h1{
 .topBalkVideo{
 	background-color: $green;
 	height: 16px;
-	
 	margin-left: 22px;
+
 	img{
 		margin-right: 10px;
 	
@@ -722,8 +757,6 @@ h1{
 	background-color: #fff;
 	border: 2px solid black;
 
-
-
 	.postitInputDiv{
 		background-color: #000;
 		width: 300px;
@@ -736,10 +769,10 @@ h1{
 		}
 
 	}
+
 	.postitTextInput{
 		width: 96%;
 		height: 100px;
-
 	}
 
 	.postitTitle, .postitTitleInput {
@@ -747,10 +780,8 @@ h1{
 		font-size: 3.0em;
 		font-family: $mainFont;
 		padding: 5px;
-
-
-
 	}
+
 	.postitTitle{
 		background-color: #75bb54;
 		color: #fff;
@@ -762,6 +793,7 @@ h1{
 		font-size: 2.0em;
 
 	}
+
 	.postitSubmitButton{
 		width: 100px;
 		height: 20px;
@@ -775,18 +807,15 @@ h1{
 		margin-bottom: 5px;
 		margin-top: 5px;
 	}
-
-
 }
 
-//pictures
+/*pictures*/
 
 .imageContainerDiv {
 	display: block;
 	position: absolute;
-
-
 }
+
 .imageDiv{
 	width: 500px;
 	height: 500px;
@@ -795,11 +824,11 @@ h1{
     background-position: center center;
     border: 1px solid #000;
 }
+
 .videoContainerDiv {
 	display: block;
 	position: absolute;
 	width: 400px;
-
 }
 
 .videoDiv {

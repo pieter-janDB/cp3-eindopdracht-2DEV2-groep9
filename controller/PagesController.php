@@ -107,7 +107,7 @@ class PagesController extends Controller {
 					$_SESSION['info'] = 'Project created';
 					$failList = implode(', ', $failedToAdd);
 					if(!empty($failList)){
-					$_SESSION['error'] = "We were unable to add following user(s) to your project: " . "<span class=\"failList\">" . $failList . "</span>" ." Try to add them again in scrum or whiteboard";
+					$_SESSION['error'] = "We were unable to add following user(s) to your project: " . "<span class=\"failList\">" . $failList . "</span>" ." Try to add them again in whiteboard";
 					}
 					$this->redirect('index.php?page=profile');
 				} 
@@ -275,15 +275,22 @@ class PagesController extends Controller {
 
 			if(!empty($member)){
 
-				$userdata['project_id'] = $_GET['id'];
-				$userdata['color'] = "#000";
-				$userdata['member_id'] = $member['id'];
-				$insertedUser = $this->projectmemberDAO->insert($userdata);
-				if(!empty($insertedUser)){
-					$_SESSION['info'] = $insertedUser['email'] . "successfully added";
-					$this->redirect($url);
+				$allreadyInProject = $this->projectmemberDAO->selectByMemberAndProjectId($member['id'], $_GET['id']);
+				if(empty($allreadyInProject)){
+
+					$userdata['project_id'] = $_GET['id'];
+					$userdata['color'] = "#000";
+					$userdata['member_id'] = $member['id'];
+					$insertedUser = $this->projectmemberDAO->insert($userdata);
+					if(!empty($insertedUser)){
+						$_SESSION['info'] = $insertedUser['email'] . "successfully added";
+						$this->redirect($url);
+					}else{
+						$_SESSION['error'] = "failed to add to database.";
+						$this->redirect($url);
+					}
 				}else{
-					$_SESSION['error'] = "failed to add to database.";
+					$_SESSION['error'] = "the user is allready in this project.";
 					$this->redirect($url);
 				}
 

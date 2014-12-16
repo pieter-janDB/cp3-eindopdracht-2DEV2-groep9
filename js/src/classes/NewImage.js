@@ -1,6 +1,4 @@
 module.exports = (function(){
-	
-	var whiteboard = document.querySelector('.whiteboard');
 
 	function NewImage(el) {
 		this.el = el;
@@ -42,14 +40,23 @@ module.exports = (function(){
 
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
 			window.addEventListener( 'mouseup', this._mouseUpHandler);
-	}
+	};
 
 	NewImage.prototype.mouseMoveHandler = function( event ){
 
-		this.el.style.left = event.x-this.offsetX + 'px';
-		this.el.style.top = event.y - this.offsetY + 'px';
+			var left = event.x-this.offsetX ;
+		if(left < 0){
+			left = 0;
+		}
+		var top = event.y-this.offsetY ;
+		if(top < 0){
+			top = 0;
+		}
+
+		this.el.style.left = left + 'px';
+		this.el.style.top = top + 'px';
 		
-	}
+	};
 
 	NewImage.prototype.mouseUpHandler = function( event ){
 		window.removeEventListener( 'mousemove', this._mouseMoveHandler);
@@ -68,7 +75,7 @@ module.exports = (function(){
 		     		console.log( "ajax success" );		
 		       }
 		    });
-	}
+	};
 
 	NewImage.prototype.mouseDownResize = function( event ){
 
@@ -88,7 +95,7 @@ module.exports = (function(){
 
 			window.addEventListener( 'mousemove', this._mouseMoveResize);
 			window.addEventListener( 'mouseup', this._mouseUpResize);
-	}
+	};
 
 
 
@@ -97,15 +104,24 @@ module.exports = (function(){
 		this.stopX = event.clientX;
 		this.stopY = event.clientY;
 
-			this.el.style.left = event.x-this.offsetX + 'px';
-		this.el.style.top = event.y - this.offsetY + 'px';
+		var left = event.x-this.offsetX;
+		var top = event.y - this.offsetY;
 
+		if(left < 0){
+			left = 0;
+		}
+		if(top < 0){
+			top = 0;
+		}
+
+		this.el.style.left = left + 'px';
+		this.el.style.top = top + 'px';
 		
 		this.el.querySelector('.imageDiv').style.width = this.startWidth - this.stopX + this.startX + "px";
 		this.el.querySelector('.imageDiv').style.height = this.startHeight - this.stopY + this.startY + "px";
 		
 		
-	}
+	};
 
 	NewImage.prototype.mouseUpResize = function( event ){
 		console.log('test');
@@ -143,7 +159,7 @@ module.exports = (function(){
 		    });
 
 
-	}
+	};
 
 	NewImage.createWithUpload = function(filename, top, left, width, height){
 		

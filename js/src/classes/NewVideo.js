@@ -1,6 +1,4 @@
 module.exports = (function(){
-	
-	var whiteboard = document.querySelector('.whiteboard');
 
 	function NewVideo(el) {
 		this.el = el;
@@ -35,14 +33,23 @@ module.exports = (function(){
 
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
 			window.addEventListener( 'mouseup', this._mouseUpHandler);
-	}
+	};
 
 	NewVideo.prototype.mouseMoveHandler = function( event ){
+		var left = event.x-this.offsetX;
+		var top = event.y - this.offsetY;
 
-		this.el.style.left = event.x-this.offsetX + 'px';
-		this.el.style.top = event.y-this.offsetY + 'px';
+		if(left < 0){
+			left = 0;
+		}
+		if(top < 0){
+			top = 0;
+		}
+
+		this.el.style.left = left + 'px';
+		this.el.style.top = top + 'px';
 		
-	}
+	};
 
 	NewVideo.prototype.mouseUpHandler = function( event ){
 		window.removeEventListener( 'mousemove', this._mouseMoveHandler);
@@ -61,7 +68,7 @@ module.exports = (function(){
 		     		console.log( "ajax success" );		
 		       }
 		    });
-	}
+	};
 
 	NewVideo.createWithUpload = function(filename, top, left){
 		
@@ -71,18 +78,15 @@ module.exports = (function(){
 		el.style.left = left + "px";
 	
 		var url = "./videos/uploaded/"+ filename +"";
-		var controls = "controls"
+		var controls = "controls";
 		var videoDiv = document.createElement('video');
 		videoDiv.classList.add('videoDiv');
 		videoDiv.setAttribute('src', url);
 		videoDiv.setAttribute('controls', controls);
 		
-
-		var location = "./videos/uploaded/";
 		videoDiv.style.width = "400px";
 		videoDiv.style.height = "200px";
 		
-
 		var topBalk = document.createElement('div');
 		topBalk.classList.add('topBalk');
 		var deleteKnop = document.createElement('img');

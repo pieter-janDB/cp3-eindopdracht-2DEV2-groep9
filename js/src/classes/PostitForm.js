@@ -6,11 +6,8 @@ module.exports = (function(){
 
 		this.el = this.createForm();
 
-		if(whiteboard.appendChild(this.el)){
-			//opslaan in db via ajax
+		whiteboard.appendChild(this.el);
 
-
-		}
 
 		this.postitTitle = this.el.querySelector('.postitTitleInput');
 		this.postitText = this.el.querySelector('.postitTextInput');

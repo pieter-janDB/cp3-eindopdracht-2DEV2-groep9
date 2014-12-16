@@ -17,6 +17,25 @@ class ProjectmemberDAO extends DAO {
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
+	public function selectByMemberAndProjectId($member_id, $project_id){
+		$sql = "SELECT * FROM `projectmembers` WHERE `member_id` = :member_id AND `project_id` = :project_id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':member_id', $member_id);
+		$stmt->bindValue(':project_id', $project_id);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+
+	public function selectUserInProject($member_id, $project_id){
+		$sql = "SELECT * FROM `projectmembers` WHERE `member_id` = `:member_id`";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':member_id', $member_id);
+		$stmt->bindValue(':project_id', $project_id);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+
+	}
 
 	public function insert($data){
 		$sql = "INSERT INTO `projectmembers` (`project_id`, `member_id`, `color`)

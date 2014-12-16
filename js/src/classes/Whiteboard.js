@@ -16,9 +16,11 @@ module.exports = (function(){
 		this.project_id = this.whiteboardPage.getAttribute('data-projectid');
 		this.user_id = this.whiteboardPage.getAttribute('data-userid');
 
-		this.postits = new Array();
-		this.uploadedImages = new Array();
-		this.uploadedVideos = new Array();
+		this.postits = [];
+		this.uploadedImages = [];
+		this.uploadedVideos = [];
+
+
 
 
 		//items ophalen uit database en plaatsen...
@@ -72,6 +74,12 @@ module.exports = (function(){
 		this.createMembersDropdownButton = document.querySelector('.dropDownClicker');
 		this.createMembersDropdownButton.addEventListener('click', this.showDropdown);
 
+		//errormembers
+
+		if(document.querySelector('.whiteboard-alert')){
+			setTimeout(errorFade, 4000);
+		}
+
 
 		// change bg
 		this.changeBackgroundButton = document.querySelector('.grid');
@@ -82,6 +90,10 @@ module.exports = (function(){
 		this.clearBoardButton = document.querySelector('.clearBoard');
 		this.clearBoardButton.addEventListener('click', this.clearBoard.bind(this));
 
+	}
+
+	function errorFade(){
+		document.querySelector('.whiteboard-alert').classList.add('fade');
 	}
 
 	// postit
@@ -116,7 +128,7 @@ module.exports = (function(){
 		       }
 		    });
 
-		 };
+		 }
 		 
 		bean.on(postit, 'delete', this.deletePostitHandler.bind(this, postit));
 		 
@@ -147,7 +159,7 @@ module.exports = (function(){
 	    });
 
 
-	}
+	};
 
 	Whiteboard.prototype.createPostitFromDatabase = function(itemToAdd){
 
@@ -157,7 +169,7 @@ module.exports = (function(){
 		 postit.id = itemToAdd.getAttribute('data-id');
 		 bean.on(postit, 'delete', this.deletePostitHandler.bind(this, postit));
 
-	}
+	};
 
 	//image
 
@@ -166,7 +178,7 @@ module.exports = (function(){
 		this.imageSubmit.style.background = "#86c06a";
 		this.imageSubmit.style.color = "#fff";
 
-		var file, reader;
+		var file;
 		//check of gebruiker bestand heeft gekozen
 		if(this.createImageButton.files.length > 0){
 
@@ -178,8 +190,8 @@ module.exports = (function(){
 				this._imageUploadHandler = this.imageUploadHandler.bind(this, file, this);
 				this.imageSubmit.addEventListener('click' ,this._imageUploadHandler);
 				
-				};			
-			}	
+			}			
+		}	
 	};
 
 	Whiteboard.prototype.imageUploadHandler = function(file, thisX){
@@ -215,7 +227,7 @@ module.exports = (function(){
 		this.createImageButton.value = '';
 		this.imageSubmit.style.background = "#fff";
 		this.imageSubmit.style.color = "#86c06a";
-	}
+	};
 
 	Whiteboard.prototype.uploadImageToDatabase = function(file, thisX){
 
@@ -243,7 +255,7 @@ module.exports = (function(){
 	        		
 	       }
 	    });
-	}
+	};
 
 
 	Whiteboard.prototype.deleteImageHandler = function(imageDiv, thisX){
@@ -280,7 +292,7 @@ module.exports = (function(){
 		imageDiv.id = itemToAdd.getAttribute('data-id');
 		bean.on(imageDiv, 'delete', this.deleteImageHandler.bind(this, imageDiv, this));
 
-	}
+	};
 
 	//video
 
@@ -288,7 +300,7 @@ module.exports = (function(){
 		this.videoSubmit.style.background = "#86c06a";
 		this.videoSubmit.style.color = "#fff";
 
-		var file, reader;
+		var file;
 		//check of gebruiker bestand heeft gekozen
 		if(this.createVideoButton.files.length > 0){
 
@@ -300,8 +312,8 @@ module.exports = (function(){
 				this._videoUploadHandler = this.videoUploadHandler.bind(this, file, this);
 				this.videoSubmit.addEventListener('click' ,this._videoUploadHandler);
 				
-				};			
-			}	
+			}			
+		}	
 	};
 
 	Whiteboard.prototype.videoUploadHandler = function(file, thisX){
@@ -334,7 +346,8 @@ module.exports = (function(){
 		this.createVideoButton.value = '';
 		this.videoSubmit.style.background = "#fff";
 		this.videoSubmit.style.color = "#86c06a";
-	}
+	};
+
 	Whiteboard.prototype.uploadVideoToDatabase = function(file, thisX){
 
 		$.ajax({
@@ -358,7 +371,7 @@ module.exports = (function(){
 
 	       }
 	    });
-	}
+	};
 
 	Whiteboard.prototype.deleteVideoHandler = function(videoDiv, thisX){
 		//remove from array
@@ -392,18 +405,18 @@ module.exports = (function(){
 		videoDiv.id = itemToAdd.getAttribute('data-id');
 		bean.on(videoDiv, 'delete', this.deleteVideoHandler.bind(this, videoDiv, this));
 
-	}
+	};
 
 
 	 // members dropdown
     Whiteboard.prototype.showDropdown = function(e){
         if(actionDropdown === 1){
            document.querySelector('.menu').style.display="block";
-           e.currentTarget.src="./images/dropup.png"
+           e.currentTarget.src="./images/dropup.png";
            actionDropdown = 2;
         }else{
            document.querySelector('.menu').style.display="none";
-            e.currentTarget.src="./images/dropdown.png"
+            e.currentTarget.src="./images/dropdown.png";
            actionDropdown = 1;
         }
      };
@@ -451,7 +464,7 @@ module.exports = (function(){
 	        return;
 	    }
 
-     }
+     };
 
 	return Whiteboard;
 })();

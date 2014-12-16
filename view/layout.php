@@ -42,10 +42,17 @@
             </div>
         <?php endif; ?>
            
-      
-            <?php if(!empty($_SESSION['info'])): ?><div class="alert-success"><?php echo $_SESSION['info'];?></div><?php endif; ?>
-            <?php if(!empty($_SESSION['error'])): ?><div class="alert-danger"><?php echo $_SESSION['error'];?></div><?php endif; ?>
-          
+            <?php if($_GET['page'] != "whiteboard"):?>
+                <?php if(!empty($_SESSION['info'])): ?><div class="alert-success"><?php echo $_SESSION['info'];?></div><?php endif; ?>
+                <?php if(!empty($_SESSION['error'])): ?><div class="alert-danger"><?php echo $_SESSION['error'];?></div><?php endif; ?>
+            <?php else: ?>
+                <?php if(!empty($_SESSION['info'])): ?><div class="alert-success whiteboard-alert"><?php echo $_SESSION['info'];?></div><?php endif; ?>
+                <?php if(!empty($_SESSION['error'])): ?><div class="alert-danger whiteboard-alert"><?php echo $_SESSION['error'];?></div><?php endif; ?>
+            <?php endif; ?>
+
+
+
+
             <?php echo $content; ?>
 
 

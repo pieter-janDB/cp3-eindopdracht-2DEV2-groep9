@@ -1,6 +1,4 @@
 module.exports = (function(){
-	
-	var whiteboard = document.querySelector('.whiteboard');
 
 	function Postit(el, title, text) {
 		this.el = el;
@@ -49,15 +47,23 @@ module.exports = (function(){
 
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
 			window.addEventListener( 'mouseup', this._mouseUpHandler);
-	}
+	};
 
 	Postit.prototype.mouseMoveHandler = function( event ){
 		
+		var left = event.x-this.offsetX ;
+		if(left < 0){
+			left = 0;
+		}
+		var top = event.y-this.offsetY ;
+		if(top < 0){
+			top = 0;
+		}
 
-		this.el.style.left = event.x-this.offsetX + 'px';
-		this.el.style.top = event.y-this.offsetY + 'px';
+		this.el.style.left = left + 'px';
+		this.el.style.top = top + 'px';
 		
-	}
+	};
 
 	Postit.prototype.mouseUpHandler = function( event ){
 		window.removeEventListener( 'mousemove', this._mouseMoveHandler);
@@ -68,15 +74,15 @@ module.exports = (function(){
 		        url: window.location.href,
 		        data: {
 		            item_kind: "updatePosition",
-		            top: event.y-this.offsetY,
-		            left: event.x-this.offsetX,
+		            top: this.el.style.top,
+		            left: this.el.style.left,
 		            id: this.id
 		        },
 		        success: function( data ) {
 		     		console.log( "ajax success" );		
 		       }
 		    });
-	}
+	};
 
 
 	Postit.prototype.mouseDownResize = function( event ){
@@ -97,7 +103,7 @@ module.exports = (function(){
 
 			window.addEventListener( 'mousemove', this._mouseMoveResize);
 			window.addEventListener( 'mouseup', this._mouseUpResize);
-	}
+	};
 
 
 
@@ -107,16 +113,25 @@ module.exports = (function(){
 
 		this.stopX = event.clientX;
 		this.stopY = event.clientY;
+		var left = event.x-this.offsetX;
+		var top = event.y - this.offsetY;
 
-		this.el.style.left = event.x-this.offsetX + 'px';
-		this.el.style.top = event.y - this.offsetY + 'px';
+		if(left < 0){
+			left = 0;
+		}
+		if(top < 0){
+			top = 0;
+		}
+
+		this.el.style.left = left + 'px';
+		this.el.style.top = top + 'px';
 	
 		
 		this.el.style.width = this.startWidth - this.stopX + this.startX + "px";
 		this.el.style.height = this.startHeight - this.stopY + this.startY + "px";
 		
 		
-	}
+	};
 
 	Postit.prototype.mouseUpResize = function( event ){
 
@@ -154,7 +169,7 @@ module.exports = (function(){
 		    });
 
 
-	}
+	};
 
 
 	Postit.createWithText = function(title, text, top,left, width, height){
@@ -163,15 +178,11 @@ module.exports = (function(){
 		el.classList.add('postit');
 		el.style.top = top + "px";
 		el.style.left = left + "px";
-		if(width != 0 ){
+		if(width !== 0 ){
 			el.style.width = width + "px";
-		}else{
-			el.style.minWidth = "100px";
 		}
-		if(height != 0 ){
+		if(height !== 0 ){
 			el.style.height = height + "px";
-		}else{
-			el.style.minHeight = "100px";
 		}
 		
 		var postitTitle = document.createElement('h2');
@@ -211,7 +222,7 @@ module.exports = (function(){
 
 		return new Postit(el, title, text);
 
-	}
+	};
 	
 	return Postit;
 	

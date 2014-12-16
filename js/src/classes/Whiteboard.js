@@ -12,9 +12,43 @@ module.exports = (function(){
 
 	function Whiteboard() {
 
+		this.whiteboard = document.querySelector('.whiteboard');
 		this.whiteboardPage = document.querySelector('.whiteboardpage');
 		this.project_id = this.whiteboardPage.getAttribute('data-projectid');
 		this.user_id = this.whiteboardPage.getAttribute('data-userid');
+
+		this.postits = new Array();
+		this.uploadedImages = new Array();
+		this.uploadedVideos = new Array();
+
+
+		//items ophalen uit database en plaatsen...
+		this.itemsToAdd = [];
+		this.itemsToAdd = this.whiteboard.querySelectorAll('.itemToAdd');
+		
+		
+
+		[].forEach.call(this.itemsToAdd, function(itemToAdd){
+
+			switch(itemToAdd.getAttribute('data-item_kind')) {
+			    case "postit":
+			        console.log('postit');
+			        this.createPostitFromDatabase(itemToAdd);
+			        break;
+			    case "image":
+			        console.log('image');
+			         this.createImageFromDatabase(itemToAdd);
+			        break;
+			    case "video":
+			        console.log('video');
+			         this.createVideoFromDatabase(itemToAdd);
+			        break;
+				}
+
+			
+
+		}, this);
+
 
 		// gaat later element binnen krijgen welke objecten geplaatst zullen worden
 		//dan foreach element in database met postit een posti it maken
@@ -22,15 +56,12 @@ module.exports = (function(){
 
 		//elk object in een array invoeren en bijhouden zoals bij todoApp oef.
 
-		this.whiteboard = document.querySelector('.whiteboard');
-		this.elementDiv = document.createElement('div');
 
 		//postit
 
 		this.createPostitButton = document.querySelector('.createPostit');
 		this.createPostitButton.addEventListener('click', this.addPostitForm.bind(this));
 
-		this.postits = new Array();
 
 		//image
 
@@ -38,14 +69,13 @@ module.exports = (function(){
 		this.createImageButton.addEventListener('change', this.addImageElement.bind(this));
 		this.imageSubmit = document.querySelector('.imageSubmit');
 
-		this.uploadedImages = new Array();
 
 		//video
 		this.createVideoButton = document.querySelector('input[name=uploadVideo]');
 		this.createVideoButton.addEventListener('change', this.addVideoElement.bind(this));
 		this.videoSubmit = document.querySelector('.videoSubmit');
 
-		this.uploadedVideos = new Array();
+		
 
 
 		// dropdown members
@@ -129,6 +159,20 @@ module.exports = (function(){
 
 	}
 
+
+	Whiteboard.prototype.createPostitFromDatabase = function(itemToAdd){
+
+		 var postit = new Postit.createWithText(itemToAdd.getAttribute('data-title'), itemToAdd.getAttribute('data-message'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'));
+		 this.postits.push(postit);
+		 this.whiteboard.appendChild(postit.el);
+		 postit.id = itemToAdd.getAttribute('data-id');
+		 bean.on(postit, 'delete', this.deletePostitHandler.bind(this, postit));
+
+	}
+
+
+
+
 	//image
 
 	Whiteboard.prototype.addImageElement = function(e){
@@ -149,9 +193,10 @@ module.exports = (function(){
 	};
 
 	Whiteboard.prototype.imageUploadHandler = function(file, thisX){
-		console.log(this);
-		console.log('test');
-		console.log(thisX);
+
+		//ik gebruik thisX on this mee te geven in ajax en om daarna in de ajax succes te kunnen meegeven
+		// aan de andere functie, bestaat hiervoor betere methode? zoja graag vermelding bij feedback.
+
         event.preventDefault(); // Totally stop stuff happening
         // Create a formdata object and add the files
 		var data = new FormData( document.getElementById("uploadForm") );	
@@ -199,14 +244,14 @@ module.exports = (function(){
 				imageDiv.id = segments[0];	
 				thisX.whiteboard.appendChild(imageDiv.el);
 				thisX.uploadedImages.push(imageDiv);
-				bean.on(imageDiv, 'delete', thisX.deleteimageHandler.bind(this, imageDiv, thisX));
+				bean.on(imageDiv, 'delete', thisX.deleteImageHandler.bind(this, imageDiv, thisX));
 				console.log(thisX.uploadedImages);
 	        		
 	       }
 	    });
 	}
 
-	Whiteboard.prototype.deleteimageHandler = function(imageDiv, thisX){
+	Whiteboard.prototype.deleteImageHandler = function(imageDiv, thisX){
 		//remove from array
 		var imageIndex = thisX.uploadedImages.indexOf(imageDiv);
 		if (imageIndex > -1) {
@@ -231,6 +276,21 @@ module.exports = (function(){
 
 	};
 
+
+
+	Whiteboard.prototype.createImageFromDatabase = function(itemToAdd){
+
+		var imageDiv = new NewImage.createWithUpload(itemToAdd.getAttribute('data-filename'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'));		 
+		this.uploadedImages.push(imageDiv);
+		this.whiteboard.appendChild(imageDiv.el);
+		imageDiv.id = itemToAdd.getAttribute('data-id');
+		bean.on(imageDiv, 'delete', this.deleteImageHandler.bind(this, imageDiv, this));
+
+	}
+
+
+
+
 	//video
 
 	Whiteboard.prototype.addVideoElement = function(e){
@@ -251,9 +311,7 @@ module.exports = (function(){
 	};
 
 	Whiteboard.prototype.videoUploadHandler = function(file, thisX){
-		console.log(this);
-		console.log('tets');
-		console.log(thisX);
+
         event.preventDefault(); // Totally stop stuff happening
         // Create a formdata object and add the files
 		var data = new FormData( document.getElementById("uploadFormVideo") );	
@@ -300,14 +358,14 @@ module.exports = (function(){
 				videoDiv.id = segments[0];	
 				thisX.whiteboard.appendChild(videoDiv.el);
 				thisX.uploadedVideos.push(videoDiv);
-				bean.on(videoDiv, 'delete', thisX.deletevideoHandler.bind(this, videoDiv, thisX));
+				bean.on(videoDiv, 'delete', thisX.deleteVideoHandler.bind(this, videoDiv, thisX));
 				console.log(thisX.uploadedVideos);
 	        		
 	       }
 	    });
 	}
 
-	Whiteboard.prototype.deletevideoHandler = function(videoDiv, thisX){
+	Whiteboard.prototype.deleteVideoHandler = function(videoDiv, thisX){
 		//remove from array
 		var videoIndex = thisX.uploadedVideos.indexOf(videoDiv);
 		if (videoIndex > -1) {
@@ -331,6 +389,16 @@ module.exports = (function(){
 	    });		
 
 	};
+
+	Whiteboard.prototype.createVideoFromDatabase = function(itemToAdd){
+		var videoDiv = new NewVideo.createWithUpload(itemToAdd.getAttribute('data-filename'), itemToAdd.getAttribute('data-top'), itemToAdd.getAttribute('data-left'));	 
+		this.uploadedVideos.push(videoDiv);
+		this.whiteboard.appendChild(videoDiv.el);
+		videoDiv.id = itemToAdd.getAttribute('data-id');
+		bean.on(videoDiv, 'delete', this.deleteVideoHandler.bind(this, videoDiv, this));
+
+	}
+
 
 	 // members dropdown
 

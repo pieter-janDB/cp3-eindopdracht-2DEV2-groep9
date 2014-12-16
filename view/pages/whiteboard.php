@@ -12,7 +12,7 @@
 
                 <form id="uploadFormVideo" action="#" method="post" enctype="multipart/form-data">
                     <input type="file" id="videoInput" class="uploadVideo" name="uploadVideo" accept="video/mp4"></input>  
-                    <input id="targetVideo" class="videoSubmit" type="submit" value="upload" />
+                    <input class="videoSubmit" type="submit" value="upload" />
                 </form>
                 
         		<li><img class="createVideo"src="images/video.png"></li>
@@ -20,7 +20,7 @@
         		<li><img src="images/afbeelding.png"></li>
                 <form id="uploadForm" action="#" method="post" enctype="multipart/form-data">
                     <input type="file"class="uploadImage" name="uploadImage"></input>  
-                    <input id="target" class="imageSubmit" type="submit" value="upload" />
+                    <input class="imageSubmit" type="submit" value="upload" />
                 </form>
         		<li><img class="grid" id="changeByClick" src="images/grid.png"></li>
         		<li><img class="clearBoard"src="images/delete.png"></li>
@@ -28,7 +28,9 @@
         </div>
 
         <div class="members">
-            <p>Members</p>
+            <img src="./images/dropdown.png" width="25px" height="25px" alt="dropdown" class="dropDownClicker right" />
+                <p>Members</p>
+          
             <ul class="menu">
                 <?php 
                    
@@ -39,8 +41,17 @@
                         echo $member['lastname'];
                         echo "</li>";
                     }
+
                 ?>
+                <li>
+                    <form id="uploadForm" action="index.php?page=addMember&amp;id=<?php echo $_GET['id'] ?>" method="post">
+                        <input type="text"class="addmemberWhiteboard left" placeholder="voorbeeld@gmail.Com" name="email"></input>  
+                        <input id="target" class="addmemberWhiteboardSubmit left" type="submit" value="+" />
+                    </form>
+
+                </li>
             <ul/>
+
         </div>
 
         <div class="databaseItems">

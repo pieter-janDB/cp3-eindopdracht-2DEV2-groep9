@@ -79,8 +79,9 @@ module.exports = (function(){
 
 
 		// dropdown members
-		this.createMembersDropdownButton = document.querySelector('.members');
+		this.createMembersDropdownButton = document.querySelector('.dropDownClicker');
 		this.createMembersDropdownButton.addEventListener('click', this.showDropdown);
+
 
 		// change bg
 		this.changeBackgroundButton = document.querySelector('.grid');
@@ -406,12 +407,20 @@ module.exports = (function(){
     Whiteboard.prototype.showDropdown = function(e){
         if(actionDropdown === 1){
            document.querySelector('.menu').style.display="block";
+           e.currentTarget.src="./images/dropup.png"
            actionDropdown = 2;
         }else{
            document.querySelector('.menu').style.display="none";
+            e.currentTarget.src="./images/dropdown.png"
            actionDropdown = 1;
         }
      };
+
+
+
+
+
+
      // grid
 
      Whiteboard.prototype.changeBG = function(){

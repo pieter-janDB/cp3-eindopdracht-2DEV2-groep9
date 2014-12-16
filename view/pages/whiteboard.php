@@ -11,7 +11,7 @@
         		<li><img class="createPostit"src="images/post-it.png"></li>
 
                 <form id="uploadFormVideo" action="#" method="post" enctype="multipart/form-data">
-                    <input type="file" class="uploadVideo" name="uploadVideo"></input>  
+                    <input type="file" id="videoInput" class="uploadVideo" name="uploadVideo"></input>  
                     <input id="targetVideo" class="videoSubmit" type="submit" value="upload" />
                 </form>
                 
@@ -19,7 +19,7 @@
 
         		<li><img src="images/afbeelding.png"></li>
                 <form id="uploadForm" action="#" method="post" enctype="multipart/form-data">
-                    <input type="file" id="videoInput"class="uploadImage" name="uploadImage"></input>  
+                    <input type="file"class="uploadImage" name="uploadImage"></input>  
                     <input id="target" class="imageSubmit" type="submit" value="upload" />
                 </form>
         		<li><img class="grid" id="changeByClick" src="images/grid.png"></li>
@@ -42,28 +42,10 @@
                 ?>
             <ul/>
         </div>
-
-    </div>
-     <div>
-        <video id="video-container" controls></video>
+  
     </div>
 
-      <script>    
-        (function(){
 
-        var fileInput = document.getElementById('videoInput');
-     
-
-        document.getElementById('target').addEventListener('click', function(){
-
-          var fileUrl = window.URL.createObjectURL(fileInput.files[0]);
-             var video = document.getElementById('video-container');
-
-        video.src = fileUrl;
-
-        });
-
-    })();   
 </script>
    
 </section>

@@ -32,17 +32,20 @@ module.exports = (function(){
 
 			switch(itemToAdd.getAttribute('data-item_kind')) {
 			    case "postit":
-			        console.log('postit');
+			      
 			        this.createPostitFromDatabase(itemToAdd);
 			        break;
+
 			    case "image":
-			        console.log('image');
+			   
 			         this.createImageFromDatabase(itemToAdd);
 			        break;
+			    
 			    case "video":
-			        console.log('video');
+			 
 			         this.createVideoFromDatabase(itemToAdd);
 			        break;
+				
 				}
 
 			
@@ -245,7 +248,6 @@ module.exports = (function(){
 	            filename: file.name
 	        },
 	        success: function( data ) {
-	        	console.log(thisX);
 	        	var imageDiv = new NewImage.createWithUpload(file.name, 200, 150);
 	        	var segments = data.split("<!DOCTYPE html>");
 				//geef image id van in database
@@ -253,7 +255,6 @@ module.exports = (function(){
 				thisX.whiteboard.appendChild(imageDiv.el);
 				thisX.uploadedImages.push(imageDiv);
 				bean.on(imageDiv, 'delete', thisX.deleteImageHandler.bind(this, imageDiv, thisX));
-				console.log(thisX.uploadedImages);
 	        		
 	       }
 	    });
@@ -302,6 +303,9 @@ module.exports = (function(){
 	//video
 
 	Whiteboard.prototype.addVideoElement = function(e){
+		this.videoSubmit.style.background = "#86c06a";
+		this.videoSubmit.style.color = "#fff";
+
 		var file, reader;
 		//check of gebruiker bestand heeft gekozen
 		if(this.createVideoButton.files.length > 0){
@@ -346,6 +350,8 @@ module.exports = (function(){
         });
         this.videoSubmit.removeEventListener( 'click', this._videoUploadHandler);
 		this.createVideoButton.value = '';
+		this.videoSubmit.style.background = "#fff";
+		this.videoSubmit.style.color = "#86c06a";
 	}
 	Whiteboard.prototype.uploadVideoToDatabase = function(file, thisX){
 
@@ -359,7 +365,7 @@ module.exports = (function(){
 	            filename: file.name
 	        },
 	        success: function( data ) {
-	        	console.log(thisX);
+
 	        	var videoDiv = new NewVideo.createWithUpload(file.name, 200, 150);
 	        	var segments = data.split("<!DOCTYPE html>");
 				//geef video id van in database
@@ -367,8 +373,7 @@ module.exports = (function(){
 				thisX.whiteboard.appendChild(videoDiv.el);
 				thisX.uploadedVideos.push(videoDiv);
 				bean.on(videoDiv, 'delete', thisX.deleteVideoHandler.bind(this, videoDiv, thisX));
-				console.log(thisX.uploadedVideos);
-	        		
+
 	       }
 	    });
 	}

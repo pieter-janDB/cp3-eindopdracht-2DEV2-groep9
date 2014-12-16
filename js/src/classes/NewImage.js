@@ -5,7 +5,7 @@ module.exports = (function(){
 	function NewImage(el) {
 		this.el = el;
 		
-		//later nog this.deleteknop / resize / edit?
+		//later nog this.deleteknop / draganddrop / edit?
 
 		this.deleteKnop = el.querySelector('.deleteKnop');
 		this.deleteKnop.addEventListener('click', this.deleteClickHandler.bind(this));
@@ -19,7 +19,7 @@ module.exports = (function(){
 		this.dragKnop = el.querySelector('.dragKnop');
 		this.dragKnop.addEventListener('mousedown', this._mouseDownHandler);
 
-		//later nog this.deleteknop / resize / edit?""
+		//later nog this.deleteknop / draganddrop / edit?""
 
 	}
 	
@@ -31,7 +31,10 @@ module.exports = (function(){
 
 
 	NewImage.prototype.mouseDownHandler = function( event ){
-			this.offsetX = 145+ event.offsetX;
+		console.log(event.currentTarget.parentNode.offsetWidth);
+			this.parentOffset = event.currentTarget.parentNode.offsetWidth - 52;
+
+			this.offsetX = this.parentOffset + event.offsetX;
 			this.offsetY = event.offsetY;
 
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
@@ -39,6 +42,7 @@ module.exports = (function(){
 	}
 
 	NewImage.prototype.mouseMoveHandler = function( event ){
+		
 		
 		this.el.style.left = event.x-this.offsetX + 'px';
 		this.el.style.top = event.y-this.offsetY + 'px';
@@ -90,10 +94,7 @@ module.exports = (function(){
 		deleteKnop.style.width = "16px";
 		deleteKnop.style.height = "16px";
 		deleteKnop.classList.add('right', 'deleteKnop');
-		var dragKnop = document.createElement('img');
-		dragKnop.src = "./images/resize.png";
-		dragKnop.style.width = "16px";
-		dragKnop.style.height = "16px";
+		var dragKnop = document.createElement('div');
 		dragKnop.classList.add('right', 'dragKnop');
 
 		topBalk.appendChild(deleteKnop);

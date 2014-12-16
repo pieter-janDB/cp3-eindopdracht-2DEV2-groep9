@@ -32,7 +32,10 @@ module.exports = (function(){
 
 
 	Postit.prototype.mouseDownHandler = function( event ){
-			this.offsetX = event.offsetX;
+		
+			this.parentOffset = event.currentTarget.parentNode.offsetWidth - 52;
+
+			this.offsetX = this.parentOffset + event.offsetX;
 			this.offsetY = event.offsetY;
 
 
@@ -89,10 +92,7 @@ module.exports = (function(){
 		deleteKnop.style.width = "16px";
 		deleteKnop.style.height = "16px";
 		deleteKnop.classList.add('right', 'deleteKnop');
-		var dragKnop = document.createElement('img');
-		dragKnop.src = "./images/resize.png";
-		dragKnop.style.width = "16px";
-		dragKnop.style.height = "16px";
+		var dragKnop = document.createElement('div');
 		dragKnop.classList.add('right', 'dragKnop');
 
 		topBalk.appendChild(deleteKnop);

@@ -5,7 +5,7 @@ module.exports = (function(){
 	function NewVideo(el) {
 		this.el = el;
 		
-		//later nog this.deleteknop / resize / edit?
+		//later nog this.deleteknop / draganddrop / edit?
 
 		this.deleteKnop = el.querySelector('.deleteKnop');
 		this.deleteKnop.addEventListener('click', this.deleteClickHandler.bind(this));
@@ -19,7 +19,7 @@ module.exports = (function(){
 		this.dragKnop = el.querySelector('.dragKnop');
 		this.dragKnop.addEventListener('mousedown', this._mouseDownHandler);
 
-		//later nog this.deleteknop / resize / edit?""
+		//later nog this.deleteknop / draganddrop / edit?""
 
 	}
 	
@@ -31,7 +31,10 @@ module.exports = (function(){
 
 
 	NewVideo.prototype.mouseDownHandler = function( event ){
-			this.offsetX = 145+ event.offsetX;
+		console.log(event.currentTarget.parentNode.offsetWidth);
+			this.parentOffset = event.currentTarget.parentNode.offsetWidth - 52;
+
+			this.offsetX = this.parentOffset + event.offsetX;
 			this.offsetY = event.offsetY;
 
 			window.addEventListener( 'mousemove', this._mouseMoveHandler);
@@ -84,24 +87,21 @@ module.exports = (function(){
 		var location = "./videos/uploaded/";
 		videoDiv.style.width = "400px";
 		videoDiv.style.height = "200px";
-		//videoDiv.style.backgroundImage = "url(" + location + filename + ")";
+		
 
-		var topBalkVideo = document.createElement('div');
-		topBalkVideo.classList.add('topBalkVideo');
+		var topBalk = document.createElement('div');
+		topBalk.classList.add('topBalk');
 		var deleteKnop = document.createElement('img');
 		deleteKnop.src = "./images/deleteItem.png" ;
 		deleteKnop.style.width = "16px";
 		deleteKnop.style.height = "16px";
 		deleteKnop.classList.add('right', 'deleteKnop');
-		var dragKnop = document.createElement('img');
-		dragKnop.src = "./images/resize.png";
-		dragKnop.style.width = "16px";
-		dragKnop.style.height = "16px";
+		var dragKnop = document.createElement('div');
 		dragKnop.classList.add('right', 'dragKnop');
 
-		topBalkVideo.appendChild(deleteKnop);
-		topBalkVideo.appendChild(dragKnop);
-		el.appendChild(topBalkVideo);
+		topBalk.appendChild(deleteKnop);
+		topBalk.appendChild(dragKnop);
+		el.appendChild(topBalk);
 		el.appendChild(videoDiv);
 
 

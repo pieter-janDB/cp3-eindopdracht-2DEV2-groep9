@@ -42,6 +42,29 @@
                 ?>
             <ul/>
         </div>
+
+        <div class="databaseItems">
+            <ul>
+                <?php 
+                    forEach ($items as $item){
+                            
+                        echo "<li class=\"itemToAdd\" ";
+                        echo "data-title=\"" . $item['title'] . "\"";
+                        echo "data-id=\"" . $item['id'] . "\"";
+                        echo "data-item_kind=\"" . $item['item_kind'] . "\"";
+                        echo "data-title=\"" . $item['title'] . "\"";
+                        echo "data-message=\"" . $item['message'] . "\"";
+                        echo "data-filename=\"" . $item['filename'] . "\"";
+                        echo "data-left=\"" . $item['left'] . "\"";
+                        echo "data-top=\"" . $item['top'] . "\"";
+                        echo ">";
+                        echo "</li>";
+                
+                  
+                    }
+                ?>
+            </ul>
+        <div>
   
     </div>
 

@@ -233,9 +233,8 @@ class PagesController extends Controller {
 				}
 
 			}
-		}
+		}//einde ajax handlers
 
-				
 		
 
 		if(empty($_SESSION['user']['id'])){
@@ -249,6 +248,8 @@ class PagesController extends Controller {
 		$members = $this->projectmemberDAO->selectAllMembers($_GET['id']);
 		$this->set('members', $members);
 
+		$items = $this->whiteboarditemDAO->getItemsByProject($_GET['id']);
+		$this->set('items', $items);
 		
 		
 

@@ -67,6 +67,15 @@ class WhiteboarditemDAO extends DAO {
 		$stmt->execute();
 	}
 
+	public function getItemsByProject($id){
+		$sql = "SELECT * FROM `whiteboarditems` WHERE `project_id` = :id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(':id', $id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	}
+
 	public function insertImage($data){
 		$sql = "INSERT INTO `whiteboarditems` (`project_id`, `user_id`, `item_kind`, `top`, `left`, `filename`)
 			VALUES (:project_id, :user_id, :item_kind, :top, :left, :filename)";

@@ -146,22 +146,25 @@ class PagesController extends Controller {
 
 		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 			
-			if(!empty($_FILES)){
+			if(!empty($_FILES['uploadImage'])){
 
 				//images
-
 
 				$file = $_FILES['uploadImage'];
 				$uploaddir = './images/uploaded/';
 				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
 				$this->set('file', $file);
-
-				$file = $_FILES['uploadVideo'];
+			}else{
+					$file = $_FILES['uploadVideo'];
 				$uploaddir = './videos/uploaded/';
 				move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name']));
 				$this->set('file', $file);
 
 			}
+			
+			
+		
+			
 
 			if(!empty($_POST)){
 

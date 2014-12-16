@@ -6,10 +6,6 @@ module.exports = (function(){
 	var NewImage = require('./NewImage.js');
 	var NewVideo = require('./NewVideo.js');
 
-
-	var fileInput = document.getElementById('uploadVideo');
-    var video = document.getElementById('video-container');
-	
 	
     var actionDropdown= 1, actionBg = 1;
 
@@ -45,6 +41,11 @@ module.exports = (function(){
 		this.uploadedImages = new Array();
 
 		//video
+		this.createVideoButton = document.querySelector('input[name=uploadVideo]');
+		this.createVideoButton.addEventListener('change', this.addVideoElement.bind(this));
+		this.videoSubmit = document.querySelector('.videoSubmit');
+
+		this.uploadedVideos = new Array();
 
 
 		// dropdown members
@@ -149,7 +150,7 @@ module.exports = (function(){
 
 	Whiteboard.prototype.imageUploadHandler = function(file, thisX){
 		console.log(this);
-		console.log('tets');
+		console.log('test');
 		console.log(thisX);
         event.preventDefault(); // Totally stop stuff happening
         // Create a formdata object and add the files
@@ -232,6 +233,104 @@ module.exports = (function(){
 
 	//video
 
+	Whiteboard.prototype.addVideoElement = function(e){
+		var file, reader;
+		//check of gebruiker bestand heeft gekozen
+		if(this.createVideoButton.files.length > 0){
+
+			file = this.createVideoButton.files['0'];
+
+			//check of het foto is kijken of type image is
+			if(file.type.search('video/mp4') === 0){
+
+				this._videoUploadHandler = this.videoUploadHandler.bind(this, file, this);
+				this.videoSubmit.addEventListener('click' ,this._videoUploadHandler);
+				
+				};			
+			}	
+	};
+
+	Whiteboard.prototype.videoUploadHandler = function(file, thisX){
+		console.log(this);
+		console.log('tets');
+		console.log(thisX);
+        event.preventDefault(); // Totally stop stuff happening
+        // Create a formdata object and add the files
+		var data = new FormData( document.getElementById("uploadFormVideo") );	
+		
+        $.ajax({
+            url: window.location.href,
+            type: 'POST',
+            data: data,
+            cache: false,
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data, textStatus, jqXHR)
+            {
+ 				console.log( 'ajax success');
+ 				thisX.uploadVideoToDatabase(file, thisX);
+
+ 				// hoe kan ik hier this aan meegeven ???? 
+ 				
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {	
+            	console.log('ERRORS: ' + textStatus);
+            }
+        });
+        this.videoSubmit.removeEventListener( 'click', this._videoUploadHandler);
+		this.createVideoButton.value = '';
+	}
+	Whiteboard.prototype.uploadVideoToDatabase = function(file, thisX){
+
+		$.ajax({
+	        type: 'post',
+	        url: window.location.href,
+	        data: {
+	            item_kind: "video",
+	            top: "200px",
+	            left: "150px",
+	            filename: file.name
+	        },
+	        success: function( data ) {
+	        	console.log(thisX);
+	        	var videoDiv = new NewVideo.createWithUpload(file.name, 200, 150);
+	        	var segments = data.split("<!DOCTYPE html>");
+				//geef video id van in database
+				videoDiv.id = segments[0];	
+				thisX.whiteboard.appendChild(videoDiv.el);
+				thisX.uploadedVideos.push(videoDiv);
+				bean.on(videoDiv, 'delete', thisX.deletevideoHandler.bind(this, videoDiv, thisX));
+				console.log(thisX.uploadedVideos);
+	        		
+	       }
+	    });
+	}
+
+	Whiteboard.prototype.deletevideoHandler = function(videoDiv, thisX){
+		//remove from array
+		var videoIndex = thisX.uploadedVideos.indexOf(videoDiv);
+		if (videoIndex > -1) {
+		    thisX.uploadedVideos.splice(videoIndex, 1);
+		}
+
+		//remove from screen
+		document.querySelector('.whiteboard').removeChild(videoDiv.el);
+
+		//remove from database
+		$.ajax({
+	        type: 'post',
+	        url: window.location.href,
+	        data: {
+	            item_kind: "delete",
+	            id: videoDiv.id
+	        },
+	        success: function( data ) {		
+	        		console.log('ajax success');
+	       }
+	    });		
+
+	};
 
 	 // members dropdown
 

@@ -11,7 +11,7 @@
         		<li><img class="createPostit"src="images/post-it.png"></li>
 
                 <form id="uploadFormVideo" action="#" method="post" enctype="multipart/form-data">
-                    <input type="file" id="videoInput" class="uploadVideo" name="uploadVideo"></input>  
+                    <input type="file" id="videoInput" class="uploadVideo" name="uploadVideo" accept="video/mp4"></input>  
                     <input id="targetVideo" class="videoSubmit" type="submit" value="upload" />
                 </form>
                 
@@ -28,7 +28,7 @@
         </div>
 
         <div class="members">
-            <p>Members:</p>
+            <p>Members</p>
             <ul class="menu">
                 <?php 
                    
@@ -44,7 +44,6 @@
         </div>
   
     </div>
-
 
 </script>
    

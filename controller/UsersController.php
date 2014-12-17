@@ -35,7 +35,9 @@ class UsersController extends Controller {
 	}
 	
 	public function index() {
-		
+		if(!empty($_SESSION['user'])){
+			$this->redirect('index.php?page=profile&amp;id=' . $_SESSION['user']['id']);
+		}
 
 	}
 

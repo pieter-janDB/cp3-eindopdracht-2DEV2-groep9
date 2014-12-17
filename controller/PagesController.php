@@ -22,9 +22,6 @@ class PagesController extends Controller {
 		$this->whiteboarditemDAO = new WhiteboarditemDAO();
 	}
 
-	public function index(){
-
-	}
 
 	public function newproject(){
 		if(empty($_SESSION['user']['id'])){

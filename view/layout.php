@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="description" content="Whiteboard and scrum" />
-        <meta name="keywords" content="whiteboard, scrum, projects, cp3, eindwerk, devine" />
+        <meta name="description" content="Whiteboard" />
+        <meta name="keywords" content="whiteboard, projects, cp3, eindwerk, devine" />
         <meta name="author" content="Pieter-Jan De Bruyne, Emma Verhelst" />
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />

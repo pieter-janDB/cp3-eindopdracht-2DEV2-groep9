@@ -1,7 +1,7 @@
 <section class="homepage container">
 
     <h2><a href="index.php?page=index">Whiteboard</a></h2>
-    <h3>Online whiteboard and scrum</h3>
+    <h3>Online multi-user whiteboard</h3>
 
     <div id="login">
     	<p>Login</p>
